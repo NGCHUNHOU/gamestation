@@ -1,0 +1,35 @@
+body,
+html {
+    height: 100%;
+}
+
+.bg-logo {
+    background: #292a44;
+}
+
+.footer {
+    background: #f9f9f9;
+}
+
+.error-heading h1 {
+    font-size: 4rem;
+}
+
+.content-box h3 {
+    font-size: 1.50em;
+    color: grey;
+    font-weight: 300;
+}
+
+.rem-pad {
+    padding: 0;
+}
+
+.notfound-box {
+    height: 460px;
+}
+
+.navbar-toggler {
+    outline: none !important;
+    border: none !important;
+}

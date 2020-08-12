@@ -1,0 +1,4 @@
+<?php
+
+// load main core file
+require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/core/loader.php';

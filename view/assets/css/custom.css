@@ -1,0 +1,127 @@
+/* global setting */
+body {
+    background: #173F5A;
+}
+
+h1, h2, h3, h4, h5, p {
+    color: #ffffff;
+}
+
+/* End of global setting */
+
+/* header setting */
+
+.bg-logo {
+    background: #292a44;
+}
+
+.navbar-toggler {
+    outline: none !important;
+    border: none !important;
+}
+
+
+/* End of header setting */
+
+
+/* footer setting */
+
+.footer {
+    background: #f9f9f9;
+}
+
+
+/* End of footer setting */
+
+
+/* common sizing setting */
+@media (min-width: 320px) {
+    .btn-showcase-mt-neg {
+        margin-top: -45px;
+        justify-content: center;
+    }
+
+    .btn-responsive-padding {
+        padding: .250rem .50rem;
+    }
+}
+
+
+@media (min-width: 576px) {
+    .btn-showcase-mt-neg {
+        margin-top: -60px;
+        justify-content: center;
+    }
+    }
+
+@media (min-width: 768px) {
+.btn-showcase-mt-neg {
+    margin-top: -80px;
+    justify-content: center;
+}
+}
+
+@media (min-width: 992px) {
+    .btn-showcase-mt-neg {
+        margin-top: -100px;
+        justify-content: center;
+    }
+    }
+
+.wt-in {
+    width: inherit;
+}
+
+.empty {
+    height: 40vh;
+}
+
+.rem-pad {
+    padding: 0;
+}
+
+.text-white {
+    color: #fff;
+}
+
+
+/* End of common sizing setting */
+
+
+/* button setting */
+
+.btn-style {
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-news {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.btn-news:hover {
+    background: #333;
+}
+
+
+/* End of button setting */
+
+
+/* carousel style setting */
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 10%;
+}
+
+.carousel-item {
+    max-height: 350px;
+}
+
+.circle-dot {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 100%;
+}
