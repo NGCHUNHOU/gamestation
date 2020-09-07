@@ -23,6 +23,13 @@ h1, h2, h3, h4, h5, p {
 
 /* End of header setting */
 
+.table-body td {
+    text-align: left;
+}
+.mainNews_btn {
+    font-size: 2vw;
+}
+
 
 /* footer setting */
 
@@ -34,7 +41,69 @@ h1, h2, h3, h4, h5, p {
 /* End of footer setting */
 
 
-/* common sizing setting */
+
+/* media max width setting */
+@media (max-width: 1199.98px) {
+    .table-mainHeader th {
+        font-size: 1.5vw;
+    }
+    .table-header th {
+        font-size: 1.2vw;
+    }
+    .table-body td {
+        font-size: 1.2vw;
+        text-align: left;
+    }
+    .showcase_heading {
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .table-header th {
+        padding: 7px;
+    }
+    .showcase_heading {
+        font-size: 2.5vw;
+    }
+}
+
+@media (max-width: 49em) {
+    .showcase_heading {
+        font-size: 3vw;
+    }
+
+    .table-header th {
+        font-size: 1.5vw;
+        padding: 5px;
+    }
+    .table-body td {
+        font-size: 1.5vw;
+    }
+    .mainNews_btn {
+        border-width: 0.5px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .showcase_heading {
+        font-size: 4vw;
+    }
+    .table-mainHeader th {
+        font-size: 3vw;
+    }
+    .table-header th {
+        font-size: 3vw;
+    }
+    .table-body td {
+        font-size: 3vw;
+    }
+}
+
+/* end of max width media */
+
+
+/* media min width setting */
 @media (min-width: 320px) {
     .btn-showcase-mt-neg {
         margin-top: -45px;

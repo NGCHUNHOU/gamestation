@@ -30,7 +30,7 @@
     <div class="row">
         <div class="btn-showcase-mt-neg position-absolute col-5 col-sm-5 col-md-5 col-lg-5 d-flex mt-neg-110">
             <div class="showcase_content text-center">
-            <button style="font-size: 1.5vw;" class="btn btn-news btn-responsive-padding">More news</button>
+            <button class="btn btn-news btn-responsive-padding mainNews_btn">More news</button>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
   <div class="container">
       <div class="row">
           <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-              <h1 style="font-size: 2vw;" class="text-center pt-4">Featured News</h1>
+              <h1 class="showcase_heading text-center pt-4">Featured News</h1>
               <div id="carousel-news" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-news" data-slide-to="0" class="active circle-dot"></li>
@@ -76,43 +76,43 @@
               <!-- <h3 style="font-size: 2vw;" class="text-center pt-4">updated list</h3> -->
               <div class="updateList text-center mt-5">
               <table class="table table-striped table-dark">
-                    <thead style="background: #E0A800; color: #000000;">
+                    <thead class="table-mainHeader" style="background: #E0A800; color: #000000;">
                         <tr>
-                        <th style="font-size: 1vw;" colspan="7" scope="col">Weekly update</th>
+                        <th colspan="7" scope="col">Weekly update</th>
                         </tr>
                     </thead>
-                    <thead>
+                    <thead class="table-header">
                         <tr>
-                        <th style="font-size: 1vw;" scope="col">Mon</th>
-                        <th style="font-size: 1vw;" scope="col">Tue</th>
-                        <th style="font-size: 1vw;" scope="col">Wed</th>
-                        <th style="font-size: 1vw;" scope="col">Thu</th>
-                        <th style="font-size: 1vw;" scope="col">Fri</th>
-                        <th style="font-size: 1vw;" scope="col">Sat</th>
-                        <th style="font-size: 1vw;" scope="col">Sun</th>
+                        <th scope="col">Mon</th>
+                        <th scope="col">Tue</th>
+                        <th scope="col">Wed</th>
+                        <th scope="col">Thu</th>
+                        <th scope="col">Fri</th>
+                        <th scope="col">Sat</th>
+                        <th scope="col">Sun</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-body">
                         <tr>
-                        <td style="font-size: 1vw; text-align:left;" colspan="7" style="font-size: 1vw;">Mark</td>
+                        <td colspan="7">Mark</td>
                         </tr>
                         <tr>
-                        <td style="font-size: 1vw; text-align:left;" colspan="7" style="font-size: 1vw;">Mark</td>
+                        <td colspan="7">Mark</td>
                         </tr>
                         <tr>
-                        <td style="font-size: 1vw; text-align:left;" colspan="7" style="font-size: 1vw;">Mark</td>
+                        <td colspan="7">Mark</td>
                         </tr>
                         <tr>
-                        <td style="font-size: 1vw; text-align:left;" colspan="7" style="font-size: 1vw;">Mark</td>
+                        <td colspan="7">Mark</td>
                         </tr>
                         <tr>
-                        <td style="font-size: 1vw; text-align:left;" colspan="7" style="font-size: 1vw;">Mark</td>
+                        <td colspan="7">Mark</td>
                         </tr>
                         <tr>
-                        <td style="font-size: 1vw; text-align:left;" colspan="7" style="font-size: 1vw;">Mark</td>
+                        <td colspan="7">Mark</td>
                         </tr>
                         <tr>
-                        <td style="font-size: 1vw; text-align:left;" colspan="7" style="font-size: 1vw;">Mark</td>
+                        <td colspan="7">Mark</td>
                         </tr>
                     </tbody>
                 </table>
