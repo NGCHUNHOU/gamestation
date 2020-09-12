@@ -19,6 +19,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/view.php';
               });
               break;
 
+            case '/news':
+              $this->get('/aboutUs', function() {
+                return "news";
+              });
+              break;
+
             case '/subpage':
               $this->get('/subpage', function() {
                 return "subpage";

@@ -40,6 +40,13 @@ h1, h2, h3, h4, h5, p {
 
 /* End of footer setting */
 
+.table-header th {
+    cursor: pointer;
+}
+
+.table-header th:hover {
+    background: #161C1F
+}
 
 
 /* media max width setting */

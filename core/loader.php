@@ -11,6 +11,10 @@ $page_loader = new pages\index();
 // require_once $_SERVER['DOCUMENT_ROOT'] . '/gamestation/classes/loader/loader.php';
 // $loader = new loader\loader();
 
+use classes\dataStorage;
+require_once $_SERVER['DOCUMENT_ROOT'] . '/gamestation/classes/dataStorage/storage.php';
+$dataStorage = new dataStorage\dataStorage();
+
 use classes\db_admin;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/gamestation/admin/classes/db/admin.php';
 $admin_loader = new db_admin\db_admin();

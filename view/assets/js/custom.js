@@ -56,3 +56,22 @@ function removejs(jstargetname) {
     targetjsfile.remove()
 }
 
+/**
+ * Data for update table 
+ * @param dataInput A place where update table data should store in 
+ */
+function tableDataStorage(dataInput) {
+    this.data = dataInput;
+}
+
+/**
+ * Function to display table data from tableDataStorage
+ */
+(function displayTableData() {
+    let tMain = $(".table-body");
+    let tData = ['Mark', 'Chun', 'Ming'];
+    let hyperTdata = tData.map((target) => {
+        return (`<tr><td colspan='7'>${target}</td></tr>`);
+    })
+    tMain.append(hyperTdata);
+})()
