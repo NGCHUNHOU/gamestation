@@ -4,7 +4,10 @@
     require_once 'db_basic.php';
     class db extends db_basic 
     {
-        public function __construct() {}
+        public function __construct() 
+        {
+            parent::__construct('localhost', 'gamestation', 'root', '');
+        }
     }
     
 ?>

@@ -3,13 +3,20 @@ namespace classes\db;
 
 class db_basic 
 {
-    public $hostname = 'localhost';
-    public $dbname = 'gamestation';
-    public $username = 'root';
-    public $password = '';
+    public $hostname;
+    public $dbname;
+    public $username;
+    public $password;
     protected $stmt = null;
 
-    protected function __construct() {}
+    protected function __construct($hostname, $dbname, $username, $password, $stmt = null) 
+    {
+        $this->hostname = $hostname;
+        $this->dbname = $dbname;
+        $this->username = $username;
+        $this->password = $password;
+        $this->stmt = $stmt;
+    }
 
     public function connect() {
         $pdo = new \PDO("mysql:host=$this->hostname;dbname=$this->dbname", $this->username, $this->password);

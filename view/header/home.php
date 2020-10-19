@@ -20,20 +20,20 @@
         <div class="row">
             <div class="col-md-12 rem-pad">
                 <div class="navbar navbar-expand-md navbar-dark bg-logo">
-                    <div class="logo navbar-brand"><img src="./view/assets/images/meteor-light-resized.svg" alt="logo" width="32"></div>
+                    <div class="logo navbar-brand"><img rel="preload" src="./view/assets/images/meteor-light-resized.svg" alt="logo" width="32"></div>
                     <button class="navbar-toggler" data-toggle="collapse" data-target="#headerlist">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="headerlist">
                     <ul class="navbar-nav header-list" data-iscapitailse='true'>
                         <li class="nav-item">
-                            <a class="nav-link" href="./" target="_blank">HOME</a>
+                            <a class="nav-link" href="./" target="_self">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./aboutUs" target="_blank">ABOUT US</a>
+                            <a class="nav-link" href="./aboutUs" target="_self">ABOUT US</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" target="_blank">NEWS</a>
+                            <a class="nav-link" href="./news" target="_self">NEWS</a>
                         </li>
                     </ul>
                     </div>

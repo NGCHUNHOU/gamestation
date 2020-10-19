@@ -23,7 +23,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 rem-pad">
-            <img class="showcase_img wt-in" src="./view/assets/images/display-wide-1920w.png" alt="main_showcase">
+            <img preload rel="preload" class="showcase_img wt-in" src="./view/assets/images/display-wide-1920w.png" alt="main_showcase">
         </div>
     </div>
 
@@ -49,15 +49,15 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img width="100%" src="./view/assets/images/purple_triangle.svg" alt="triangle">
+                            <img rel="preload" width="100%" src="./view/assets/images/purple_triangle.svg" alt="triangle">
                             <div class="carousel-caption"><h3 style="font-size: 2.5vw;">vector triangle</h3></div>        
                         </div>
                         <div class="carousel-item">
-                            <img width="100%" src="./view/assets/images/red_land.png" alt="Red Land">
+                            <img rel="preload" width="100%" src="./view/assets/images/red_land.png" alt="Red Land">
                             <div class="carousel-caption"><h3 style="font-size: 2.5vw;">Red Land</h3></div>
                         </div>
                         <div class="carousel-item">
-                            <img width="100%" src="./view/assets/images/light_blue_land.jpg" alt="lightblue Land">
+                            <img rel="preload" width="100%" src="./view/assets/images/light_blue_land.jpg" alt="lightblue Land">
                             <div class="carousel-caption"><h3 style="font-size: 2.5vw;">lightblue Land</h3></div>
                         </div>
                     </div>

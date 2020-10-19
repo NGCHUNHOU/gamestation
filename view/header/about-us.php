@@ -28,13 +28,13 @@
                     <div class="collapse navbar-collapse" id="headerlist">
                     <ul class="navbar-nav header-list" data-iscapitailse='true'>
                         <li class="nav-item">
-                            <a class="nav-link" href="../" target="_blank">HOME</a>
+                            <a class="nav-link" href="../" target="_self">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about-us" target="_blank">ABOUT US</a>
+                            <a class="nav-link" href="./about-us" target="_self">ABOUT US</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" target="_blank">NEWS</a>
+                            <a class="nav-link" href="./news" target="_self">NEWS</a>
                         </li>
                     </ul>
                     </div>

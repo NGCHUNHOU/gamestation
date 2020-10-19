@@ -8,7 +8,7 @@
 </div>
 </div>
 
-<script type="text/javascript" src="<?php echo DIR_HOST ?>/view/assets/js/aboutUs.js"></script>
+<script type="text/javascript" src="<?php echo DIR_HOST ?>/view/assets/js/news.js"></script>
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
