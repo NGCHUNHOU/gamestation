@@ -3,9 +3,38 @@ namespace classes\pages;
 use classes\db;
 
     class controller  {
-        function createheader($page = '')
+        function createheader($page, $meta = array())
         {
-            require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/'. $page .'.php');
+            switch ($page)
+            {
+                case 'home':
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";
+                    echo "<meta name='description' content='$meta[home_description]'/>";
+                    echo "<meta name='keywords' content='$meta[home_keyword]'/>";
+                    echo "<meta name='author' content='$meta[home_author]'";
+                    echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    break;
+                case 'about':
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";
+                    echo "<meta name='description' content='$meta[aboutUs_description]'/>";
+                    echo "<meta name='keywords' content='$meta[aboutUs_keyword]'/>";
+                    echo "<meta name='author' content='$meta[aboutUs_author]'";
+                    echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    break;   
+                case 'news':
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";
+                    echo "<meta name='description' content='$meta[news_description]'/>";
+                    echo "<meta name='keywords' content='$meta[news_keyword]'/>";
+                    echo "<meta name='author' content='$meta[news_author]'";
+                    echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    break;         
+            }
         }
         function createfooter() {
             require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/footer.php');
