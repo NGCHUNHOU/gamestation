@@ -93,6 +93,11 @@
                         </tr>
                     </thead>
                     <tbody class="table-body">
+                        <?php for($i = 0; $i < count($this->monday_list); $i++)
+                            echo "<tr> 
+                                <td colspan='7'>".$this->monday_list[$i]['news_title']."</td>                         
+                            </tr>";
+                        ?>
                         <!-- <tr>
                         <td colspan="7">Mark</td>
                         </tr>
@@ -120,6 +125,3 @@
           </div>
       </div>
   </div>
-<script type="text/javascript" src="./view/assets/js/custom.js"></script>
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>

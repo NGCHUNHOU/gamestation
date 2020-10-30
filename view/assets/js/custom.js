@@ -67,11 +67,11 @@ function tableDataStorage(dataInput) {
 /**
  * Function to display table data from tableDataStorage
  */
-(function displayTableData() {
-    let tMain = $(".table-body");
-    let tData = ['Mark', 'Chun', 'Ming'];
-    let hyperTdata = tData.map((target) => {
-        return (`<tr><td colspan='7'>${target}</td></tr>`);
-    })
-    tMain.append(hyperTdata);
-})()
+// (function displayTableData() {
+//     let tMain = $(".table-body");
+//     let tData = ['Mark', 'Chun', 'Ming'];
+//     let hyperTdata = tData.map((target) => {
+//         return (`<tr><td colspan='7'>${target}</td></tr>`);
+//     })
+//     tMain.append(hyperTdata);
+// })()

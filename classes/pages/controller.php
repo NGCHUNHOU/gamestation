@@ -1,8 +1,11 @@
 <?php
 namespace classes\pages;
+require_once $_SERVER['DOCUMENT_ROOT'] . '/gamestation/classes/dataStorage/tableData.php';
+
+use classes\dataStorage\tableData\tableData;
 use classes\db;
 
-    class controller  {
+    class controller extends tableData  {
         function createheader($page, $meta = array())
         {
             switch ($page)
@@ -18,7 +21,7 @@ use classes\db;
                     break;
                 case 'about':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";
+                    echo "<title>GameStation | About Us </title>";
                     echo "<meta name='description' content='$meta[aboutUs_description]'/>";
                     echo "<meta name='keywords' content='$meta[aboutUs_keyword]'/>";
                     echo "<meta name='author' content='$meta[aboutUs_author]'";
@@ -27,13 +30,22 @@ use classes\db;
                     break;   
                 case 'news':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";
+                    echo "<title>GameStation | News </title>";
                     echo "<meta name='description' content='$meta[news_description]'/>";
                     echo "<meta name='keywords' content='$meta[news_keyword]'/>";
                     echo "<meta name='author' content='$meta[news_author]'";
                     echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
-                    break;         
+                    break;   
+                case 'error':
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";
+                    echo "<meta name='description' content='failed to load page'/>";
+                    echo "<meta name='keywords' content='failed to load page'/>";
+                    echo "<meta name='author' content='failed to load page'";
+                    echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    break;        
             }
         }
         function createfooter() {

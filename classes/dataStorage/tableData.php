@@ -9,7 +9,7 @@ class tableData
     
     protected function __construct()
     {
-        ;
+        $this->updateTableData();
     }
 
     /**
@@ -30,9 +30,5 @@ class tableData
         $this->ListTable = array('monday' => $this->getUpdateTableData('monday'),
                                  'tuesday' => $this->getUpdateTableData('tuesday')
                                     );
-
-        print("<pre style='color: #fff;'>");
-        print_r($this->ListTable);
-        print('</pre>');
     }
 }
