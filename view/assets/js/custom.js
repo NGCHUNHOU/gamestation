@@ -1,77 +1,30 @@
-function headerlist() {
-    this.home = $('.header-list .nav-item .nav-link:eq(0)')
-    this.aboutus = $('.header-list .nav-item .nav-link:eq(1)')
-    this.news = $('.header-list .nav-item .nav-link:eq(2)')
-    this.bool = document.querySelector('.header-list').dataset.iscapitailse
-};
+const $  = require('jquery')
 
-(function capitalizelist() {
-    var list = new headerlist
-    var listtext = [list.home, list.aboutus, list.news]
-    if (typeof listtext !== undefined && list.bool == 'true') {
-        listtext.forEach(function(val, index) {
-            listtext[index].html(listtext[index].html().toUpperCase())
-        });
-        return true
-    } else {
-        return false
-    }
-})()
+window.setDailyNews = (target, day) =>
+{
+    $.ajax(
+        {
+            url: `http://localhost/gamestation/classes/pages/newsDataSheet.php?day=${day}`,
+            success: (result) =>
+            {
+                let JSON_NewsData = JSON.parse(result)
 
-function jsasset() {
-    this.jslocation = $('script[src="http://localhost/gamestation/view/assets/js/custom.js"]')
-    this.jslist = $('body script')
-    this.duplist = []
+                if (target.hasChildNodes())
+                {
+                    target.innerHTML = ''
+                }
+
+                for (let i = 0; i < JSON_NewsData.length; i++)
+                {
+                    let tr = document.createElement('tr')
+                    let td = document.createElement('td')
+                    let node = document.createTextNode(JSON_NewsData[i][0])
+                        td.setAttribute('colspan', '7')
+                        td.appendChild(node)
+                        tr.appendChild(td)
+                    target.appendChild(tr)
+                }
+            }
+        }
+    )
 }
-
-function jspath(jsname) {
-    var jsinfo = new jsasset()
-    var path = jsinfo.jslocation[0].getAttribute('src')
-    var pathtoarr = path.split('/')
-    var lastindex = pathtoarr.length
-    var lastname = pathtoarr[lastindex - 1]
-    if (typeof pathready !== undefined) {
-        return path.replace(lastname, jsname + '.js')
-    } else {
-        return false
-    }
-}
-
-var jsinfo = new jsasset()
-
-function insertjs(jsfile) {
-    jsinfo.duplist.push(jsfile)
-    var uniquelist = new Set(jsinfo.duplist)
-    var jsnode = `<script type='text/javascript' src=${jspath(jsfile)}>`
-    if (typeof jsinfo.jslocation !== undefined && jsinfo.duplist.length == uniquelist.size) {
-        jsinfo.jslocation.after(jsnode)
-    } else {
-        return false
-    }
-}
-
-function removejs(jstargetname) {
-    var path = jspath(jstargetname)
-    var targetjsfile = $(`body script[src='${path}']`)
-    targetjsfile.remove()
-}
-
-/**
- * Data for update table 
- * @param dataInput A place where update table data should store in 
- */
-function tableDataStorage(dataInput) {
-    this.data = dataInput;
-}
-
-/**
- * Function to display table data from tableDataStorage
- */
-// (function displayTableData() {
-//     let tMain = $(".table-body");
-//     let tData = ['Mark', 'Chun', 'Ming'];
-//     let hyperTdata = tData.map((target) => {
-//         return (`<tr><td colspan='7'>${target}</td></tr>`);
-//     })
-//     tMain.append(hyperTdata);
-// })()
