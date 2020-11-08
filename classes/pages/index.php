@@ -16,14 +16,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         public $friday_list;
         public $saturday_list;
         public $sunday_list;
-        
 
         public function __construct() {
+          // Data Initialization //
           $this->updateTableData();
           $this->assignDayTable();
-
           $this->urlPath = $_SERVER["REQUEST_URI"];
           $this->addMetaList();
+
           switch ($this->urlPath) {
             case '/':
               $this->get('/', 'home', 'custom', function() {
@@ -55,14 +55,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
               if ($this->urlPath == $pathName) {
               $this->createheader($headPage, $this->metaList);
               require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$callback().".php";
-              echo "<script type='text/javascript' src='./view/assets/js/$includeJsName.js'></script>";
+              echo "<script type='text/javascript' src= $_SERVER[WEB_HTTP]/view/assets/js/dist/bundle.js></script>";
+              // echo "<script type='text/javascript' src='./view/assets/js/$includeJsName.js'></script>";
               $this->createfooter();
             } else
             {
               throw new \Exception("Failed loading page", 1);
             }
         }
-        private function addMetaList()
+        protected function addMetaList()
         {
           $this->metaList = array(
             "home_description" => $this->get_siteinfo('description', 'home'), 
@@ -77,7 +78,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
           );
         }
 
-        private function assignDayTable()
+        protected function assignDayTable()
         {
           $this->monday_list = $this->ListTable['monday'];
           $this->tuesday_list = $this->ListTable['tuesday'];
