@@ -83,16 +83,16 @@
                     </thead>
                     <thead class="table-header">
                         <tr>
-                        <th scope="col">Mon</th>
-                        <th scope="col">Tue</th>
-                        <th scope="col">Wed</th>
-                        <th scope="col">Thu</th>
-                        <th scope="col">Fri</th>
-                        <th scope="col">Sat</th>
-                        <th scope="col">Sun</th>
+                        <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'monday')" scope="col">Mon</th>
+                        <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'tuesday')" scope="col">Tue</th>
+                        <th onclick="" scope="col">Wed</th>
+                        <th onclick="" scope="col">Thu</th>
+                        <th onclick="" scope="col">Fri</th>
+                        <th onclick="" scope="col">Sat</th>
+                        <th onclick="" scope="col">Sun</th>
                         </tr>
                     </thead>
-                    <tbody class="table-body">
+                    <tbody class="table-body newsContainer">
                         <?php for($i = 0; $i < count($this->monday_list); $i++)
                             echo "<tr> 
                                 <td colspan='7'>".$this->monday_list[$i]['news_title']."</td>                         
