@@ -28,7 +28,12 @@ class tableData
      */
     protected function updateTableData() {
         $this->ListTable = array('monday' => $this->getUpdateTableData('monday'),
-                                 'tuesday' => $this->getUpdateTableData('tuesday')
+                                 'tuesday' => $this->getUpdateTableData('tuesday'),
+                                 'wednesday' => $this->getUpdateTableData('wednesday'),
+                                 'thursday' => $this->getUpdateTableData('thursday'),
+                                 'friday' => $this->getUpdateTableData('friday'),
+                                 'saturday' => $this->getUpdateTableData('saturday'),
+                                 'sunday' => $this->getUpdateTableData('sunday')
                                     );
     }
 }

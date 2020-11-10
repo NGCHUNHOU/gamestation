@@ -33,5 +33,28 @@ switch ($_GET['day']) {
         $JSON_newsData = json_encode($newsData->tuesday_list);
         print_r($JSON_newsData);
         break;
+
+    case 'wednesday':
+        $JSON_newsData = json_encode($newsData->wednesday_list);
+        print_r($JSON_newsData);
+        break;
+
+    case 'thursday':
+        $JSON_newsData = json_encode($newsData->thursday_list);
+        print_r($JSON_newsData);
+        break;
+   case 'friday':
+        $JSON_newsData = json_encode($newsData->friday_list);
+        print_r($JSON_newsData);
+        break;
+   case 'saturday':
+        $JSON_newsData = json_encode($newsData->saturday_list);
+        print_r($JSON_newsData);
+        break;
+
+    case 'sunday':
+        $JSON_newsData = json_encode($newsData->sunday_list);
+        print_r($JSON_newsData);
+        break;
 }
 }

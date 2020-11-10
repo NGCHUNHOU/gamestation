@@ -82,6 +82,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         {
           $this->monday_list = $this->ListTable['monday'];
           $this->tuesday_list = $this->ListTable['tuesday'];
+          $this->wednesday_list = $this->ListTable['wednesday'];
+          $this->thursday_list = $this->ListTable['thursday'];
+          $this->friday_list = $this->ListTable['friday'];
+          $this->saturday_list = $this->ListTable['saturday'];
+          $this->sunday_list = $this->ListTable['sunday'];
         }
     }
 ?>

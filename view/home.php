@@ -85,11 +85,11 @@
                         <tr>
                         <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'monday')" scope="col">Mon</th>
                         <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'tuesday')" scope="col">Tue</th>
-                        <th onclick="" scope="col">Wed</th>
-                        <th onclick="" scope="col">Thu</th>
-                        <th onclick="" scope="col">Fri</th>
-                        <th onclick="" scope="col">Sat</th>
-                        <th onclick="" scope="col">Sun</th>
+                        <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'wednesday')" scope="col">Wed</th>
+                        <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'thursday')" scope="col">Thu</th>
+                        <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'friday')" scope="col">Fri</th>
+                        <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'saturday')" scope="col">Sat</th>
+                        <th onclick="setDailyNews(document.querySelector('.newsContainer'), 'sunday')" scope="col">Sun</th>
                         </tr>
                     </thead>
                     <tbody class="table-body newsContainer">
