@@ -6,7 +6,13 @@ module.exports =
     output: 
     {
         filename: 'bundle.js',
-        path: path.resolve( './view/assets/js', 'dist')
+        path: path.resolve( __dirname + '/view/assets/js', 'dist')
+    },
+    devServer:
+    {
+      contentBase: __dirname + 'dist',
+      compress: true,
+      port: 80
     },
     module:
     {

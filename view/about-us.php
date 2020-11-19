@@ -8,5 +8,4 @@
 </div>
 </div>
 
-<script type="text/javascript" src="<?php echo DIR_HOST ?>/view/assets/js/aboutUs.js"></script>
 

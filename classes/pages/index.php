@@ -26,23 +26,38 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
 
           switch ($this->urlPath) {
             case '/':
-              $this->get('/', 'home', 'custom', function() {
+              $this->get('/', 'home', function() {
                 return "home";
               });
               break;
             
             case '/aboutUs':
-              $this->get('/aboutUs', 'about', 'aboutUs', function() {
+              $this->get('/aboutUs', 'about', function() {
                 return "about-us";
               });
               break;
 
             case '/news':
-              $this->get('/news', 'news', 'news', function() {
+              $this->get('/news', 'news', function() {
                 return "news";
               });
               break;
-            
+
+          // for ($i = 0; $i < count($this->MonTitleURL); $i++)
+          // {
+          //   if ($this->urlPath == $this->MonTitleURL[$i][0])
+          //   {
+          //      $this->get("/".$this->MonTitleURL[$i][0], $this->MonTitleURL[$i][0], function() {
+          //        return $this->MonTitleURL[0][0];
+          //      });
+          //   }
+          // }
+            // if ($this->urlPath == "/test")
+            // {
+            //    $this->get("/aboutUs", "about", function() {
+            //      return "about-us";
+            //    });
+            // }
             default:
             $this->createheader("error");
             require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/errorview/notfound.php";
@@ -51,17 +66,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
           }
         }
         
-        public function get($pathName, $headPage = 'home', $includeJsName, $callback) {
-              if ($this->urlPath == $pathName) {
+        public function get($pathName, $headPage = 'home', $callback) {
+              // if ($this->urlPath == $pathName) {
               $this->createheader($headPage, $this->metaList);
               require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$callback().".php";
-              echo "<script type='text/javascript' src= $_SERVER[WEB_HTTP]/view/assets/js/dist/bundle.js></script>";
+              echo "<script type='text/javascript' src= /gamestation/view/assets/js/dist/bundle.js></script>";
               // echo "<script type='text/javascript' src='./view/assets/js/$includeJsName.js'></script>";
               $this->createfooter();
-            } else
-            {
-              throw new \Exception("Failed loading page", 1);
-            }
+            // } else
+            // {
+            //   throw new \Exception("Failed loading page", 1);
+            // }
         }
         protected function addMetaList()
         {

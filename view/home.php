@@ -23,14 +23,23 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 rem-pad">
-            <img preload rel="preload" class="showcase_img wt-in" src="./view/assets/images/display-wide-1920w.png" alt="main_showcase">
+            <!-- <img srcset="/gamestation/view/assets/images/display-wide-550w.jpg 550w,
+                         /gamestation/view/assets/images/display-wide-1920w.png 1920w"
+                 sizes="(max-width: 550px) 550px, 
+                        (max-width: 768px) 768px" 
+                 src="/gamestation/view/assets/images/display-wide-550w.jpg"
+                         class="showcase_img wt-in" alt="main_showcase"> -->
+            <picture class="land_pic" style="width: inherit;">
+               <source srcset="/gamestation/view/assets/images/display-700.png" media="(max-width: 550px)">
+               <img srcset="/gamestation/view/assets/images/display-wide-1920w.png" class="showcase_img wt-in" alt="main_showcase"> 
+            </picture> 
         </div>
     </div>
 
     <div class="row">
-        <div class="btn-showcase-mt-neg position-absolute col-5 col-sm-5 col-md-5 col-lg-5 d-flex mt-neg-110">
+        <div class="btn-showcase-mt-neg position-absolute col-12 col-sm-5 col-md-5 col-lg-5 d-flex mt-neg-110">
             <div class="showcase_content text-center">
-            <button class="btn btn-news btn-responsive-padding mainNews_btn">More news</button>
+            <button class="btn btn-news btn-lg btn-home mainNews_btn">More news</button>
             </div>
         </div>
     </div>
@@ -39,7 +48,7 @@
 
   <div class="container">
       <div class="row">
-          <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+          <div class="col-12 col-sm-12 col-md-7 col-lg-8">
               <h1 class="showcase_heading text-center pt-4">Featured News</h1>
               <div id="carousel-news" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -49,16 +58,25 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img rel="preload" width="100%" src="./view/assets/images/purple_triangle.svg" alt="triangle">
-                            <div class="carousel-caption"><h3 style="font-size: 2.5vw;">vector triangle</h3></div>        
+                            <picture>
+                                <source srcset="./view/assets/images/carousel/brown_land-800.png" media="(max-width: 550px)">
+                                <img rel="preload" style="width: 100%; max-height: 300px;" src="./view/assets/images/carousel/brown_land-1500.png" alt="triangle">
+                                <div class="carousel-caption"><h3>Brown Land</h3></div>        
+                            </picture>
                         </div>
                         <div class="carousel-item">
-                            <img rel="preload" width="100%" src="./view/assets/images/red_land.png" alt="Red Land">
-                            <div class="carousel-caption"><h3 style="font-size: 2.5vw;">Red Land</h3></div>
+                            <picture>
+                                <source srcset="./view/assets/images/carousel/red_land-800.png" media="(max-width: 550px)">
+                                <img rel="preload" style="width: 100%; max-height: 300px;" src="./view/assets/images/carousel/red_land-1500.png" alt="Red Land">
+                                <div class="carousel-caption"><h3>Red Land</h3></div>
+                            </picture>
                         </div>
                         <div class="carousel-item">
-                            <img rel="preload" width="100%" src="./view/assets/images/light_blue_land.jpg" alt="lightblue Land">
-                            <div class="carousel-caption"><h3 style="font-size: 2.5vw;">lightblue Land</h3></div>
+                            <picture>
+                                <source srcset="./view/assets/images/carousel/light_blue_land-800.png" media="(max-width: 550px)">
+                                <img rel="preload" style="width: 100%; max-height: 300px;" src="./view/assets/images/carousel/light_blue_land-1500.png" alt="lightblue Land">
+                                <div class="carousel-caption"><h3>lightblue Land</h3></div>
+                            </picture>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-news" role="button" data-slide="prev">
@@ -72,9 +90,9 @@
               </div>
           </div>
           <!-- <div class="col-1 col-md-1 col-lg-1"></div> -->
-          <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-              <!-- <h3 style="font-size: 2vw;" class="text-center pt-4">updated list</h3> -->
-              <div class="updateList text-center mt-5">
+          <div class="col-12 col-sm-12 col-md-5 col-lg-4">
+              <h2 style="margin-bottom: 1rem;" class="text-center pt-4">Update Table</h2>
+              <div class="updateList text-center">
               <table class="table table-striped table-dark">
                     <thead class="table-mainHeader" style="background: #E0A800; color: #000000;">
                         <tr>
