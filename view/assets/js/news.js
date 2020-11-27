@@ -5,48 +5,8 @@ if (window.location.pathname === "/gamestation/news")
 {
     let body = document.querySelector('body')
     body.style.background = "#fff"
-
-    let text =
-    [
-        document.querySelector('h3'),
-        document.querySelectorAll('h5'),
-        document.querySelectorAll('p'),
-        document.querySelectorAll('div'),
-        document.querySelectorAll('.card-title'),
-        document.querySelectorAll('.card-text')
-    ]
-    // console.log(text) 
-
-    text[0].style.color = "#212529";
-
-    for (let i = 0; i < text[1].length; i++)
-    {
-        text[1][i].style.color = "#212529";
-    }
-    
-    for (let i = 0; i < text[2].length; i++)
-    {
-        text[2][i].style.color = "#212529";
-    }
-
-    for (let i = 0; i < text[3].length; i++)
-    {
-        text[3][i].style.color = "#212529";
-    }
-
-    for (let i = 0; i < text[4].length; i++)
-    {
-        text[4][i].style.color = "#212529";
-    }
-
-    for (let i = 0; i < text[5].length; i++)
-    {
-        text[5][i].style.color = "#212529";
-    }
-    // let newChild = document.querySelector('.')
-    // let hoverLink = document.querySelector('.card-link')
-    // if (hoverLink.style.)
-    }
+    body.style.color = "#212529" 
+}
 }
 
 let hoverCard = function() 

@@ -1,7 +1,7 @@
 /* global setting */
-body {
+/* body {
     background: #173F5A;
-}
+} */
 
 .btn-home
 {
@@ -16,11 +16,11 @@ body {
   cursor: pointer;
 }
 
-h1, h2, h3, h4, h5, p, div, 
+/* h1, h2, h3, h4, h5, p, div, 
 .navbar-dark .navbar-nav .nav-link
 {
     color: rgba(255,255,255,.8)
-}
+} */
 /* End of global setting */
 
 /* Pseudo setting */
@@ -62,6 +62,10 @@ h1, h2, h3, h4, h5, p, div,
 
 .table td, .table th 
 {
+    max-width: 350px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     padding: .5rem;
 }
 

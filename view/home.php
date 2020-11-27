@@ -39,7 +39,7 @@
     <div class="row">
         <div class="btn-showcase-mt-neg position-absolute col-12 col-sm-5 col-md-5 col-lg-5 d-flex mt-neg-110">
             <div class="showcase_content text-center">
-            <button class="btn btn-news btn-lg btn-home mainNews_btn">More news</button>
+            <button class="btn btn-news btn-lg btn-home mainNews_btn"><a style="color: #212529; text-decoration: none;" href="/gamestation/news">More news</a></button>
             </div>
         </div>
     </div>
@@ -111,10 +111,14 @@
                         </tr>
                     </thead>
                     <tbody class="table-body newsContainer">
-                        <?php for($i = 0; $i < count($this->monday_list); $i++)
-                            echo "<tr> 
-                                <td colspan='7'>".$this->monday_list[$i]['news_title']."</td>                         
-                            </tr>";
+                        <?php 
+                            $limited_mondayList = array_slice($this->monday_list, 0, 5);
+                            for ($i = 0; $i < count($limited_mondayList); $i++)
+                            {
+                                echo "<tr> 
+                                    <td colspan='7'>".$this->monday_list[$i]['news_title']."</td>                         
+                                </tr>";
+                            }
                         ?>
                         <!-- <tr>
                         <td colspan="7">Mark</td>

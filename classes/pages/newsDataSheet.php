@@ -25,30 +25,30 @@ $newsData = new newsData();
 if (isset($_GET['day'])) {
 switch ($_GET['day']) {
     case 'monday':
-        $JSON_newsData = json_encode($newsData->monday_list);
+        $JSON_newsData = json_encode(array_slice($newsData->monday_list, 0, 5));
         print_r($JSON_newsData);
         break;
     
     case 'tuesday':
-        $JSON_newsData = json_encode($newsData->tuesday_list);
+        $JSON_newsData = json_encode(array_slice($newsData->tuesday_list, 0, 5));
         print_r($JSON_newsData);
         break;
 
     case 'wednesday':
-        $JSON_newsData = json_encode($newsData->wednesday_list);
+        $JSON_newsData = json_encode(array_slice($newsData->wednesday_list, 0, 5));
         print_r($JSON_newsData);
         break;
 
     case 'thursday':
-        $JSON_newsData = json_encode($newsData->thursday_list);
+        $JSON_newsData = json_encode(array_slice($newsData->thursday_list, 0, 5));
         print_r($JSON_newsData);
         break;
    case 'friday':
-        $JSON_newsData = json_encode($newsData->friday_list);
+        $JSON_newsData = json_encode(array_slice($newsData->friday_list, 0, 5));
         print_r($JSON_newsData);
         break;
    case 'saturday':
-        $JSON_newsData = json_encode($newsData->saturday_list);
+        $JSON_newsData = json_encode(array_slice($newsData->saturday_list, 0, 5));
         print_r($JSON_newsData);
         break;
 

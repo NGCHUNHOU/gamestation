@@ -31,7 +31,7 @@
                             <a class="nav-link" href="./" target="_blank">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./aboutUs" target="_blank">ABOUT US</a>
+                            <a class="nav-link" href="./about" target="_blank">ABOUT US</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./news" target="_blank">NEWS</a>

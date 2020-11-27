@@ -1,6 +1,5 @@
 <?php
 namespace classes\pages;
-
 use classes\dataStorage\tableData\tableData;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/view.php';
@@ -31,9 +30,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
               });
               break;
             
-            case '/aboutUs':
-              $this->get('/aboutUs', 'about', function() {
-                return "about-us";
+            case '/about':
+              $this->get('/about', 'about', function() {
+                return "about";
               });
               break;
 

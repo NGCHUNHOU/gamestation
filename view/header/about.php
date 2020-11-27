@@ -31,7 +31,7 @@
                             <a class="nav-link" href="../" target="_self">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./about-us" target="_self">ABOUT US</a>
+                            <a class="nav-link" href="./about" target="_self">ABOUT US</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./news" target="_self">NEWS</a>

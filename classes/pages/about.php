@@ -1,7 +1,7 @@
 <?php
 namespace classes\pages;
 require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/error.php';
-    class about_us extends CustomError{
+    class about extends CustomError{
         public $priority;
 
         public function __construct($subpath = '',$firstpage = TRUE) {
