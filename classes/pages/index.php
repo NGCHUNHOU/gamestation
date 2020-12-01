@@ -15,6 +15,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         public $friday_list;
         public $saturday_list;
         public $sunday_list;
+        public $pathList;
+        public $pageList;
+        public $newList;
 
         public function __construct() {
           // Data Initialization //
@@ -22,47 +25,60 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
           $this->assignDayTable();
           $this->urlPath = $_SERVER["REQUEST_URI"];
           $this->addMetaList();
+          $this->fillupNewsLinkTable();
 
-          switch ($this->urlPath) {
-            case '/':
-              $this->get('/', 'home', function() {
-                return "home";
-              });
-              break;
+          // switch ($this->urlPath) {
+          //   case '/':
+          //     $this->get('/', 'home', function() {
+          //       return "home";
+          //     });
+          //     break;
             
-            case '/about':
-              $this->get('/about', 'about', function() {
-                return "about";
-              });
-              break;
+          //   case '/about':
+          //     $this->get('/about', 'about', function() {
+          //       return "about";
+          //     });
+          //     break;
 
-            case '/news':
-              $this->get('/news', 'news', function() {
-                return "news";
-              });
-              break;
+          //   case '/news':
+          //     $this->get('/news', 'news', function() {
+          //       return "news";
+          //     });
+          //     break;
 
-          // for ($i = 0; $i < count($this->MonTitleURL); $i++)
-          // {
-          //   if ($this->urlPath == $this->MonTitleURL[$i][0])
-          //   {
-          //      $this->get("/".$this->MonTitleURL[$i][0], $this->MonTitleURL[$i][0], function() {
-          //        return $this->MonTitleURL[0][0];
-          //      });
-          //   }
+          //   case '/news/article/2020-top-100-cpu-latest-ranking-chart':
+          //     $this->get('/news', 'news', function() {
+          //       echo $this->rewriteNewsTitleUrl($this->ListTable['monday'][0]['news_title']) == '2020-top-100-cpu-latest-ranking-chart' ? "true" : "wrong";
+          //       return "newsArticle/2020-top-cpu-latest-ranking-chart";
+          //     });
+          //     break;
+
+          //   default:
+          //   $this->createheader("error");
+          //   require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/errorview/notfound.php";
+          //   $this->createfooter();
+          //   break;
           // }
-            // if ($this->urlPath == "/test")
-            // {
-            //    $this->get("/aboutUs", "about", function() {
-            //      return "about-us";
-            //    });
-            // }
-            default:
-            $this->createheader("error");
-            require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/errorview/notfound.php";
-            $this->createfooter();
-            break;
-          }
+
+            for ($i=0; $i < count($this->pathList); $i++) { 
+                $this->get(
+                    '/'.$this->pathList[$i],
+                    $this->pageList[$i],
+                    function()
+                    {
+                      for ($i=0; $i < count($this->pathList); $i++) { 
+                        if ('/'.$this->pathList[$i] == $this->urlPath)
+                        {
+                          return $this->pageList[$i];
+                        }
+                      }
+                      // return error page if page not found
+                      $this->createheader("error");
+                      require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/errorview/notfound.php";
+                      $this->createfooter();
+                    }
+                  );
+            }
         }
         
         public function get($pathName, $headPage = 'home', $callback) {
@@ -101,6 +117,43 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
           $this->friday_list = $this->ListTable['friday'];
           $this->saturday_list = $this->ListTable['saturday'];
           $this->sunday_list = $this->ListTable['sunday'];
+        }
+        
+        // Prepare all news links for news article setup
+        protected function fillupNewsLinkTable()
+        {
+          $this->pathList = ['', 'about', 'news'];
+          $this->pageList = ['home', 'about', 'news'];
+          $this->newList = [];
+          for ($i = 0; $i < count($this->ListTable['monday']); $i++) {
+            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title']));
+            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title']));
+          }
+          for ($i = 0; $i < count($this->ListTable['tuesday']); $i++) {
+            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']));
+            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']));
+          }
+          for ($i = 0; $i < count($this->ListTable['wednesday']); $i++) {
+            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title']));
+            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title']));
+          }
+          for ($i = 0; $i < count($this->ListTable['thursday']); $i++) {
+            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title']));
+            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title']));
+          }
+          for ($i = 0; $i < count($this->ListTable['friday']); $i++) {
+            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title']));
+            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title']));
+          }
+          for ($i = 0; $i < count($this->ListTable['saturday']); $i++) {
+            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title']));
+            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title']));
+          }
+          for ($i = 0; $i < count($this->ListTable['sunday']); $i++) {
+            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title']));
+            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title']));
+          }
+          $this->pathList = array_merge($this->pathList, $this->newList);
         }
     }
 ?>

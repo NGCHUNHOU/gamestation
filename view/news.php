@@ -7,11 +7,11 @@
             <?php
             for ($i = 0; $i < count($this->ListTable['monday']); $i++) {
                 echo
-                    "<div class='card' style='background: inherit; border: none;'>
+                    "<div class='card' style='background: inherit; border: none; min-height: 150px;'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
                         <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
-                        <img src=".$this->ListTable['monday'][$i]['imgNews_source']. " rel='preload' style='max-width:200px;' alt='image loading'>
+                        <img src=".$this->ListTable['monday'][$i]['imgNews_source']. " rel='preload' style='max-width:200px; max-height: 180px;' alt='image loading'>
                     </div>
                     <div class='card-body'>
                         <p class='font-weight-bold mb-2'>Article <span style='font-size: small;'>[".$this->ListTable['monday'][$i]['date']."]</span></p>
@@ -133,13 +133,13 @@
             // print_r($this->ListTable);
             // print "</pre>";
 
-            print "<pre style='color: #000;'>";
-            print_r($this->MonTitleURL);
-            print "</pre>";
+            // print "<pre style='color: #000;'>";
+            // print_r($this->MonTitleURL);
+            // print "</pre>";
 
-            print "<pre style='color: #000;'>";
-            print_r($this->TueTitleURL);
-            print "</pre>";
+            // print "<pre style='color: #000;'>";
+            // print_r($this->TueTitleURL);
+            // print "</pre>";
             ?>
         </div>
     </div>
