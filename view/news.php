@@ -80,7 +80,7 @@
                 echo
                     "<div class='card' style='background: inherit; border: none;'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title'])."></a> 
+                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$this->ListTable['friday'][$i]['imgNews_source']." rel='preload' style='max-width:200px;' alt='image loading'>
                     </div>

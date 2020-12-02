@@ -1,6 +1,7 @@
 <?php
 namespace classes\pages;
 use classes\dataStorage\tableData\tableData;
+use Exception;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/view.php';
 require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
@@ -74,11 +75,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
                       }
                       // return error page if page not found
                       $this->createheader("error");
-                      require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/errorview/notfound.php";
+                      return "errorview/notfound";
                       $this->createfooter();
                     }
                   );
             }
+            // loading article content
+            $this->createArticleContent();
+            
         }
         
         public function get($pathName, $headPage = 'home', $callback) {
@@ -155,5 +159,65 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
           }
           $this->pathList = array_merge($this->pathList, $this->newList);
         }
+
+        // Generate News Template 
+        protected function makeNewsTemplate($day)
+        {
+              for ($i = 0; $i < count($this->ListTable[$day]); $i++) {
+                file_put_contents($this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']),
+                 " 
+                  <div class='container'>
+                  <div class='row'>
+                      <div class='col-box pt-2'>
+                          <div class='col-md-12 style-box'>
+                 "
+                    . 
+                    $this->ListTable[$day][$i]['news_title']
+                    .
+                  "
+                        </div>
+                    </div>
+                  </div>
+                  </div>
+                  ");
+                rename($this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']), $_SERVER['DOCUMENT_ROOT']."/gamestation/view/newsArticle/".$this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']).".php");
+              }
+        }
+
+        public function createArticleContent()
+        {
+            // loading article content
+            if ($_SERVER['REQUEST_URI'] == '/news')
+            {
+              $this->makeNewsTemplate("monday");
+              $this->makeNewsTemplate("tuesday");
+              $this->makeNewsTemplate("wednesday");
+              $this->makeNewsTemplate("thursday");
+              $this->makeNewsTemplate("friday");
+              $this->makeNewsTemplate("saturday");
+              $this->makeNewsTemplate("sunday");
+              // for ($i = 0; $i < count($this->ListTable['tuesday']); $i++) {
+              //   // fopen($this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']), "w");
+              //   file_put_contents($this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']),
+              //    " 
+              //     <div class='container'>
+              //     <div class='row'>
+              //         <div class='col-box pt-2'>
+              //             <div class='col-md-12 style-box'>
+              //    "
+              //       . 
+              //       $this->ListTable['tuesday'][$i]['news_title']
+              //       .
+              //     "
+              //           </div>
+              //       </div>
+              //     </div>
+              //     </div>
+              //    ");
+              //   rename($this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']), $_SERVER['DOCUMENT_ROOT']."/gamestation/view/newsArticle/".$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']).".php");
+              // }
+            }
+        }
     }
+
 ?>

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>It works</title>
-</head>
-<body>
-    <p>It just works</p>
-</body>
-</html>
+ 
+                  <div class='container'>
+                  <div class='row'>
+                      <div class='col-box pt-2'>
+                          <div class='col-md-12 style-box'>
+                 2020 top 100 cpu latest ranking chart
+                        </div>
+                    </div>
+                  </div>
+                  </div>
+                  

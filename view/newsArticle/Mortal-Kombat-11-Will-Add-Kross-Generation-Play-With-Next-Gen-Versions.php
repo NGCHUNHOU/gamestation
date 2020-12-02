@@ -3,7 +3,7 @@
                   <div class='row'>
                       <div class='col-box pt-2'>
                           <div class='col-md-12 style-box'>
-                 steam daily promotion: barn finder price goes down to 56 dollar
+                 Mortal Kombat 11 Will Add Kross Generation Play With Next-Gen Versions
                         </div>
                     </div>
                   </div>
