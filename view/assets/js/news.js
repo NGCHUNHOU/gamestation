@@ -1,13 +1,13 @@
 // change news page to white theme 
-let news = function()
-{
-if (window.location.pathname === "/gamestation/news")
-{
-    let body = document.querySelector('body')
-    body.style.background = "#fff"
-    body.style.color = "#212529" 
-}
-}
+// let news = function()
+// {
+// if (window.location.pathname === "/gamestation/news")
+// {
+//     let body = document.querySelector('body')
+//     body.style.background = "#fff"
+//     body.style.color = "#212529" 
+// }
+// }
 
 let hoverCard = function() 
 {
@@ -31,7 +31,7 @@ let hoverCard = function()
                 })
                 cardMain[i].addEventListener('mouseout', () =>
                 {
-                    cardChildren[j].style.color = "rgb(33, 37, 41)"
+                    cardChildren[j].style.color = "#ffffff"
                 })
             }
         }
@@ -61,5 +61,5 @@ let hoverCard = function()
     }
 }
 
-module.exports.news = news
+// module.exports.news = news
 module.exports.hoverCard = hoverCard

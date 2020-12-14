@@ -3,17 +3,27 @@
     background: #173F5A;
 } */
 
+@mixin yellowTitle()
+{
+  background-color: #E0A800 !important; 
+  color: #212529;
+}
+
 .btn-home
 {
-  background-color: #E0A800; /* Green */
   border: none;
-  color: #000;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-weight: 600;
   margin: 4px 2px;
   cursor: pointer;
+  @include yellowTitle();
+}
+
+.table-mainHeader
+{
+  @include yellowTitle();
 }
 
 /* h1, h2, h3, h4, h5, p, div, 
@@ -180,7 +190,7 @@
 }
 
 .rem-pad {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .text-white {

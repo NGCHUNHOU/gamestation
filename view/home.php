@@ -94,7 +94,7 @@
               <h2 style="margin-bottom: 1rem;" class="text-center pt-4">Update Table</h2>
               <div class="updateList text-center">
               <table class="table table-striped table-dark">
-                    <thead class="table-mainHeader" style="background: #E0A800; color: #000000;">
+                    <thead class="table-mainHeader">
                         <tr>
                         <th colspan="7" scope="col">Weekly update</th>
                         </tr>

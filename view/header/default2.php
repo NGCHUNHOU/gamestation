@@ -1,7 +1,7 @@
 <link rel="icon" type="image/png" href="/gamestation/view/assets/images/meteor-light-resized.svg" size="16x16">
     <script type="text/javascript" src="/gamestation/view/assets/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="/gamestation/view/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/gamestation/view/assets/css/custom.css">
+    <link rel="stylesheet" href="/gamestation/view/assets/css/main.css">
     <script type="text/javascript" src="/gamestation/view/assets/js/bootstrap.min.js"></script>
 </head>
 
