@@ -167,19 +167,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
                 file_put_contents($this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']),
                  " 
                   <div class='container'>
-                  <div class='row'>
-                      <div class='col-box pt-2'>
-                          <div class='col-md-12 style-box'>
-                 "
-                    . 
-                    $this->ListTable[$day][$i]['news_title']
-                    .
+                    <div class='row'>
+                            <div class='col-md-12 mainHeading'>
                   "
-                        </div>
+                      . 
+                      '<h3>'. ucfirst($this->ListTable[$day][$i]['news_title']) . '</h3>'
+                      .
+                    "
+                          </div>
+                    </div>
+                    <div class='row'>
+                      <div class='col-12 mt-4 mb-4'>
+                    "
+                      .
+                       "<img srcset=".$this->ListTable[$day][$i]['imgNews_content']. " class='article-img' alt='article image'> 
+                       "
+                      .
+                    "
+                      </div>
+                    </div>
+                    <div class='row'>
+                      <div class='col-10 col-md-10 col-lg-8 card' style='padding: 15px; margin: 15px;'>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                      </div>
                     </div>
                   </div>
-                  </div>
                   ");
+                // Moving news articles into newsArticle directory
                 rename($this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']), $_SERVER['DOCUMENT_ROOT']."/gamestation/view/newsArticle/".$this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']).".php");
               }
         }

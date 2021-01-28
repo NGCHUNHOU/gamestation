@@ -12,7 +12,7 @@ class adminLoader
 
     function __construct()
     {
-        $HValid = new admin_validation\admin_validation("fei");
+        $HValid = new admin_validation\admin_validation("test");
         $HValid->fullUrl;
         $email = str_replace('@','%40',$HValid->db_admin['email']);
         $password = $HValid->db_admin['password'];

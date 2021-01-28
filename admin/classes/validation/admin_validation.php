@@ -20,7 +20,7 @@ class admin_validation extends admin_qsHandler\admin_qsHandler
 
         $userQs = new admin_qsHandler\admin_qsHandler();
         $this->fullUrl = $userQs->completeUrl;
-
+        // print_r($this->db_admin);
         $this->isUserDataset = $_SERVER['QUERY_STRING'] == "" ? 0 : 1;
     }
 

@@ -25,7 +25,7 @@ class tableData
      */
     protected function getUpdateTableData($day) {
         $db = new db\db();
-        $output = $db->query("SELECT updatenews.news_title, updatenews.description, updatenews.imgNews_source, updatenews.date, daytable.day FROM updatenews JOIN daytable ON updatenews.day_id = daytable.day_id WHERE daytable.day = ?", array($day));
+        $output = $db->query("SELECT updatenews.news_title, updatenews.description, updatenews.imgNews_thumbnail, updatenews.imgNews_content, updatenews.date, daytable.day FROM updatenews JOIN daytable ON updatenews.day_id = daytable.day_id WHERE daytable.day = ?", array($day));
         return $output;
     }
 
