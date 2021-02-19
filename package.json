@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "jquery": "^3.5.1",
     "sass": "^1.30.0"
   },
@@ -19,7 +20,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "sass" : "sass ./sassTrain/custom/main.scss ./view/assets/css/main.css --style compressed"
+    "sass": "sass ./sassTrain/custom/main.scss ./view/assets/css/main.css --style compressed"
   },
   "repository": {
     "type": "git",

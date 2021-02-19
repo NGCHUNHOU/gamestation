@@ -1,23 +1,41 @@
 <?php
-    $file = fopen("pages.json", "r") or die("unable to open page.json file");
-    $pageState = fread($file, filesize("pages.json"));
+    $file = fopen("../../pages.json", "r") or die("unable to open page.json file");
+    $pageState = fread($file, filesize("../../pages.json"));
     $decodedPageState = json_decode($pageState, true);
     // print_r($decodedPageState);
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GameStation</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <script type="text/javascript" src="/gamestation/view/assets/js/jquery-3.4.1.min.js"></script>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Material Kit CSS -->
+    <link href="/gamestation/admin/assets/css/material-dashboard.css" rel="stylesheet" />
+    <!-- -->
+</head>
+
 <body>
     <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="white" data-displaystatus="<?php echo $decodedPageState["state"]?>">
+        <div class="sidebar" data-color="purple" data-background-color="white" data-displaystatus=<?php echo $decodedPageState["state"] ?>>
             <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
       Tip 2: you can also add an image using data-image tag
   -->
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">GameStation</a>
+                <a href="#" class="simple-text logo-normal">GameStation</a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item active" onclick="highlightNavItem(this)">
+                    <li class="nav-item" onclick="highlightNavItem(this)">
                         <a class="nav-link" href="#0">
                             <i class="material-icons sidebar-icon">dashboard</i>
                             <p>Dashboard</p>
@@ -35,8 +53,8 @@
                             <p>Media</p>
                         </a>
                     </li>
-                    
-                    <li class="nav-item" onclick="highlightNavItem(this)">
+
+                    <li class="nav-item active" onclick="highlightNavItem(this)">
                         <a class="nav-link" href="/gamestation/admin/view/component/pages.php">
                             <i class="material-icons sidebar-icon">web</i>
                             <p>Pages</p>
@@ -64,11 +82,11 @@
                         <a class="navbar-brand" href="javascript:;">Dashboard</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
                     <div class="collapse navbar-collapse justify-content-end">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -85,5 +103,32 @@
             <div class="content">
                 <div class="container-fluid">
                     <!-- your content here -->
+                    write something
                 </div>
             </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="float-left">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    ©Copyright 2020 GameStation a Social Networking Service for Gaming Discussion and News. All Rights Reserved.
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright float-right">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>, made with <i class="material-icons">favorite</i> by
+                        <a href="#" target="_blank">GameStation</a>.
+                    </div>
+                    <!-- your footer here -->
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="/gamestation/admin/assets/js/sidebar.js"></script>
+</body>
+</html>

@@ -10,13 +10,26 @@ class admin_validation extends admin_qsHandler\admin_qsHandler
 {
     public $db_admin;
     public $fullUrl;
-    public $isUserDataset;
+    public $isLoginTrue;
+    public $adminUserList = array();
 
-    public function __construct($adminUsername)
+    public function __construct()
     {
         $db = new db\db();
-        $result = $db->query("SELECT * FROM `users` WHERE `name` = ? ", array($adminUsername));
-        $this->db_admin = array('email' => $result[0]['email'], 'password' => $result[0]['password']);
+        // $result = $db->query("SELECT * FROM `users` WHERE `name` = ? ", array($adminUsername));
+        $result = $db->queryALL("SELECT * FROM `users`");
+        for ($i = 0; $i < count($result); $i++)
+        {
+            // print("<pre>");
+            // echo $result[$i]["email"];
+            // echo $result[$i]["password"];
+            // print("</pre>");
+            array_push($this->adminUserList, array($result[$i]["email"], $result[$i]["password"]));
+        }
+            // print("<pre>");
+            // print_r($this->adminUserList);
+            // print("</pre>");
+        // $this->db_admin = array('email' => $result[0]['email'], 'password' => $result[0]['password']);
 
         $userQs = new admin_qsHandler\admin_qsHandler();
         $this->fullUrl = $userQs->completeUrl;
@@ -25,13 +38,21 @@ class admin_validation extends admin_qsHandler\admin_qsHandler
     }
 
     public function checkUserInputEmpty() {
-        if ($this->isUserDataset == 1) 
-            {
-                $_SESSION['isUserDataSet'] = 1;
-            }
-            else 
-            { 
-                $_SESSION['isUserDataSet'] = 0;
-            }
+        // if ($this->isUserDataset == 1) 
+        //     {
+        //         $_SESSION['isUserDataSet'] = 1;
+        //     }
+        //     else 
+        //     { 
+        //         $_SESSION['isUserDataSet'] = 0;
+        //     }
+        // if ($this->isUserDataset = 1)
+        // {
+        //     echo $_POST["email"];
+        // }
+        if (isset($_POST["email"]) && isset($_POST["pass"]))
+        {
+            $_SESSION["isUserDataSet"] = 1;
+        }
     }
 }

@@ -14884,10 +14884,15 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .main-panel>.content {
-    margin-top: 70px;
+    background: #fff;
+    margin: 70px 30px 0;
     padding: 30px 15px;
     min-height: calc(100vh - 123px);
 }
+
+/* .main-panel>.content>.container-fluid {
+    min-height: calc(100vh - 123px);
+} */
 
 .main-panel>.footer {
     border-top: 1px solid #e7e7e7;
@@ -18865,6 +18870,15 @@ Copyright (c) 2015 Daniel Eden
     .sidebar .navbar-form {
         display: none !important;
     }
+}
+.sidebar-btn
+{
+    position: absolute;
+    left: 40%;
+    color: #a9afbb;
+    bottom: 10px;
+    font-size: 35px;
+    cursor: pointer;
 }
 
 

@@ -12,26 +12,65 @@ class adminLoader
 
     function __construct()
     {
-        $HValid = new admin_validation\admin_validation("test");
+        $this->decideLogin();
+    }
+    protected function decideLogin()
+    {
+        $HValid = new admin_validation\admin_validation;
         $HValid->fullUrl;
-        $email = str_replace('@','%40',$HValid->db_admin['email']);
-        $password = $HValid->db_admin['password'];
+        // echo "output from adminLoader.php";
 
         session_start();
         // instance class here
-        if ($HValid->isUserDataset AND preg_match("/email=$email/", $HValid->fullUrl) AND preg_match("/pass=$password/", $HValid->fullUrl)) {
-            require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/header.php';
-            require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/AdminIndex.php';
-            require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/footer.php';
-        } else {
-            $HValid->checkUserInputEmpty();
-            require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/register.php';
-        }
+        // if ($HValid->isUserDataset AND preg_match("/email=$email/", $HValid->fullUrl) AND preg_match("/pass=$password/", $HValid->fullUrl)) {
+        //     require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/header.php';
+        //     require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/AdminIndex.php';
+        //     require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/footer.php';
+        // } else {
+        //     $HValid->checkUserInputEmpty();
+        //     require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/register.php';
+        // }
 
-        if (is_array($this->query_string) AND $this->query_string[0] !== '') {
-            $page = new $this->query_string[0]();
-        } else {
-            return ;
+        // if (is_array($this->query_string) AND $this->query_string[0] !== '') {
+        //     $page = new $this->query_string[0]();
+        // } else {
+        //     return ;
+        // }
+        // for ($i = 0; $i < count($HValid->adminUserList); $i++) {
+        //     echo $HValid->adminUserList[$i][0];
+        // }
+
+        for ($i = 0; $i < count($HValid->adminUserList); $i++)
+        {
+            // $HValid->adminUserList[$i][0] email 
+            // $HValid->adminUserList[$i][1] password
+            // preg_match("/$email/i", $HValid->adminUserList[$i][0]) AND preg_match("/$password/i", $HValid->adminUserList[$i][1])
+
+            // if (isset($_POST['email']) && isset($_POST['pass']) && $HValid->adminUserList[$i][0] === $_POST['email'] && $HValid->adminUserList[$i][1] === $_POST['pass']) {
+            //     require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/header.php';
+            //     require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/AdminIndex.php';
+            //     require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/footer.php';
+            //     return 0;
+            // } else {
+            //     $HValid->checkUserInputEmpty();
+            //     require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/register.php';
+            // }
+
+            if (isset($_POST['email']) && isset($_POST['pass']) && $HValid->adminUserList[$i][0] === $_POST['email'] && $HValid->adminUserList[$i][1] === $_POST['pass']) {
+                $HValid->isLoginTrue = 1;
+            } 
+        }
+        if (isset($HValid->isLoginTrue) && $HValid->isLoginTrue)
+        {
+                require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/header.php';
+                require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/AdminIndex.php';
+                require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/footer.php';
+        }
+        else
+        {
+                $_SESSION["isUserDataSet"] = 0;
+                $HValid->checkUserInputEmpty();
+                require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/register.php';
         }
     }
 }

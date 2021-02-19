@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="./admin/view/assets/images/meteor-light-resized.svg"/>
+	<link rel="icon" type="image/png" href="/gamestation/view/assets/images/meteor-light-resized.svg"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -37,11 +37,11 @@
 						Sign In
 					</span>
 				</div>
-				<div class="<?php echo isset($_SESSION['login_warning']) ? 'alert alert-danger text-center': null ?>" role="alert">
+				<div class="<?php echo $_SESSION['isUserDataSet'] == 1 ? 'alert alert-danger text-center': null ?>" role="alert">
 					<?php echo $_SESSION['isUserDataSet'] == 1 ? "The email or password is incorrect" : null?>
 				</div>
 
-				<form class="login100-form validate-form" method="get">
+				<form class="login100-form validate-form" method="post">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Email</span>
 						<input class="input100" type="text" name="email" placeholder="Enter email">
@@ -95,6 +95,11 @@
 	<script src="assets/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="assets/js/main.js"></script>
-
+	<script>
+		if (window.history.replaceState)
+		{
+			window.history.replaceState(null,null,window.location.href)
+		}
+	</script>
 </body>
 </html>

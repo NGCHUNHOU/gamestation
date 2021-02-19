@@ -31,4 +31,12 @@ class db_basic
             return $stmt->fetchAll();
         } 
     }
+
+    public function queryALL($query) {
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        if (explode(' ', $query)[0] == 'SELECT') {
+            return $stmt->fetchAll();
+        } 
+    }
 }
