@@ -3,6 +3,7 @@ const path = require('path')
 module.exports =
 {
     entry: './view/assets/js/custom.js',
+    watch: false,
     output: 
     {
         filename: 'bundle.js',

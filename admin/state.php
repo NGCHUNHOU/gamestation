@@ -6,7 +6,7 @@ class state
     {
         $this->state = $state;
           $file = fopen("pages.json", "w");
-          $data = json_encode(array("pageName"=> "pages.php", "p2" => "test2", "state" => $this->state));
+          $data = json_encode(array("pageName"=> "pages.php", "htmlData" => "hello world", "state" => $this->state));
           fwrite($file, $data);
     }
 }

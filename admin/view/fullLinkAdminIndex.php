@@ -11,5 +11,8 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
-    <link  rel="stylesheet" href="/gamestation/admin/assets/css/material-dashboard.css" />
+    <link href="/gamestation/admin/assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
+<?php
+    require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/AdminIndex.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/footer.php';

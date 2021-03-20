@@ -61,7 +61,8 @@ class adminLoader
             } 
         }
         if (isset($HValid->isLoginTrue) && $HValid->isLoginTrue)
-        {
+        { 
+                $_SESSION["isUserDataSet"] = 1;
                 require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/header.php';
                 require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/AdminIndex.php';
                 require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/view/footer.php';

@@ -2,7 +2,6 @@
 
 // load admin main core file
 require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/admin/classes/validation/admin_validation.php';
-use classes\adminLoader\adminLoader;
 use classes\admin_validation;
 
 require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/loader.php';

@@ -6,7 +6,7 @@
   font-weight: 400;
   line-height: $bmd-line-height;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 0;
   cursor: pointer;
   background-color: transparent;
@@ -215,5 +215,12 @@
   // remove margin from nested btn-group(s) to properly align them with the outer buttons
   > .btn-group {
     margin: 0;
+  }
+}
+
+.btnEditorControl {
+  .btn
+  {
+    margin: 0 5px;
   }
 }

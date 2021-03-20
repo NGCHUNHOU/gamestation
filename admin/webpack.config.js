@@ -2,10 +2,11 @@ const path = require('path')
 
 module.exports =
 {
-    entry: './assets/js/main.js',
+    entry: './assets/js/webeditor.js',
+    watch: true,
     output: 
     {
-        filename: 'adminbundle.js',
+        filename: 'webeditorBundle.js',
         path: path.resolve( __dirname + '/assets/js', 'dist')
     },
     devServer:
@@ -13,5 +14,13 @@ module.exports =
       contentBase: __dirname + 'dist',
       compress: true,
       port: 80
-    }
+    },
+    module: {
+    rules: [
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+    ],
+  },
 }

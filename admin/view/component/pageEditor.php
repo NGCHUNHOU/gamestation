@@ -11,7 +11,6 @@
     else
     {
         require_once $_SERVER["DOCUMENT_ROOT"]."/gamestation/admin/view/component/loading.php";
-        // header("Location: ../../view/register.php");
         exit();
     }
 ?>
@@ -76,8 +75,7 @@
                     </li>
 
                     <li class="nav-item active" onclick="highlightNavItem(this)">
-                        <!-- <a class="nav-link" href="/gamestation/admin/view/component/pageEditor.php"> -->
-                        <a class="nav-link" href="/gamestation/admin/view/component/pages.php">
+                        <a class="nav-link" href="/gamestation/admin/view/component/pageEditor.php">
                             <i class="material-icons sidebar-icon">web</i>
                             <p>Pages</p>
                         </a>
@@ -125,35 +123,19 @@
             <div class="content">
                 <div class="container-fluid">
                     <!-- your content here -->
-                    <div class="viewPanel" style="width: 100%; height: calc(100vh - 123px)">
-                        <table class="styled-table" style="width: inherit;">
-                            <thead>
-                                <tr>
-                                    <th>View Page</th>
-                                    <th>Description</th>
-                                    <th>Preview Path</th>
-                                    <th>Keyword</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="/gamestation/admin/view/component/pageEditor.php">test.html</a>
-                                    </td>
-                                    <td>A test page for demo</td>
-                                    <td><a href="/gamestation/admin/view/usrView/test.html">/usrView/test.html</a></td>
-                                    <td>test</td>
-                                </tr>
-                                <tr class="active-row">
-                                    <td>Melissa</td>
-                                    <td>5150</td>
-                                    <td>5150</td>
-                                    <td>5150</td>
-                                </tr>
-                                <!-- and so on... -->
-                            </tbody>
-                        </table>
+                        <textarea name="preivew-form-commet" id="" cols="30" rows="10" class="codemirror-textarea">
+                            <!-- webeditor script will append content from view -->
+                        </textarea>
+                    <br>
+                    <div class="row">
+                        <div class="col-12 btnEditorControl" style="display: flex; flex-direction: row-reverse;">
+                            <button class="btn btn-primary" id="manageBtn">Manage</button>
+                            <button class="btn btn-primary" id="viewBtn">Preview</button>
+                            <button class="btn btn-primary" onclick="ajaxData('viewGen')" id="saveBtn">Save</button>
+                            <button class="btn btn-primary" id="editBtn">Edit</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <footer class="footer">

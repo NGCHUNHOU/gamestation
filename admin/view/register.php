@@ -7,24 +7,24 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="/gamestation/view/assets/images/meteor-light-resized.svg"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="assets/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="assets/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -32,7 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url(assets/img/bg-01.jpg);">
+				<div class="login100-form-title" style="background-image: url(/gamestation/admin/assets/img/bg-01.jpg);">
 					<span class="login100-form-title-1">
 						Sign In
 					</span>

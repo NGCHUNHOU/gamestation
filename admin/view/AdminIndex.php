@@ -1,12 +1,23 @@
 <?php
-    $file = fopen("pages.json", "r") or die("unable to open page.json file");
-    $pageState = fread($file, filesize("pages.json"));
+    if (!isset($_SESSION)) session_start();
+    $file = fopen($_SERVER['DOCUMENT_ROOT']."/gamestation/admin/pages.json", "r") or die("unable to open page.json file");
+    $pageState = fread($file, filesize($_SERVER['DOCUMENT_ROOT']."/gamestation/admin/pages.json"));
     $decodedPageState = json_decode($pageState, true);
     // print_r($decodedPageState);
+    if (isset($_SESSION["isUserDataSet"]) AND $_SESSION["isUserDataSet"])
+    {
+        // let client pass through admin system
+    }
+    else
+    {
+        require_once $_SERVER["DOCUMENT_ROOT"]."/gamestation/admin/view/component/loading.php";
+        // header("Location: ../../view/register.php");
+        exit();
+    }
 ?>
 <body>
     <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="white" data-displaystatus="<?php echo $decodedPageState["state"]?>">
+        <div class="sidebar" data-color="blue" data-background-color="white" data-displaystatus="<?php echo $decodedPageState["state"]?>">
             <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -18,7 +29,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item active" onclick="highlightNavItem(this)">
-                        <a class="nav-link" href="#0">
+                        <a class="nav-link" href="/gamestation/admin/view/fullLinkAdminIndex.php">
                             <i class="material-icons sidebar-icon">dashboard</i>
                             <p>Dashboard</p>
                         </a>
@@ -37,6 +48,7 @@
                     </li>
                     
                     <li class="nav-item" onclick="highlightNavItem(this)">
+                        <!-- <a class="nav-link" href="/gamestation/admin/view/component/pageEditor.php"> -->
                         <a class="nav-link" href="/gamestation/admin/view/component/pages.php">
                             <i class="material-icons sidebar-icon">web</i>
                             <p>Pages</p>

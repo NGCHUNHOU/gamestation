@@ -43,6 +43,15 @@
             display: none !important;
         }
 
+        .sidebar-btn{
+            position: absolute; 
+            left: 40%; 
+            color: #a9afbb;
+            bottom: 10px; 
+            font-size: 35px; 
+            cursor: pointer;
+        }
+
         .navbar-form{
             border: none;
             box-shadow: none;
@@ -292,7 +301,7 @@
         }
     }
 
-    &[data-color="purple"]{
+    &[data-color="blue"]{
         @include set-background-color-button($brand-primary);
     }
     &[data-color="azure"]{
