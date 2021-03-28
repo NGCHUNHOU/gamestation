@@ -8,19 +8,41 @@ const pretty = require("pretty")
   })  
   myCodeMirror.setSize("100%", "calc(100vh - 123px)")
   
-function loadViewText(view)
-{
-  const htmlContent = require(`../../view/usrView/${view}.html`)
-  myCodeMirror.getDoc().setValue(pretty(htmlContent.default))
-}
+// function loadViewText(view)
+// {
+//   const htmlContent = require(`../../view/usrView/${view}.html`)
+//   myCodeMirror.getDoc().setValue(pretty(htmlContent.default))
+// }
 
-  function ajaxData(viewGen)
-  {
+function loadViewText()
+{
       $.ajax({
-          url: `/gamestation/admin/${viewGen}.php`,
+          url: `/gamestation/admin/view/component/pages.json`,
           type: "POST",
           contentType: "text/json",
-          data: myCodeMirror.getValue()
+          success: (data) => {
+            myCodeMirror.getDoc().setValue(data["pageContent"])
+          }
+      })
+}
+
+  // function ajaxData(viewGen)
+  // {
+  //     $.ajax({
+  //         url: `/gamestation/admin/${viewGen}.php`,
+  //         type: "POST",
+  //         contentType: "text/json",
+  //         data: myCodeMirror.getValue()
+  //     })
+  // }
+
+  function ajaxData(userPageName)
+  {
+      $.ajax({
+          url: `/gamestation/admin/viewGen.php`,
+          type: "POST",
+          contentType: "application/x-www-form-urlencoded",
+          data: `pageName=${userPageName}&` + "pageContent=" + myCodeMirror.getValue() 
       })
   }
 window.loadViewText = loadViewText

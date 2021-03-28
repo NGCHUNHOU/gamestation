@@ -1,9 +1,16 @@
 <?php
+    $viewFile = fopen("../usrView/$_POST[pageName]", "r");
+    $content = array("pageName" => $_POST['pageName'] ,"pageContent" => fread($viewFile, filesize("../usrView/$_POST[pageName]")));
+    $jcontent = json_encode($content);
+    $writeFile = fopen("pages.json", "w");
+    fwrite($writeFile, $jcontent);
+
     if (!isset($_SESSION)) session_start();
     $file = fopen("../../pages.json", "r") or die("unable to open page.json file");
     $pageState = fread($file, filesize("../../pages.json"));
     $decodedPageState = json_decode($pageState, true);
     // print_r($decodedPageState);
+
     if ($_SESSION["isUserDataSet"])
     {
         // let client pass through admin system
@@ -75,7 +82,7 @@
                     </li>
 
                     <li class="nav-item active" onclick="highlightNavItem(this)">
-                        <a class="nav-link" href="/gamestation/admin/view/component/pageEditor.php">
+                        <a class="nav-link" href="/gamestation/admin/view/component/pages.php">
                             <i class="material-icons sidebar-icon">web</i>
                             <p>Pages</p>
                         </a>
@@ -131,7 +138,7 @@
                         <div class="col-12 btnEditorControl" style="display: flex; flex-direction: row-reverse;">
                             <button class="btn btn-primary" id="manageBtn">Manage</button>
                             <button class="btn btn-primary" id="viewBtn">Preview</button>
-                            <button class="btn btn-primary" onclick="ajaxData('viewGen')" id="saveBtn">Save</button>
+                            <button class="btn btn-primary" onclick="ajaxData('<?php echo $_POST['pageName']; ?>')" id="saveBtn">Save</button>
                             <button class="btn btn-primary" id="editBtn">Edit</button>
                         </div>
                     </div>

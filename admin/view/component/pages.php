@@ -138,17 +138,27 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a href="/gamestation/admin/view/component/pageEditor.php">test.html</a>
+                                        <!-- <a href="/gamestation/admin/view/component/pageEditor.php">test.html</a> -->
+                                        <form style="margin: 0;" action="/gamestation/admin/view/component/pageEditor.php" method="post">
+                                            <input type="hidden" name="pageName" value="test.html">
+                                            <button type="submit" style="border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;">test.html</button>
+                                        </form>
                                     </td>
                                     <td>A test page for demo</td>
                                     <td><a href="/gamestation/admin/view/usrView/test.html">/usrView/test.html</a></td>
                                     <td>test</td>
                                 </tr>
                                 <tr class="active-row">
-                                    <td>Melissa</td>
-                                    <td>5150</td>
-                                    <td>5150</td>
-                                    <td>5150</td>
+                                    <td>
+                                        <!-- <a href="/gamestation/admin/view/component/pageEditor.php">test2.html</a> -->
+                                        <form style="margin: 0;" action="/gamestation/admin/view/component/pageEditor.php" method="post">
+                                            <input type="hidden" name="pageName" value="test2.html">
+                                            <button type="submit" style="border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;">test2.html</button>
+                                        </form>
+                                    </td>
+                                    <td>A test2 page for demo</td>
+                                    <td><a href="/gamestation/admin/view/usrView/test2.html">/usrView/test2.html</a></td>
+                                    <td>test2</td>
                                 </tr>
                                 <!-- and so on... -->
                             </tbody>
