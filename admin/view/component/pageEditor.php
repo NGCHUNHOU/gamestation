@@ -1,6 +1,13 @@
 <?php
     $viewFile = fopen("../usrView/$_POST[pageName]", "r");
-    $content = array("pageName" => $_POST['pageName'] ,"pageContent" => fread($viewFile, filesize("../usrView/$_POST[pageName]")));
+    if (filesize("../usrView/$_POST[pageName]") != 0 )
+    {
+        $content = array("pageName" => $_POST['pageName'] ,"pageContent" => fread($viewFile, filesize("../usrView/$_POST[pageName]")));
+    }
+    else 
+    {
+        $content = null;
+    }
     $jcontent = json_encode($content);
     $writeFile = fopen("pages.json", "w");
     fwrite($writeFile, $jcontent);
@@ -10,7 +17,6 @@
     $pageState = fread($file, filesize("../../pages.json"));
     $decodedPageState = json_decode($pageState, true);
     // print_r($decodedPageState);
-
     if ($_SESSION["isUserDataSet"])
     {
         // let client pass through admin system

@@ -1,4 +1,3 @@
-const pretty = require("pretty")
   var myCodeMirror = CodeMirror.fromTextArea(document.querySelector(".codemirror-textarea"), {
   //   value: "hello world",
     theme: "gruvbox-dark",

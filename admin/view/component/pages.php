@@ -125,7 +125,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <!-- your content here -->
-                    <div class="viewPanel" style="width: 100%; height: calc(100vh - 123px)">
+                    <div class="viewPanel" style="width: 100%; height: calc(100vh - 123px - 41px)">
                         <table class="styled-table" style="width: inherit;">
                             <thead>
                                 <tr>
@@ -136,34 +136,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <!-- <a href="/gamestation/admin/view/component/pageEditor.php">test.html</a> -->
-                                        <form style="margin: 0;" action="/gamestation/admin/view/component/pageEditor.php" method="post">
-                                            <input type="hidden" name="pageName" value="test.html">
-                                            <button type="submit" style="border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;">test.html</button>
-                                        </form>
-                                    </td>
-                                    <td>A test page for demo</td>
-                                    <td><a href="/gamestation/admin/view/usrView/test.html">/usrView/test.html</a></td>
-                                    <td>test</td>
-                                </tr>
-                                <tr class="active-row">
-                                    <td>
-                                        <!-- <a href="/gamestation/admin/view/component/pageEditor.php">test2.html</a> -->
-                                        <form style="margin: 0;" action="/gamestation/admin/view/component/pageEditor.php" method="post">
-                                            <input type="hidden" name="pageName" value="test2.html">
-                                            <button type="submit" style="border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;">test2.html</button>
-                                        </form>
-                                    </td>
-                                    <td>A test2 page for demo</td>
-                                    <td><a href="/gamestation/admin/view/usrView/test2.html">/usrView/test2.html</a></td>
-                                    <td>test2</td>
-                                </tr>
-                                <!-- and so on... -->
+                                    <?php
+                                        $userViewList = glob("../usrView/*");
+                                        foreach ($userViewList as $val)
+                                        {
+                                            $val = substr($val,strlen("../usrView/"));
+                                            echo "<tr><td>
+                                                <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                                    <input type='hidden' name='pageName' value='$val'>
+                                                    <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$val</button>
+                                                </form>
+                                            </td>
+                                            <td>A test page for demo</td>
+                                            <td><a href='/gamestation/admin/view/usrView/$val'>/usrView/$val</a></td>
+                                            <td>test</td></tr>";
+                                        }
+                                    ?>
                             </tbody>
                         </table>
                     </div>
+                        <div class="row">
+                            <div class="col-12 btnEditorControl" style="display: flex; flex-direction: row-reverse;">
+                                <button class="btn btn-primary">Save</button>
+                                <button class="btn btn-primary" onclick="requestRemovePage('wwe')">Remove</button>
+                                <button class="btn btn-primary" onclick="addPage('hello world')">Add</button>
+                            </div>
+                        </div>
                 </div>
             </div>
             <footer class="footer">
@@ -191,8 +189,6 @@
     </div>
     <script src="/gamestation/admin/assets/js/sidebar.js"></script>
     <script src="/gamestation/admin/assets/js/dist/webeditorBundle.js"></script>
-    <script>
-        loadViewText("test")
-    </script>
+    <script src="/gamestation/admin/assets/js/pages.js"></script>
 </body>
 </html>
