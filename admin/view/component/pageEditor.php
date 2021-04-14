@@ -1,8 +1,9 @@
 <?php
-    $viewFile = fopen("../usrView/$_POST[pageName]", "r");
-    if (filesize("../usrView/$_POST[pageName]") != 0 )
+    // $viewFile = fopen("../usrView/$_POST[pageName]", "r");
+    $viewFile = fopen($_SERVER["DOCUMENT_ROOT"]."/".$_POST["pagePath"]."/".$_POST["pageName"], "r");
+    if (filesize($_SERVER["DOCUMENT_ROOT"]."/".$_POST["pagePath"]."/".$_POST["pageName"]) != 0 )
     {
-        $content = array("pageName" => $_POST['pageName'] ,"pageContent" => fread($viewFile, filesize("../usrView/$_POST[pageName]")));
+        $content = array("pageName" => $_POST['pageName'] ,"pageContent" => fread($viewFile, filesize($_SERVER["DOCUMENT_ROOT"]."/".$_POST["pagePath"]."/".$_POST["pageName"])));
     }
     else 
     {
@@ -144,7 +145,7 @@
                         <div class="col-12 btnEditorControl" style="display: flex; flex-direction: row-reverse;">
                             <button class="btn btn-primary" id="manageBtn">Manage</button>
                             <button class="btn btn-primary" id="viewBtn">Preview</button>
-                            <button class="btn btn-primary" onclick="ajaxData('<?php echo $_POST['pageName']; ?>')" id="saveBtn">Save</button>
+                            <button class="btn btn-primary" onclick="ajaxData('<?php echo $_POST['pageName']; ?>', '<?php echo $_POST['pagePath']; ?>')" id="saveBtn">Save</button>
                             <button class="btn btn-primary" id="editBtn">Edit</button>
                         </div>
                     </div>

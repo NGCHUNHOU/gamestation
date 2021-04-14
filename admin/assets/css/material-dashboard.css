@@ -162,6 +162,14 @@ svg:not(:root) {
 
 table {
   border-collapse: collapse; }
+  table th {
+    background: #2196f3;
+    font-weight: normal;
+    color: #fff; }
+  table tr {
+    border: 1px solid #ddd; }
+  table td, table th {
+    padding: 5px 10px; }
 
 caption {
   padding-top: 0.75rem;
@@ -473,6 +481,14 @@ svg:not(:root) {
 
 table {
   border-collapse: collapse; }
+  table th {
+    background: #2196f3;
+    font-weight: normal;
+    color: #fff; }
+  table tr {
+    border: 1px solid #ddd; }
+  table td, table th {
+    padding: 5px 10px; }
 
 caption {
   padding-top: 0.75rem;

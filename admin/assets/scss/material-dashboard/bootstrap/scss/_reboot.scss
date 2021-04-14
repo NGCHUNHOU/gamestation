@@ -285,6 +285,17 @@ svg:not(:root) {
 
 table {
   border-collapse: collapse; // Prevent double borders
+  th {
+    background: $brand-primary;
+    font-weight: normal;
+    color: #fff;
+  }
+  tr {
+    border: 1px solid #ddd;
+  }
+  td, th {
+    padding: 5px 10px;
+  }
 }
 
 caption {

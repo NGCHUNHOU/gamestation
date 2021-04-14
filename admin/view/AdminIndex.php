@@ -1,7 +1,7 @@
 <?php
     if (!isset($_SESSION)) session_start();
     $file = fopen($_SERVER['DOCUMENT_ROOT']."/gamestation/admin/pages.json", "r") or die("unable to open page.json file");
-    $pageState = fread($file, filesize($_SERVER['DOCUMENT_ROOT']."/gamestation/admin/pages.json"));
+    $pageState = fread($file, filesize($_SERVER['DOCUMENT_ROOT']."/gamestation/admin/"));
     $decodedPageState = json_decode($pageState, true);
     // print_r($decodedPageState);
     if (isset($_SESSION["isUserDataSet"]) AND $_SESSION["isUserDataSet"])

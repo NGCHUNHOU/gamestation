@@ -35,13 +35,13 @@ function loadViewText()
   //     })
   // }
 
-  function ajaxData(userPageName)
+  function ajaxData(userPageName, userPagePath)
   {
       $.ajax({
           url: `/gamestation/admin/viewGen.php`,
           type: "POST",
           contentType: "application/x-www-form-urlencoded",
-          data: `pageName=${userPageName}&` + "pageContent=" + myCodeMirror.getValue() 
+          data: `pageName=${userPageName}&` + "pageContent=" + myCodeMirror.getValue() + `&pagePath=${userPagePath}`  
       })
   }
 window.loadViewText = loadViewText

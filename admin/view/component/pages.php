@@ -1,4 +1,5 @@
 <?php
+    namespace admin\view\component;
     if (!isset($_SESSION)) session_start();
     $file = fopen("../../pages.json", "r") or die("unable to open page.json file");
     $pageState = fread($file, filesize("../../pages.json"));
@@ -129,7 +130,12 @@
                         <table class="styled-table" style="width: inherit;">
                             <thead>
                                 <tr>
-                                    <th>View Page</th>
+                                    <th>
+                                        <form style='margin: 0;' action='/gamestation/admin' method='post'>
+                                        <input class="batchRemove" type='checkbox' name="batchRemove" value="removeALL" onclick="removeAllPages(this.checked)">
+                                        View Page
+                                        </form>
+                                    </th>
                                     <th>Description</th>
                                     <th>Preview Path</th>
                                     <th>Keyword</th>
@@ -137,20 +143,121 @@
                             </thead>
                             <tbody>
                                     <?php
-                                        $userViewList = glob("../usrView/*");
-                                        foreach ($userViewList as $val)
+                                        require_once $_SERVER["DOCUMENT_ROOT"]."/gamestation/classes/db/db_basic.php";
+                                        use classes\db\db_basic;
+                                        class pagesList extends db_basic
                                         {
-                                            $val = substr($val,strlen("../usrView/"));
-                                            echo "<tr><td>
-                                                <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
-                                                    <input type='hidden' name='pageName' value='$val'>
-                                                    <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$val</button>
-                                                </form>
-                                            </td>
-                                            <td>A test page for demo</td>
-                                            <td><a href='/gamestation/admin/view/usrView/$val'>/usrView/$val</a></td>
-                                            <td>test</td></tr>";
+                                            public $pageAdded;
+                                            public function __construct()
+                                            {
+                                                parent::__construct("localhost", "gamestation", "root", "");
+                                                if (isset($_POST["pageAdded"]) AND isset($_POST["path"]) )
+                                                { 
+                                                    $pageAdded = array($_POST["pageAdded"], $_POST["path"], $_POST["description"], $_POST["keyword"]);
+                                                    $this->storePagetoSQL($pageAdded[0], $pageAdded[1], $pageAdded[2], $pageAdded[3]);
+                                                }
+                                                $this->pageAdded = $this->queryALL("SELECT * FROM `pages`");
+                                                $this->checkPageExists();
+                                                $this->renderPageItems();
+                                            }
+                                            public function storePagetoSQL($pageName, $pagePath, $description, $keyword)
+                                            {
+                                                if (isset($_POST["pageAdded"]) AND isset($_POST["path"]) )
+                                                {
+                                                    $this->queryALL("INSERT INTO `pages` (`pagesNo`, `pageName`, `pagePath`, `description`, `keyword`, `usersID`) VALUES (NULL, '$pageName', '$pagePath', '$description', '$keyword', 1)");
+                                                }
+                                            }
+                                            public function checkPageExists()
+                                            {
+                                                foreach ($this->pageAdded as $page => $value)
+                                                {
+                                                    if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/".$value["pagePath"]."/".$value["pageName"]))
+                                                    {
+                                                        $this->queryALL("DELETE FROM `pages` WHERE `pageName` = '$value[pageName]' AND `pagePath` = '$value[pagePath]'");
+                                                    }
+                                                }
+                                                $this->pageAdded = $this->queryALL("SELECT * FROM `pages`");
+                                            }
+                                            protected function renderPageItems()
+                                            {
+                                                foreach ($this->pageAdded as $page => $value) {
+                                                    echo "<tr><td>
+                                                        <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                                            <input type='checkbox' class='removePage' name='removePage' value='$value[pageName]'>
+                                                            <input type='hidden' name='pageName' value='$value[pageName]'>
+                                                            <input type='hidden' name='pagePath' value='$value[pagePath]'>
+                                                            <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$value[pageName]</button>
+                                                        </form>
+                                                    </td>
+                                                    <td>$value[description]</td>
+                                                    <td><a href=".$value['pagePath']."/".$value['pageName'].">$value[pagePath]</a></td>
+                                                    <td>$value[keyword]</td></tr>";
+                                                }
+                                            }
                                         }
+
+                                        $pageHandler = new pagesList;
+
+                                        // foreach ($pageHandler->pageAdded as $page => $value) {
+                                        //     echo "<tr><td>
+                                        //         <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                        //             <input type='hidden' name='pageName' value='$value[pageName]'>
+                                        //             <input type='hidden' name='pagePath' value='$value[pagePath]'>
+                                        //             <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$value[pageName]</button>
+                                        //         </form>
+                                        //     </td>
+                                        //     <td>$value[description]</td>
+                                        //     <td><a href=".$value['pagePath']."/".$value['pageName'].">$value[pagePath]</a></td>
+                                        //     <td>$value[keyword]</td></tr>";
+                                        // }
+                                            // if (!$_SESSION) session_start();
+                                            // if (isset($_POST["pageAdded"]) AND isset($_POST["path"]) )
+                                            // {
+                                            //     if (!is_array($_SESSION["pageAdded"]) AND !isset($_SESSION["pageAdded"]))
+                                            //     {
+                                            //         $_SESSION["pageAdded"] = array();
+                                            //     }
+                                            //     array_push($_SESSION["pageAdded"], array($_POST["pageAdded"], $_POST["path"], $_POST["description"], $_POST["keyword"]));
+                                            // }
+                                        // foreach ($_SESSION["pageAdded"] as $page => $value) {
+                                        //     if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/".$value[1]."/".$value[0]))
+                                        //     {
+                                        //         unset($_SESSION["pageAdded"][$page]);
+                                        //     }
+                                        // }
+                                        // foreach ($_SESSION["pageAdded"] as $page => $value) {
+                                        //     echo "<tr><td>
+                                        //         <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                        //             <input type='hidden' name='pageName' value='$value[0]'>
+                                        //             <input type='hidden' name='pagePath' value='$value[1]'>
+                                        //             <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$value[0]</button>
+                                        //         </form>
+                                        //     </td>
+                                        //     <td>$value[2]</td>
+                                        //     <td><a href=".$value[1]."/".$value[0].">$value[1]</a></td>
+                                        //     <td>$value[3]</td></tr>";
+                                        // }
+                                        // echo '<pre>';
+                                        // var_dump($_SESSION);
+                                        // echo '</pre>';
+
+                                        // if (isset($_SESSION["pageAdded"]))
+                                        // {
+                                        //     $pageName = $_SESSION["pageAdded"][0];
+                                        //     $pagePath = $_SESSION["pageAdded"][1];
+                                        //     echo "<tr><td>
+                                        //         <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                        //             <input type='hidden' name='pageName' value='$pageName'>
+                                        //             <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$pageName</button>
+                                        //         </form>
+                                        //     </td>
+                                        //     <td>A test page for demo</td>
+                                        //     <td><a href='$pagePath'>$pagePath</a></td>
+                                        //     <td>test</td></tr>";
+                                        // }
+                                                // print "<pre>";
+                                                // print_r($userViewList);
+                                                // print "</pre>";
                                     ?>
                             </tbody>
                         </table>
@@ -158,8 +265,8 @@
                         <div class="row">
                             <div class="col-12 btnEditorControl" style="display: flex; flex-direction: row-reverse;">
                                 <button class="btn btn-primary">Save</button>
-                                <button class="btn btn-primary" onclick="requestRemovePage('wwe')">Remove</button>
-                                <button class="btn btn-primary" onclick="addPage('hello world')">Add</button>
+                                <button class="btn btn-primary" onclick="requestRemovePage(document.querySelectorAll('.removePage:checked'))">Remove</button>
+                                <button class="btn btn-primary" onclick="addPage()">Add</button>
                             </div>
                         </div>
                 </div>
