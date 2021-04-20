@@ -14,7 +14,11 @@ A plain game news site designed from sratch. Get thing done without framework
 ## for Windows user
 1. install xampp software and then navigate to php folder -> php.ini
 2. search for dynamic extension, remove semicolon before extension pdo, mysqli and extension dir to enable pdo mysql extension
-3. set apache document root to the parent directory of gamestation folder
+3. create and import gamestation database into mysql server 
+```
+# mysql -uroot -p gamestation < gamestation.sql
+```
+4. set apache document root to the parent directory of gamestation folder
 
 ## for Linux user
 1. install packages with apt: php, apache2, php(versionNumber)-mysql mysql-client-(versionNumber) mysql-server
@@ -22,7 +26,11 @@ A plain game news site designed from sratch. Get thing done without framework
 ```
 $ a2enmod rewrite
 ```
-3. enable apache2 rewrite engine mod by having the code on site.conf virtual host
+3. create and import gamestation database into mysql server 
+```
+$ mysql -uroot -p gamestation < gamestation.sql
+```
+4. enable apache2 rewrite engine mod by having the code on site.conf virtual host
 ```
 <Directory /path/to/documentroot>
    Options Indexes FollowSymLinks

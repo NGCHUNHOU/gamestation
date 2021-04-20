@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="/gamestation/view/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/gamestation/view/assets/css/main.css">
     <script type="text/javascript" src="/gamestation/view/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/gamestation/node_modules/animejs/lib/anime.min.js"></script>
 </head>
 
 <body>

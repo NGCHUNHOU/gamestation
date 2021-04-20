@@ -118,6 +118,36 @@ INSERT INTO `newscategory` VALUES (1,'Hardware','All the topics about the hardwa
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pages`
+--
+
+DROP TABLE IF EXISTS `pages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pages` (
+  `pagesNo` int(11) NOT NULL AUTO_INCREMENT,
+  `pageName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `pagePath` text COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `keyword` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `usersID` int(11) NOT NULL,
+  PRIMARY KEY (`pagesNo`),
+  KEY `usersID` (`usersID`),
+  CONSTRAINT `fk_users` FOREIGN KEY (`usersID`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pages`
+--
+
+LOCK TABLES `pages` WRITE;
+/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
+INSERT INTO `pages` VALUES (83,'test.html','/gamestation/admin/view/usrView','test','test',1);
+/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `siteinfo`
 --
 
@@ -203,7 +233,7 @@ CREATE TABLE `updatenews` (
 
 LOCK TABLES `updatenews` WRITE;
 /*!40000 ALTER TABLE `updatenews` DISABLE KEYS */;
-INSERT INTO `updatenews` VALUES (1,'2020 top 100 cpu latest ranking chart','This chart displays the latest cpu performance comparison in 2020. This Ranking is based on cpu performance, i/O thread calculation and latency to determine the rank  ','/gamestation/view/assets/images/news/bargraph-clear-300.png','/gamestation/view/assets/images/news/bargraph-1600.jpg','cpu ranking chart, cpu','2020-09-02',1,1),(2,'steam daily promotion: barn finder price goes down to 56 dollar','based on official steam store announcements, <barn finder> and <furi> both included into steam discount event   ','/gamestation/view/assets/images/news/barn_finder.png',NULL,'steam discount event','2020-09-11',2,1),(3,'Sony plans to make secret event in PAX exhibition','Sony is going to have a unnamed event in PAX exhibition with label \"Sony location\"','/gamestation/view/assets/images/news/sony.png',NULL,'sony, event, PS5','2020-09-15',2,2),(4,'List of Top 10 Hardest Boss in Sekiro','There are so many strong enemies in Sekiro you may encounter in the game. Here we are going to discuss the hardest and the most popular boss','/gamestation/view/assets/images/news/Dark-Souls-3-Iudex-Gundyr.png',NULL,'Sekiro, Hardest Boss','2020-10-15',1,1),(5,'The Witcher season 2 halts production due to COVID outbreak, again','Filming of the second season of Netflix\'s adaptation of The Watcher has been paused due to an outbreak of COVID on set, Deadline reports.','/gamestation/view/assets/images/news/witcher-season2.png',NULL,'witcher, COVID, film halt','2020-10-28',2,2),(6,'Top 50 games in December','Although the arrival of COVID-19 blocks our access to outside. However, there are so many games can help you go through tough time','/gamestation/view/assets/images/news/topGameDec.png',NULL,'december, popular game','2020-11-04',2,2),(7,'Microsoft Is Happy If You Got Your Xbox Series X Early','Microsoft has given the green light for players who got their Xbox Series X early to start playing games','/gamestation/view/assets/images/news/xbox.png',NULL,'microsft, xbox','2020-11-04',1,3),(8,'Genshin Impact appears to be exposing some players\' mobile numbers','Genshin Impact players on Reddit are reporting what could be a fairly major potential privacy breach on the MiHoYo website','/gamestation/view/assets/images/news/genshin.png',NULL,'Genshin Impact, privacy breach','2020-11-05',2,4),(9,'A Call of Duty player accidentally found a third-person mode that\'s too cool to not come true','In a weird twist of FPS fate, one Call of Duty: Modern Warfare player accidentally discovered a third-person mode during a match of Spec Ops','/gamestation/view/assets/images/news/callofduty.png',NULL,'Call of Duty, third person mode, Easter eggs','2020-11-06',2,5),(10,'Demon\'s Souls On PS5 Gives You Far More Options For Character Customization','Considering how many times you\'re going to be dying, it\'s helpful to have a character profile you enjoy looking at','/gamestation/view/assets/images/news/demon-souls.png',NULL,'Demon\'s Souls, PS5, Character Customization','2020-11-07',2,6),(11,'Mortal Kombat 11 Will Add Kross Generation Play With Next-Gen Versions','Mortal Kombat 11 is coming to PS5 and Xbox Series X/S along with Kombat Pack 2, featuring Rain, Milenna, and Rambo','/gamestation/view/assets/images/news/kombat.png',NULL,'Mortal Kombat, Kross Generation','2020-11-08',2,7),(12,'This gorgeous Cyberpunk 2077 art book is almost half-off and the perfect lore primer','It might be news to you that Cyberpunk 2077 isn\'t set in a CD Projekt Red original universe','/gamestation/view/assets/images/news/cyberpunk-artbook.png',NULL,'Cyperpunk 2077, half-off art book','2020-11-20',2,1),(13,'Assassin\'s Creed Valhalla Update Is Live, Full Patch Notes Detailed','Ubisoft releases a new update adding an option for PS5 and Xbox Series X|S users to change their visual settings','/gamestation/view/assets/images/news/assassin-creed.png',NULL,'Assassin-Creed, Patch Update','2020-11-15',2,1),(14,'Fortnite Recreates 100 Thieves Cash App Compound In-Game','Fortnite and esports team 100 Thieves have come together to create an in-game version of the 100 Thieves Cash App Compound','/gamestation/view/assets/images/news/fornite-200.jpg',NULL,'Fortnite, 100 Thieves Cash App','2020-11-16',2,1);
+INSERT INTO `updatenews` VALUES (1,'2020 top 100 cpu latest ranking chart','This chart displays the latest cpu performance comparison in 2020. This Ranking is based on cpu performance, i/O thread calculation and latency to determine the rank  ','/gamestation/view/assets/images/news/bargraph-clear-300.png','/gamestation/view/assets/images/news/bargraph-1600.jpg','cpu ranking chart, cpu','2020-09-02',1,1),(2,'steam daily promotion: barn finder price goes down to 56 dollar','based on official steam store announcements, <barn finder> and <furi> both included into steam discount event   ','/gamestation/view/assets/images/news/barn_finder.png','/gamestation/view/assets/images/news/barn-finder-600.jpg','steam discount event','2020-09-11',2,1),(3,'Sony plans to make secret event in PAX exhibition','Sony is going to have a unnamed event in PAX exhibition with label \"Sony location\"','/gamestation/view/assets/images/news/sony.png','/gamestation/view/assets/images/news/sony-600.jpg','sony, event, PS5','2020-09-15',2,2),(4,'List of Top 10 Hardest Boss in Sekiro','There are so many strong enemies in Sekiro you may encounter in the game. Here we are going to discuss the hardest and the most popular boss','/gamestation/view/assets/images/news/Dark-Souls-3-Iudex-Gundyr.png','/gamestation/view/assets/images/news/Dark-Souls-3-Iudex-Gundyr-960.jpg','Sekiro, Hardest Boss','2020-10-15',1,1),(5,'The Witcher season 2 halts production due to COVID outbreak, again','Filming of the second season of Netflix\'s adaptation of The Watcher has been paused due to an outbreak of COVID on set, Deadline reports.','/gamestation/view/assets/images/news/witcher-season2.png','/gamestation/view/assets/images/news/witcher-season2-700.jpg','witcher, COVID, film halt','2020-10-28',2,2),(6,'Top 50 games in December','Although the arrival of COVID-19 blocks our access to outside. However, there are so many games can help you go through tough time','/gamestation/view/assets/images/news/topGameDec.png','/gamestation/view/assets/images/news/topGameDec-1500.jpg','december, popular game','2020-11-04',2,2),(7,'Microsoft Is Happy If You Got Your Xbox Series X Early','Microsoft has given the green light for players who got their Xbox Series X early to start playing games','/gamestation/view/assets/images/news/xbox.png','/gamestation/view/assets/images/news/xbox-1500.jpg','microsft, xbox','2020-11-04',1,3),(8,'Genshin Impact appears to be exposing some players\' mobile numbers','Genshin Impact players on Reddit are reporting what could be a fairly major potential privacy breach on the MiHoYo website','/gamestation/view/assets/images/news/genshin.png','/gamestation/view/assets/images/news/genshin-960.jpg','Genshin Impact, privacy breach','2020-11-05',2,4),(9,'A Call of Duty player accidentally found a third-person mode that\'s too cool to not come true','In a weird twist of FPS fate, one Call of Duty: Modern Warfare player accidentally discovered a third-person mode during a match of Spec Ops','/gamestation/view/assets/images/news/callofduty.png','/gamestation/view/assets/images/news/callofduty-1280.jpg','Call of Duty, third person mode, Easter eggs','2020-11-06',2,5),(10,'Demon\'s Souls On PS5 Gives You Far More Options For Character Customization','Considering how many times you\'re going to be dying, it\'s helpful to have a character profile you enjoy looking at','/gamestation/view/assets/images/news/demon-souls.png','/gamestation/view/assets/images/news/demon-souls-800.jpg','Demon\'s Souls, PS5, Character Customization','2020-11-07',2,6),(11,'Mortal Kombat 11 Will Add Kross Generation Play With Next-Gen Versions','Mortal Kombat 11 is coming to PS5 and Xbox Series X/S along with Kombat Pack 2, featuring Rain, Milenna, and Rambo','/gamestation/view/assets/images/news/kombat.png','/gamestation/view/assets/images/news/kombat-1100.jpg','Mortal Kombat, Kross Generation','2020-11-08',2,7),(12,'This gorgeous Cyberpunk 2077 art book is almost half-off and the perfect lore primer','It might be news to you that Cyberpunk 2077 isn\'t set in a CD Projekt Red original universe','/gamestation/view/assets/images/news/cyberpunk-artbook.png','/gamestation/view/assets/images/news/cyberpunk-artbook-1024.jpg','Cyperpunk 2077, half-off art book','2020-11-20',2,1),(13,'Assassin\'s Creed Valhalla Update Is Live, Full Patch Notes Detailed','Ubisoft releases a new update adding an option for PS5 and Xbox Series X|S users to change their visual settings','/gamestation/view/assets/images/news/assassin-creed.png','/gamestation/view/assets/images/news/assassin-creed-1200.jpg','Assassin-Creed, Patch Update','2020-11-15',2,1),(14,'Fortnite Recreates 100 Thieves Cash App Compound In-Game','Fortnite and esports team 100 Thieves have come together to create an in-game version of the 100 Thieves Cash App Compound','/gamestation/view/assets/images/news/fornite-200.jpg','/gamestation/view/assets/images/news/fornite-1280.jpg','Fortnite, 100 Thieves Cash App','2020-11-16',2,1);
 /*!40000 ALTER TABLE `updatenews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +251,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +260,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'test@test.com','test','123'),(4,'test2@test2.com','test2','123');
+INSERT INTO `users` VALUES (1,'test@test.com','test','12345'),(4,'test2@test2.com','test2','123'),(5,'chunhou555@test.com','ngchunhou','555555'),(6,'chunfei@test.com','ngchunfei','5598');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-31 15:33:47
+-- Dump completed on 2021-04-15 22:06:01

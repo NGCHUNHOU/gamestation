@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
+    "animejs": "^3.2.1",
     "jquery": "^3.5.1",
     "sass": "^1.30.0"
   },
