@@ -37,6 +37,24 @@ use classes\db;
                     echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
                     break;   
+                case 'guides':
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    echo "<title>GameStation | News </title>";
+                    echo "<meta name='description' content='$meta[news_description]'/>";
+                    echo "<meta name='keywords' content='$meta[news_keyword]'/>";
+                    echo "<meta name='author' content='$meta[news_author]'/>";
+                    echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    break;   
+                case 'guides/guide1':
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    echo "<title>GameStation | News </title>";
+                    echo "<meta name='description' content='$meta[news_description]'/>";
+                    echo "<meta name='keywords' content='$meta[news_keyword]'/>";
+                    echo "<meta name='author' content='$meta[news_author]'/>";
+                    echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
+                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    break;   
                 case 'error':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
                     echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";

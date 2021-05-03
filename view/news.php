@@ -129,9 +129,9 @@
                 </div>
                 </div>";
             }
-            print "<pre style='color: #fff;'>";
-            print_r($this->ListTable);
-            print "</pre>";
+            // print "<pre style='color: #fff;'>";
+            // print_r($this->ListTable);
+            // print "</pre>";
 
             // print "<pre style='color: #000;'>";
             // print_r($this->MonTitleURL);

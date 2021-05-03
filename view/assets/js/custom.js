@@ -9,35 +9,55 @@ window.setDailyNews = index.setDailyNews
 // enable hoverable card
 news.hoverCard()
 
-function makeFadedIn(nodes) {
-    let isScrolled = false
-    nodes.forEach((node) => {
-       node.style.visibility = "hidden" 
-        window.onscroll = () => {
-            if (window.pageYOffset >= 70 && !isScrolled) 
+function makeFadedIn(leftnodes, rightnodes, isViewportSmall = false) {
+    let crossObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.target && entry.target.dataset.direction == "left" && !isViewportSmall)
             {
-                document.querySelector('.card').style.visibility = "initial"
-                document.querySelector('.pic-newsPaper').style.visibility = "initial"
                 anime({
-                    targets: document.querySelector(".pic-newsPaper"),
-                    translateX: [-350,0],
-                    // loop: true,
-                    opacity: [0,1],
-                    duration: 1000,
-                    easing: 'easeInOutQuad'
-                });
-                anime({
-                    targets: document.querySelector(".card"),
+                    targets: entry.target,
                     translateX: [350,0],
                     opacity: [0,1],
                     duration: 1000,
                     easing: 'easeInOutQuad'
                 });
-            isScrolled = true
             }
-        }
-    }
-)
+            if (entry.target && entry.target.dataset.direction == "right" && !isViewportSmall)
+            {
+                anime({
+                    targets: entry.target,
+                    translateX: [-350,0],
+                    opacity: [0,1],
+                    duration: 1000,
+                    easing: 'easeInOutQuad'
+                });
+            }
+            if (entry.target && entry.target.dataset.direction == "left" && isViewportSmall)
+            {
+                anime({
+                    targets: entry.target,
+                    opacity: [0,1],
+                    duration: 1000,
+                    easing: 'easeInOutQuad'
+                });
+            }
+            if (entry.target && entry.target.dataset.direction == "right" && isViewportSmall)
+            {
+                anime({
+                    targets: entry.target,
+                    opacity: [0,1],
+                    duration: 1000,
+                    easing: 'easeInOutQuad'
+                });
+            }
+        }) 
+    }, {})
+    leftnodes.forEach((leftnode) => {
+    crossObserver.observe(leftnode)
+    })
+    rightnodes.forEach((rightnode) => {
+    crossObserver.observe(rightnode)
+    })
 }
 
 function makeWave(node) {

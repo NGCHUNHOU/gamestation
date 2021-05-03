@@ -1,3 +1,11 @@
+<?php
+    use classes\db\db;
+    $db = new db('localhost', 'gamestation', 'root', '');
+    $aboutContent = $db->query("SELECT * FROM `about`");
+    // echo "<pre>".
+    // print_r($aboutContent) .
+    // "</pre>";
+?>
 <div style="position: relative">
     <div class="container-fluid">
         <div class="row">
@@ -17,31 +25,44 @@
     </svg>
 </div>
 <br>
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-5 text-center">
+<br>
+<?php
+    foreach ($aboutContent as $contentBlock) {
+        echo "
+              <h1 class='showcase_heading text-center pt-4'>$contentBlock[title]</h1>
+<div class='container'>
+    <div class='row' style='$contentBlock[divInversed]'>
+        <div class='col-12 col-md-5 text-center'>
             <br>
-            <picture class="" style="width: inherit;">
-               <source srcset="/gamestation/view/newsPaper.png" media="(max-width: 550px)">
-               <img srcset="/gamestation/view/newsPaper.png" width=300 class="pic-newsPaper" alt="gameNews"> 
+            <picture class='' style='width: inherit;'>
+               <source srcset='$contentBlock[imgPath]' media='(max-width: 550px)'>
+               <img srcset='$contentBlock[imgPath]' width='$contentBlock[imgSize]' class='pic-newsPaper' alt='gameNews' data-direction='right'> 
             </picture> 
             <br>
             <br>
         </div>
-        <div class="col-12 col-md-7 d-flex align-items-center">
-            <div class='card'>
+        <div class='col-12 col-md-7 d-flex align-items-center'>
+            <div class='card' data-direction='left'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
                   <div class='card-body'>
-                    <h2>tall tower center</h2>
-                    <p>A data center to help gather game news for players. We keep watching the trend of news, game, strategy and even some entertaining stuff, to make sure the news content is always up-to-date, valuable, and entertaining</p>
+                    <h2>$contentBlock[subtitle]</h2>
+                    <p>$contentBlock[paragraph]</p>
                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+        ";
+    }
+?>
 <script src="/gamestation/view/assets/js/dist/bundle.js"></script>
 <script>
-makeFadedIn([document.querySelector(".card"), document.querySelector(".pic-newsPaper")])
-makeWave(document.querySelector("path#animated-wave"))
+makeWave(document.querySelector("path#animated-wave"));
+(function checkViewport()
+{
+    let viewPort = window.matchMedia("(max-width: 700px)").matches ?
+    makeFadedIn(document.querySelectorAll(".card"), document.querySelectorAll(".pic-newsPaper"), true) :
+    makeFadedIn(document.querySelectorAll(".card"), document.querySelectorAll(".pic-newsPaper"), false)
+})()
 </script>

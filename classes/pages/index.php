@@ -127,8 +127,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         // Prepare all news links for news article setup
         protected function fillupNewsLinkTable()
         {
-          $this->pathList = ['', 'about', 'news'];
-          $this->pageList = ['home', 'about', 'news'];
+          $this->pathList = ['', 'about', 'news', 'guides', 'guides/guide1'];
+          $this->pageList = ['home', 'about', 'news', 'guides', 'guides/guide1'];
           $this->newList = [];
           for ($i = 0; $i < count($this->ListTable['monday']); $i++) {
             array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title']));
