@@ -1,5 +1,7 @@
 <?php
 namespace classes\dataStorage\tableData;
+
+use classes\data\datacenter;
 use classes\db;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/gamestation/classes/db/db.php';
 
@@ -13,18 +15,20 @@ class tableData
     protected $FriTitleURL = array();
     protected $SatTitleURL = array();
     protected $SunTitleURL = array();
+    public $dbloginp;
     
-    protected function __construct()
+    public function __construct(datacenter $dblogin)
     {
-        $this->updateTableData();
+        $this->dbloginp = new $dblogin;
+        $this->updateTableData($dblogin);
     }
 
     /**
      * Grab data from mysql server with PDO 
      * @return tableData based on day arg
      */
-    protected function getUpdateTableData($day) {
-        $db = new db\db();
+    protected function getUpdateTableData($day, datacenter $dblogin) {
+        $db = new db\db($dblogin);
         $output = $db->query("SELECT updatenews.news_title, updatenews.description, updatenews.imgNews_thumbnail, updatenews.imgNews_content, updatenews.date, daytable.day FROM updatenews JOIN daytable ON updatenews.day_id = daytable.day_id WHERE daytable.day = ?", array($day));
         return $output;
     }
@@ -33,14 +37,14 @@ class tableData
      * Store data into class properties
      * @return void
      */
-    protected function updateTableData() {
-        $this->ListTable = array('monday' => $this->getUpdateTableData('monday'),
-                                 'tuesday' => $this->getUpdateTableData('tuesday'),
-                                 'wednesday' => $this->getUpdateTableData('wednesday'),
-                                 'thursday' => $this->getUpdateTableData('thursday'),
-                                 'friday' => $this->getUpdateTableData('friday'),
-                                 'saturday' => $this->getUpdateTableData('saturday'),
-                                 'sunday' => $this->getUpdateTableData('sunday')
+    protected function updateTableData(datacenter $dblogin) {
+        $this->ListTable = array('monday' => $this->getUpdateTableData('monday', $dblogin),
+                                 'tuesday' => $this->getUpdateTableData('tuesday', $dblogin),
+                                 'wednesday' => $this->getUpdateTableData('wednesday', $dblogin),
+                                 'thursday' => $this->getUpdateTableData('thursday', $dblogin),
+                                 'friday' => $this->getUpdateTableData('friday', $dblogin),
+                                 'saturday' => $this->getUpdateTableData('saturday', $dblogin),
+                                 'sunday' => $this->getUpdateTableData('sunday', $dblogin)
                                     );
        for ($i = 0; $i < count($this->ListTable['monday']); $i++) 
        {

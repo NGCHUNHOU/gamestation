@@ -1,14 +1,16 @@
 <?php
 namespace classes\pages;
+
+use classes\data\datacenter;
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/error.php';
     class about extends CustomError{
         public $priority;
 
-        public function __construct($subpath = '',$firstpage = TRUE) {
-           $url = explode('/', $_GET['url']);
+        public function __construct($subpath = '',$firstpage = TRUE, $dblogin) {
+          parent::__construct($dblogin);
           if ($firstpage) {
            $this->createheader('about-us');
-           require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/about-us.php');
            $this->createfooter();
           } else {
             $this->createheader('about-us');
@@ -18,7 +20,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/error.php';
             require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/sub/'.$subpath.'.php');
            } else {
              require_once($error_file);
-             $controller = new CustomError();
+             $controller = new CustomError($this->dbloginp);
            }
             $this->createfooter();
           }

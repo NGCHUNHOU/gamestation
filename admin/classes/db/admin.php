@@ -1,5 +1,7 @@
 <?php
 namespace classes\db_admin;
+
+use classes\data\datacenter;
 use classes\db;
 use Exception;
 
@@ -23,7 +25,7 @@ class db_admin
         protected function get_user($id)
         {
             $queryuser = "SELECT * FROM `users` WHERE `user_id`= ? ";
-            $db = new db\db();
+            $db = new db\db(new datacenter);
             $this->stmt = $db->connect()->prepare($queryuser);
             $this->stmt->execute([$id]);
             $list = $this->stmt->fetchAll();
@@ -33,7 +35,7 @@ class db_admin
         protected function get_ByEmail($email)
         {
             $queryuser = "SELECT * FROM `users` WHERE `email`= ? ";
-            $db = new db\db();
+            $db = new db\db(new datacenter);
             $this->stmt = $db->connect()->prepare($queryuser);
             $this->stmt->execute([$email]);
             $list = $this->stmt->fetchAll();
@@ -43,7 +45,7 @@ class db_admin
         protected function getAll()
         {
             $queryuser = "SELECT * FROM `users`";
-            $db = new db\db();
+            $db = new db\db(new datacenter);
             $this->stmt = $db->connect()->prepare($queryuser);
             $this->stmt->execute();
             $list = $this->stmt->fetchAll();
@@ -55,7 +57,7 @@ class db_admin
             try {
                 $sql = "INSERT INTO `users` (`email`, `name`, `password`) VALUES (?, ? , ?)";
                 $insertdata = [$email, $name, $password];
-                $db = new db\db();
+                $db = new db\db(new datacenter);
                 $this->stmt = $db->connect()->prepare($sql);
                 $this->stmt->execute($insertdata);
             } catch (\Exception $e) {
@@ -69,7 +71,7 @@ class db_admin
             try {
                 $sql = "UPDATE `users` SET `email` = ? , `name` = ? , `password` = ? WHERE `user_id` = ?";
                 $insertdata = [$email, $name, $password, $id];
-                $db = new db\db();
+                $db = new db\db(new datacenter);
                 $this->stmt = $db->connect()->prepare($sql);
                 $this->stmt->execute($insertdata);
             } catch (\Exception $e) {
@@ -82,7 +84,7 @@ class db_admin
         {
             try {
             $queryuser = "DELETE FROM `users` WHERE `user_id` = ?";
-            $db = new db\db();
+            $db = new db\db(new datacenter);
             $this->stmt = $db->connect()->prepare($queryuser);
             $this->stmt->execute([$id]);
             } catch (\Exception $e) {

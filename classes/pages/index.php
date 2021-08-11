@@ -1,5 +1,8 @@
 <?php
 namespace classes\pages;
+
+use classes\data\datacenter;
+use classes\dataStorage\dataStorage;
 use classes\dataStorage\tableData\tableData;
 use Exception;
 
@@ -20,9 +23,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         public $pageList;
         public $newList;
 
-        public function __construct() {
+        public function __construct(datacenter $dblogin) {
+          tableData::__construct($dblogin);
           // Data Initialization //
-          $this->updateTableData();
+          $this->updateTableData($dblogin);
           $this->assignDayTable();
           $this->urlPath = $_SERVER["REQUEST_URI"];
           $this->addMetaList();

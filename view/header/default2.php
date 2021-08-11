@@ -11,6 +11,9 @@
 	.navbar .nav-item .dropdown-menu{ margin-top:0; }
 	.navbar .nav-item .dropdown-menu-dark{ background: #121C25 }
 	.navbar .nav-item .dropdown-menu-dark .dropdown-item{ color: rgba(255,255,255,.5)}
+	.navbar .nav-item .dropdown-menu-dark .dropdown-item:hover, .navbar .nav-item .dropdown-menu-dark .dropdown-item:focus, 
+    .navbar .nav-item .dropdown-menu-dark .dropdown-item:active
+    { background: #292A44}
 }	 
     </style>
 </head>

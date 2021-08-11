@@ -3,11 +3,13 @@ namespace classes\pages;
 require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/index.php';
 require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
 
+require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/data/datacenter.php';
+use classes\data\datacenter;
 class newsData extends index
 {
     public function __construct()
     {
-        $this->updateTableData();
+        $this->updateTableData(new datacenter);
         $this->assignDayTable();
         $this->urlPath = $_SERVER["REQUEST_URI"];
         $this->addMetaList();

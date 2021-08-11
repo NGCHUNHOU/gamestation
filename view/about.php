@@ -1,6 +1,7 @@
 <?php
-    use classes\db\db;
-    $db = new db('localhost', 'gamestation', 'root', '');
+use classes\data\datacenter;
+use classes\db\db;
+    $db = new db(new datacenter);
     $aboutContent = $db->query("SELECT * FROM `about`");
     // echo "<pre>".
     // print_r($aboutContent) .
