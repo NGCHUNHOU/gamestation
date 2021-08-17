@@ -11,6 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
     class index extends view {
         public $priority;
         public $urlPath;
+        public $errorcount;
         protected $metaList;
         public $monday_list;
         public $tuesday_list;
@@ -19,19 +20,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         public $friday_list;
         public $saturday_list;
         public $sunday_list;
-        public $pathList;
-        public $pageList;
         public $newList;
 
-        public function __construct(datacenter $dblogin) {
-          tableData::__construct($dblogin);
+        public function __construct(datacenter $dc) {
+          tableData::__construct($dc);
           // Data Initialization //
-          $this->updateTableData($dblogin);
+          $this->updateTableData($dc);
           $this->assignDayTable();
           $this->urlPath = $_SERVER["REQUEST_URI"];
+          $dc->urlPath = $_SERVER["REQUEST_URI"];
           $this->addMetaList();
-          $this->fillupNewsLinkTable();
+          $this->fillupNewsLinkTable($dc);
+          // append forward slash to every path value at the start position
+          for ($i=0; $i < count($dc->pathList); $i++) { 
+             array_push($dc->pathListSlash, "/".$dc->pathList[$i]);  
+          }
+          $dc->articleDaySet[0]=$dc->days;
+          for ($i=0;$i<count($this->ListTable[$dc->articleDaySet[0][0]]);$i++)
+          {
+            array_push($dc->articleDaySet[1][0], $this->ListTable[$dc->articleDaySet[0][0]][$i]["news_id"]);
+          }
 
+          $this->get(
+              $dc->pathListSlash,
+              $dc->pageList, 
+              $dc->pageList,
+              $dc
+            );
           // switch ($this->urlPath) {
           //   case '/':
           //     $this->get('/', 'home', function() {
@@ -64,39 +79,137 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
           //   $this->createfooter();
           //   break;
           // }
+          // for ($i=0; $i < count($this->pathList); $i++) { 
+          //     $this->get(
+          //         '/'.$this->pathList[$i],
+          //         $this->pageList[$i],
+          //         function()
+          //         {
+          //           for ($i=0; $i < count($this->pathList); $i++) { 
+          //             if ('/'.$this->pathList[$i] == $this->urlPath)
+          //             {
+          //               return $this->pageList[$i];
+          //             }
+          //           }
+                    // return error page if page not found
+          //           $this->createheader("error");
+          //           return "errorview/notfound";
+          //           $this->createfooter();
+          //         }
+          //       );
+          // }
 
-            for ($i=0; $i < count($this->pathList); $i++) { 
-                $this->get(
-                    '/'.$this->pathList[$i],
-                    $this->pageList[$i],
-                    function()
-                    {
-                      for ($i=0; $i < count($this->pathList); $i++) { 
-                        if ('/'.$this->pathList[$i] == $this->urlPath)
-                        {
-                          return $this->pageList[$i];
-                        }
-                      }
-                      // return error page if page not found
-                      $this->createheader("error");
-                      return "errorview/notfound";
-                      $this->createfooter();
-                    }
-                  );
-            }
             // loading article content
-            $this->createArticleContent();
-            
+            // $this->createArticleContent();
         }
-        
-        public function get($pathName, $headPage = 'home', $callback) {
-              if ($this->urlPath == $pathName) {
-              $this->createheader($headPage, $this->metaList);
-              require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$callback().".php";
-              // echo "<script type='text/javascript' src='./view/assets/js/$includeJsName.js'></script>";
-              echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
-              $this->createfooter();
+        public function findPageDataset($search, $day, $matchlist = array())
+        {
+          // iterating dataset based on user input url to find page content 
+          $userinputurl = $matchlist;
+          // $dataset = $this->ListTable[$day];
+          $daylist = array("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday");
+          $dataset = array();
+          $targetlist = array(); 
+          for ($i = 0; $i < count($this->ListTable['monday']); $i++) {
+            array_push($dataset, $this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]));
+          }
+          for ($i = 0; $i < count($this->ListTable['tuesday']); $i++) {
+            array_push($dataset, $this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]));
+          }
+          for ($i = 0; $i < count($this->ListTable['wednesday']); $i++) {
+            array_push($dataset, $this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]));
+          }
+          for ($i = 0; $i < count($this->ListTable['thursday']); $i++) {
+            array_push($dataset, $this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]));
+          }
+          for ($i = 0; $i < count($this->ListTable['friday']); $i++) {
+            array_push($dataset, $this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]));
+          }
+          for ($i = 0; $i < count($this->ListTable['saturday']); $i++) {
+            array_push($dataset, $this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]));
+          }
+          for ($i = 0; $i < count($this->ListTable['sunday']); $i++) {
+            array_push($dataset, $this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]));
+          }
+          for($i=0;$i<count($userinputurl);$i++)
+          {
+            if ($search==$userinputurl[$i])
+            {
+              $targetlist = $dataset[$i];
             }
+          }
+          return $targetlist;
+        }
+        // public function get($pathName, $headPage = 'home', $callback) {
+        //       if ($this->urlPath == $pathName) {
+        //       $this->createheader($headPage, $this->metaList);
+        //       require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$callback().".php";
+              // echo "<script type='text/javascript' src='./view/assets/js/$includeJsName.js'></script>";
+              // echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+              // $this->createfooter();
+            // }
+            // else
+            // {
+            //   return 0;
+            // }
+        // }
+        public function get($pathList, $headPage = 'home', $pagename, datacenter $dc) {
+              for ($i=0; $i < count($pathList); $i++) { 
+                if ($this->urlPath == $pathList[$i]) {
+                  $this->createheader($headPage[$i], $this->metaList);
+                  require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$pagename[$i].".php";
+                  echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+                  $this->createfooter();
+                } else {
+                  $this->errorcount += 1;
+                }
+              }
+                $pageDataSet = array();
+              for ($i = 0; $i < count($this->ListTable['monday']); $i++) {
+                array_push($pageDataSet, '/news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title']));
+              }
+              for ($i = 0; $i < count($this->ListTable['tuesday']); $i++) {
+                array_push($pageDataSet, '/news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']));
+              }
+              for ($i = 0; $i < count($this->ListTable['wednesday']); $i++) {
+                array_push($pageDataSet, '/news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title']));
+              }
+              for ($i = 0; $i < count($this->ListTable['thursday']); $i++) {
+                array_push($pageDataSet, '/news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title']));
+              }
+              for ($i = 0; $i < count($this->ListTable['friday']); $i++) {
+                array_push($pageDataSet, '/news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title']));
+              }
+              for ($i = 0; $i < count($this->ListTable['saturday']); $i++) {
+                array_push($pageDataSet, '/news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title']));
+              }
+              for ($i = 0; $i < count($this->ListTable['sunday']); $i++) {
+                array_push($pageDataSet, '/news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title']));
+              }
+              for ($i = 0; $i < count($pageDataSet); $i++) {
+                if ($this->urlPath == $pageDataSet[$i])
+                {
+                  $this->errorcount -= 1;
+                  $PageContent = $this->findPageDataset($this->urlPath, "monday", $pageDataSet);
+                  require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/news/article.php";
+                  echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+                }
+              }
+              // print_r($pageDataSet);
+              // print_r($this->ListTable['monday']);
+              if ($this->errorcount == count($pathList))
+              {
+                  $this->createheader("error");
+                  require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/"."errorview/notfound".".php";
+                  $this->createfooter();
+              }
+            //   if ($this->urlPath == $pathName) {
+            //   $this->createheader($headPage, $this->metaList);
+            //   require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$pagename.".php";
+            //   // echo "<script type='text/javascript' src='./view/assets/js/$includeJsName.js'></script>";
+            //   echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+            //   $this->createfooter();
+            // }
             // else
             // {
             //   return 0;
@@ -129,40 +242,40 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         }
         
         // Prepare all news links for news article setup
-        protected function fillupNewsLinkTable()
+        protected function fillupNewsLinkTable(datacenter $dc)
         {
-          $this->pathList = ['', 'about', 'news', 'guides', 'guides/guide1'];
-          $this->pageList = ['home', 'about', 'news', 'guides', 'guides/guide1'];
+          $dc->pathList = ['', 'about', 'news', 'guides', 'guides/guide1'];
+          $dc->pageList = ['home', 'about', 'news', 'guides', 'guides/guide1'];
           $this->newList = [];
-          for ($i = 0; $i < count($this->ListTable['monday']); $i++) {
-            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title']));
-            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title']));
-          }
-          for ($i = 0; $i < count($this->ListTable['tuesday']); $i++) {
-            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']));
-            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']));
-          }
-          for ($i = 0; $i < count($this->ListTable['wednesday']); $i++) {
-            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title']));
-            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title']));
-          }
-          for ($i = 0; $i < count($this->ListTable['thursday']); $i++) {
-            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title']));
-            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title']));
-          }
-          for ($i = 0; $i < count($this->ListTable['friday']); $i++) {
-            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title']));
-            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title']));
-          }
-          for ($i = 0; $i < count($this->ListTable['saturday']); $i++) {
-            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title']));
-            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title']));
-          }
-          for ($i = 0; $i < count($this->ListTable['sunday']); $i++) {
-            array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title']));
-            array_push($this->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title']));
-          }
-          $this->pathList = array_merge($this->pathList, $this->newList);
+          // for ($i = 0; $i < count($this->ListTable['monday']); $i++) {
+          //   array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title']));
+          //   array_push($dc->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title']));
+          // }
+          // for ($i = 0; $i < count($this->ListTable['tuesday']); $i++) {
+          //   array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']));
+          //   array_push($dc->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']));
+          // }
+          // for ($i = 0; $i < count($this->ListTable['wednesday']); $i++) {
+          //   array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title']));
+          //   array_push($dc->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title']));
+          // }
+          // for ($i = 0; $i < count($this->ListTable['thursday']); $i++) {
+          //   array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title']));
+          //   array_push($dc->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title']));
+          // }
+          // for ($i = 0; $i < count($this->ListTable['friday']); $i++) {
+          //   array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title']));
+          //   array_push($dc->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title']));
+          // }
+          // for ($i = 0; $i < count($this->ListTable['saturday']); $i++) {
+          //   array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title']));
+          //   array_push($dc->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title']));
+          // }
+          // for ($i = 0; $i < count($this->ListTable['sunday']); $i++) {
+          //   array_push($this->newList, 'news/article/'.$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title']));
+          //   array_push($dc->pageList, 'newsArticle/'.$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title']));
+          // }
+          $dc->pathList = array_merge($dc->pathList, $this->newList);
         }
 
         // Generate News Template 

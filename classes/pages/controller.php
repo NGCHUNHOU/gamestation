@@ -13,7 +13,7 @@ use classes\db;
             {
                 case 'home':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";
+                    echo "<title>".$this->dbloginp->metatitle[0]."</title>";
                     echo "<meta name='description' content='$meta[home_description]'/>";
                     echo "<meta name='keywords' content='$meta[home_keyword]'/>";
                     echo "<meta name='author' content='$meta[home_author]'/>";
@@ -22,7 +22,7 @@ use classes\db;
                     break;
                 case 'about':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>GameStation | About Us </title>";
+                    echo "<title>".$this->dbloginp->metatitle[1]."</title>";;
                     echo "<meta name='description' content='$meta[aboutUs_description]'/>";
                     echo "<meta name='keywords' content='$meta[aboutUs_keyword]'/>";
                     echo "<meta name='author' content='$meta[aboutUs_author]'/>";
@@ -31,7 +31,7 @@ use classes\db;
                     break;   
                 case 'news':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>GameStation | News </title>";
+                    echo "<title>".$this->dbloginp->metatitle[2]."</title>";
                     echo "<meta name='description' content='$meta[news_description]'/>";
                     echo "<meta name='keywords' content='$meta[news_keyword]'/>";
                     echo "<meta name='author' content='$meta[news_author]'/>";
@@ -40,7 +40,7 @@ use classes\db;
                     break;   
                 case 'guides':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>GameStation | News </title>";
+                    echo "<title>".$this->dbloginp->metatitle[2]."</title>";
                     echo "<meta name='description' content='$meta[news_description]'/>";
                     echo "<meta name='keywords' content='$meta[news_keyword]'/>";
                     echo "<meta name='author' content='$meta[news_author]'/>";
@@ -49,7 +49,7 @@ use classes\db;
                     break;   
                 case 'guides/guide1':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>GameStation | News </title>";
+                    echo "<title>".$this->dbloginp->metatitle[2]."</title>";
                     echo "<meta name='description' content='$meta[news_description]'/>";
                     echo "<meta name='keywords' content='$meta[news_keyword]'/>";
                     echo "<meta name='author' content='$meta[news_author]'/>";
@@ -58,7 +58,7 @@ use classes\db;
                     break;   
                 case 'error':
                     require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>GameStation | Biggest Gaming Forum and Gaming News </title>";
+                    echo "<title>".$this->dbloginp->metatitle[3]."</title>";
                     echo "<meta name='description' content='failed to load page'/>";
                     echo "<meta name='keywords' content='failed to load page'/>";
                     echo "<meta name='author' content='failed to load page'/>";

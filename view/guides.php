@@ -1,1 +1,1 @@
-<div>guide page coming soon</div>
+<div><?=$dc->guidepagemaintain?></div>

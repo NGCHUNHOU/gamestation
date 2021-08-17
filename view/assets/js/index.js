@@ -16,7 +16,7 @@ let setDailyNews =  (target, day) =>
                 {
                     let tr = document.createElement('tr')
                     let td = document.createElement('td')
-                    let node = document.createTextNode(JSON_NewsData[i][0])
+                    let node = document.createTextNode(JSON_NewsData[i][1])
                         td.setAttribute('colspan', '7')
                         td.appendChild(node)
                         tr.appendChild(td)

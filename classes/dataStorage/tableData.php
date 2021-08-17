@@ -29,7 +29,7 @@ class tableData
      */
     protected function getUpdateTableData($day, datacenter $dblogin) {
         $db = new db\db($dblogin);
-        $output = $db->query("SELECT updatenews.news_title, updatenews.description, updatenews.imgNews_thumbnail, updatenews.imgNews_content, updatenews.date, daytable.day FROM updatenews JOIN daytable ON updatenews.day_id = daytable.day_id WHERE daytable.day = ?", array($day));
+        $output = $db->query("SELECT updatenews.news_id, updatenews.news_title, updatenews.description, updatenews.imgNews_thumbnail, updatenews.imgNews_content, updatenews.date, daytable.day FROM updatenews JOIN daytable ON updatenews.day_id = daytable.day_id WHERE daytable.day = ?", array($day));
         return $output;
     }
 
@@ -91,5 +91,14 @@ class tableData
            $titleURL2 = str_replace($search[$i], "", $titleURL);
            return $titleURL2;
         }
+    }
+    public function undoRewriteNewsTitleUrl($title) {
+        $search = array(
+            " ",
+            ":",
+            "_"
+        );
+        $titleURL = str_replace("-", $search[0], $title);
+        return $titleURL;
     }
 }
