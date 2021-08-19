@@ -19,8 +19,7 @@ class tableData
     
     public function __construct(datacenter $dblogin)
     {
-        $this->dbloginp = new $dblogin;
-        $this->updateTableData($dblogin);
+        $this->dbloginp = $dblogin;
     }
 
     /**
@@ -30,6 +29,11 @@ class tableData
     protected function getUpdateTableData($day, datacenter $dblogin) {
         $db = new db\db($dblogin);
         $output = $db->query("SELECT updatenews.news_id, updatenews.news_title, updatenews.description, updatenews.imgNews_thumbnail, updatenews.imgNews_content, updatenews.date, daytable.day FROM updatenews JOIN daytable ON updatenews.day_id = daytable.day_id WHERE daytable.day = ?", array($day));
+        return $output;
+    }
+    protected function getGuideTableData(datacenter $dblogin) {
+        $db = new db\db($dblogin);
+        $output = $db->query("SELECT * FROM guides");
         return $output;
     }
 

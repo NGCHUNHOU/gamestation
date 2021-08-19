@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?=$this->undoRewriteNewsTitleUrl($PageContent['news_title'])?></title>
+    <title><?=$GuideTitle?></title>
     <link rel='icon' type='image/png' href='/gamestation/view/assets/images/meteor-light-resized.svg' size='16x16'>
     <script type='text/javascript' src='/gamestation/view/assets/js/jquery-3.4.1.min.js'></script>
     <link rel='stylesheet' href='/gamestation/view/assets/css/bootstrap.min.css'>
@@ -79,23 +79,25 @@
       <div class="navigator" style="position: absolute; bottom: 0; height: 4px; background: #3d3e59;"></div>
       <div class="hoverBlock" style="position: absolute; bottom: 0; background: #323354; z-index: 1"></div>
     </header>
+<body>
 <div class='container'>
     <div class='row'>
         <div class='col-md-12 mainHeading'>
-            <h3><?=$this->undoRewriteNewsTitleUrl($PageContent['news_title'])?> </h3>
+            <h3><?=$GuideTitle?> </h3>
         </div>
     </div>
     <div class='row'>
         <div class='col-12 mt-4 mb-4'>
-            <img srcset="<?=$PageContent['imgNews_content']?>" class='article-img' alt='article image'>
+            <img srcset="<?=$GuideImage?>" class='article-img' alt='article image'>
         </div>
     </div>
     <div class='row'>
         <div class='col-10 col-md-10 col-lg-8 card' style='padding: 15px; margin: 15px;'>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <p><?=$GuideContent?></p>
         </div>
     </div>
 </div>
+</body>
 <script>
     function setCurrentItemPosition(currentItems, hoverItem)
     {
@@ -150,3 +152,4 @@
         </div>
     </div>
 </footer>
+</html>

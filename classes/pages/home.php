@@ -9,9 +9,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/help.php';
         public function __construct(datacenter $dblogin)
         {
             parent::__construct($dblogin);
-            $this->createheader('home');
-            require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/home.php');
-            $this->createfooter();
         }
     }
     

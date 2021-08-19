@@ -7,63 +7,64 @@ use classes\dataStorage\tableData\tableData;
 use classes\db;
 
     class controller extends tableData  {
+        public $datacontroller;
         function createheader($page, $meta = array())
         {
             switch ($page)
             {
                 case 'home':
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    require_once($this->datacontroller->defaulthead1);
                     echo "<title>".$this->dbloginp->metatitle[0]."</title>";
                     echo "<meta name='description' content='$meta[home_description]'/>";
                     echo "<meta name='keywords' content='$meta[home_keyword]'/>";
                     echo "<meta name='author' content='$meta[home_author]'/>";
                     echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    require_once($this->datacontroller->defaulthead2);
                     break;
                 case 'about':
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    require_once($this->datacontroller->defaulthead1);
                     echo "<title>".$this->dbloginp->metatitle[1]."</title>";;
                     echo "<meta name='description' content='$meta[aboutUs_description]'/>";
                     echo "<meta name='keywords' content='$meta[aboutUs_keyword]'/>";
                     echo "<meta name='author' content='$meta[aboutUs_author]'/>";
                     echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    require_once($this->datacontroller->defaulthead2);
                     break;   
                 case 'news':
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    require_once($this->datacontroller->defaulthead1);
                     echo "<title>".$this->dbloginp->metatitle[2]."</title>";
                     echo "<meta name='description' content='$meta[news_description]'/>";
                     echo "<meta name='keywords' content='$meta[news_keyword]'/>";
                     echo "<meta name='author' content='$meta[news_author]'/>";
                     echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    require_once($this->datacontroller->defaulthead2);
                     break;   
                 case 'guides':
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>".$this->dbloginp->metatitle[2]."</title>";
+                    require_once($this->datacontroller->defaulthead1);
+                    echo "<title>".$this->dbloginp->metatitle[4]."</title>";
                     echo "<meta name='description' content='$meta[news_description]'/>";
                     echo "<meta name='keywords' content='$meta[news_keyword]'/>";
                     echo "<meta name='author' content='$meta[news_author]'/>";
                     echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    require_once($this->datacontroller->defaulthead2);
                     break;   
                 case 'guides/guide1':
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
-                    echo "<title>".$this->dbloginp->metatitle[2]."</title>";
+                    require_once($this->datacontroller->defaulthead1);
+                    echo "<title>".$this->dbloginp->metatitle[4]."</title>";
                     echo "<meta name='description' content='$meta[news_description]'/>";
                     echo "<meta name='keywords' content='$meta[news_keyword]'/>";
                     echo "<meta name='author' content='$meta[news_author]'/>";
                     echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    require_once($this->datacontroller->defaulthead2);
                     break;   
                 case 'error':
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php');
+                    require_once($this->datacontroller->defaulthead1);
                     echo "<title>".$this->dbloginp->metatitle[3]."</title>";
                     echo "<meta name='description' content='failed to load page'/>";
                     echo "<meta name='keywords' content='failed to load page'/>";
                     echo "<meta name='author' content='failed to load page'/>";
                     echo "<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0'/>";
-                    require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php');
+                    require_once($this->datacontroller->defaulthead2);
                     break;        
             }
         }
@@ -73,6 +74,7 @@ use classes\db;
 
         public function __construct(datacenter $dblogin) {
             parent::__construct($dblogin);
+            $this->datacontroller = $dblogin;
         }
 
         public function get_siteinfo($metaname, $page_title)

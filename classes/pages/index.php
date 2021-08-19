@@ -1,12 +1,15 @@
 <?php
 namespace classes\pages;
 
+use classes;
 use classes\data\datacenter;
 use classes\dataStorage\dataStorage;
 use classes\dataStorage\tableData\tableData;
+use classes\guidecardframe;
 use Exception;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/view.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/guidecardframe.php';
 require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
     class index extends view {
         public $priority;
@@ -23,7 +26,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         public $newList;
 
         public function __construct(datacenter $dc) {
-          tableData::__construct($dc);
+          parent::__construct($dc);
           // Data Initialization //
           $this->updateTableData($dc);
           $this->assignDayTable();
@@ -35,11 +38,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
           for ($i=0; $i < count($dc->pathList); $i++) { 
              array_push($dc->pathListSlash, "/".$dc->pathList[$i]);  
           }
+          for ($i=0; $i < count($dc->extraPages); $i++) { 
+             array_push($dc->pathListSlash, "/".$dc->extraPages[$i]);  
+          }
           $dc->articleDaySet[0]=$dc->days;
           for ($i=0;$i<count($this->ListTable[$dc->articleDaySet[0][0]]);$i++)
           {
             array_push($dc->articleDaySet[1][0], $this->ListTable[$dc->articleDaySet[0][0]][$i]["news_id"]);
           }
+          $dc->defaulthead1 = $_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php';
+          $dc->defaulthead2 = $_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php';
+          $this->generateCardContent($dc);
+          $dc->guideCardTitle = $this->cardtitle;
+          $dc->guideCardDesciption = $this->carddescription;
+          $dc->guideCardContent = $this->cardcontent;
+          $dc->guideSize = $this->guideSum;
+          $dc->guideImage = $this->guideImg;
 
           $this->get(
               $dc->pathListSlash,
@@ -192,6 +206,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
                   $this->errorcount -= 1;
                   $PageContent = $this->findPageDataset($this->urlPath, "monday", $pageDataSet);
                   require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/news/article.php";
+                  echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+                }
+              }
+              $guideDataSet = array();
+              for ($i = 0; $i < count($dc->guideCardTitle); $i++) {
+                array_push($guideDataSet, '/guides/'.$this->rewriteNewsTitleUrl($dc->guideCardTitle[$i]));
+              }
+              for ($i = 0; $i < count($guideDataSet); $i++) {
+                if ($this->urlPath == $guideDataSet[$i])
+                {
+                  $this->errorcount -= 1;
+                  $GuideTitle = $dc->guideCardTitle[$i];
+                  $GuideDescription = $dc->guideCardDesciption[$i];
+                  $GuideContent = $dc->guideCardContent[$i];
+                  $GuideImage = $dc->guideImage[$i];
+                  require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/guides/guidecontent.php";
                   echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
                 }
               }
