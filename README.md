@@ -48,7 +48,7 @@ $ mysql -uroot -p gamestation < gamestation.sql
 # Docker
 1. start the site listenning to 5000 web port and 2000 mysql port
 ```
-$ docker run --name gstation -dit -e MYSQL_ROOT_PWD=rootpwd -e MYSQL_USER=username -e MYSQL_USER_PWD=userpassword -e MYSQL_USER_DB=gamestation -p 5000:80 -p 2000:3306 chunhou5741/gamestation 
+$ docker run --name gstation -dit -e MYSQL_ROOT_PWD=hou -e MYSQL_USER=hou -e MYSQL_USER_PWD=hou -e MYSQL_USER_DB=gamestation -p 5000:80 -p 2000:3306 chunhou5741/gamestation 
 ```
 2. restore database otherwise the site cannot initialize without data
 ```
