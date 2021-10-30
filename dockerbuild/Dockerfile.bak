@@ -1,0 +1,9 @@
+FROM woahbase/alpine-mysql
+RUN apk --no-cache add apache2 apache2-proxy apache2-ssl php7 php7-apache2 php7-pdo_mysql php7-json && rm -f /var/cache/apk/* && rm /var/www/localhost/htdocs/index.html
+EXPOSE 3306 80
+COPY startup.sh /
+COPY gamestation/ /var/www/localhost/htdocs/
+RUN mkdir -p /var/lib/mysql/backups/
+COPY gamestation/gamestation.sql /var/lib/mysql/backups/
+RUN ln -s /scripts/run.sh /bin/run.sh
+ENTRYPOINT ["/startup.sh"]

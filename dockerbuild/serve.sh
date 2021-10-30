@@ -1,0 +1,6 @@
+#!/bin/sh
+MYSQL_USER_PWD=hou
+MYSQL_USER=hou
+MYSQL_ROOT_PWD=hou
+MYSQL_USER_DB=gamestation
+docker run --name gstation -dit -e MYSQL_ROOT_PWD=$MYSQL_ROOT_PWD -e MYSQL_USER=$MYSQL_USER -e MYSQL_USER_PWD=$MYSQL_USER_PWD -e MYSQL_USER_DB=$MYSQL_USER_DB -p 5000:80 -p 200:3306 gamestation 
