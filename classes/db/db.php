@@ -4,23 +4,8 @@ use envCenter;
 
 class db
 {
-    private $hostname;
-    private $dbname;
-    private $username;
-    private $password;
-    private $stmt;
-
-    public function __construct() 
-    {
-        $this->hostname = envCenter::$hostname;
-        $this->dbname = envCenter::$dbname;
-        $this->username = envCenter::$username;
-        $this->password = envCenter::$password;
-        $this->stmt = null;
-    }
-
     public function connect() {
-        $pdo = new \PDO("mysql:host=$this->hostname;dbname=$this->dbname", $this->username, $this->password);
+        $pdo = new \PDO("mysql:host=".envCenter::$hostname.';dbname='.envCenter::$dbname, envCenter::$username, envCenter::$password);
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
