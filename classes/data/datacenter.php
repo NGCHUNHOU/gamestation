@@ -18,6 +18,4 @@ class datacenter
     public $guideSize;
     public $days = array("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday");
     public $articleDaySet = array(array(), array(array()));
-    public function __construct()
-    {}
 }

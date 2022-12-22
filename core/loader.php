@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/db/db.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/data/datacenter.php';
 use classes\db;
 use classes\data\datacenter;
-$db = new db\db(new datacenter);
+$db = new db\db();
 
 use classes\pages;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/pages/index.php';
