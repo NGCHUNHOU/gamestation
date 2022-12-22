@@ -4,26 +4,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="/gamestation/view/assets/images/meteor-light-resized.svg"/>
+	<link rel="icon" type="image/png" href="/view/assets/images/meteor-light-resized.svg"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/gamestation/admin/assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/admin/assets/css/main.css">
 <!--===============================================================================================-->
     <title>Redirecting to admin login page</title>
     <style>
@@ -51,7 +51,7 @@
     </div>
     <script>
         window.setTimeout(() => {
-            window.location.replace("/gamestation/admin")
+            window.location.replace("/admin")
         }, 2000)
     </script>
 </body>

@@ -11,7 +11,7 @@
     }
     else
     {
-        require_once $_SERVER["DOCUMENT_ROOT"]."/gamestation/admin/view/component/loading.php";
+        require_once $_SERVER["DOCUMENT_ROOT"]."/admin/view/component/loading.php";
         // header("Location: ../../view/register.php");
         exit();
     }
@@ -25,22 +25,22 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <script type="text/javascript" src="/gamestation/view/assets/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/view/assets/js/jquery-3.4.1.min.js"></script>
     <!-- CodeMirror libraries -->
-    <link rel="stylesheet" href="/gamestation/admin/node_modules/codemirror/lib/codemirror.css"/>
-    <link rel="stylesheet" href="/gamestation/admin/node_modules/codemirror/theme/gruvbox-dark.css"/>
-    <script type="text/javascript" src="/gamestation/admin/node_modules/codemirror/lib/codemirror.js"></script>
-    <script type="text/javascript" src="/gamestation/admin/node_modules/codemirror/mode/xml/xml.js"></script>
-    <script type="text/javascript" src="/gamestation/admin/node_modules/codemirror/mode/javascript/javascript.js"></script>
-    <script type="text/javascript" src="/gamestation/admin/node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>
-    <script type="text/javascript" src="/gamestation/admin/node_modules/codemirror/mode/php/php.js"></script>
-    <script type="text/javascript" src="/gamestation/admin/node_modules/codemirror/keymap/vim.js"></script>
-    <script type="text/javascript" src="/gamestation/admin/node_modules/codemirror/addon/search/searchcursor.js"></script>
+    <link rel="stylesheet" href="/admin/node_modules/codemirror/lib/codemirror.css"/>
+    <link rel="stylesheet" href="/admin/node_modules/codemirror/theme/gruvbox-dark.css"/>
+    <script type="text/javascript" src="/admin/node_modules/codemirror/lib/codemirror.js"></script>
+    <script type="text/javascript" src="/admin/node_modules/codemirror/mode/xml/xml.js"></script>
+    <script type="text/javascript" src="/admin/node_modules/codemirror/mode/javascript/javascript.js"></script>
+    <script type="text/javascript" src="/admin/node_modules/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script type="text/javascript" src="/admin/node_modules/codemirror/mode/php/php.js"></script>
+    <script type="text/javascript" src="/admin/node_modules/codemirror/keymap/vim.js"></script>
+    <script type="text/javascript" src="/admin/node_modules/codemirror/addon/search/searchcursor.js"></script>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
-    <link href="/gamestation/admin/assets/css/material-dashboard.css" rel="stylesheet" />
+    <link href="/admin/assets/css/material-dashboard.css" rel="stylesheet" />
     <!-- -->
 </head>
 
@@ -58,7 +58,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item" onclick="highlightNavItem(this)">
-                        <a class="nav-link" href="/gamestation/admin/view/fullLinkAdminIndex.php">
+                        <a class="nav-link" href="/admin/view/fullLinkAdminIndex.php">
                             <i class="material-icons sidebar-icon">dashboard</i>
                             <p>Dashboard</p>
                         </a>
@@ -77,8 +77,8 @@
                     </li>
 
                     <li class="nav-item active" onclick="highlightNavItem(this)">
-                        <!-- <a class="nav-link" href="/gamestation/admin/view/component/pageEditor.php"> -->
-                        <a class="nav-link" href="/gamestation/admin/view/component/pages.php">
+                        <!-- <a class="nav-link" href="/admin/view/component/pageEditor.php"> -->
+                        <a class="nav-link" href="/admin/view/component/pages.php">
                             <i class="material-icons sidebar-icon">web</i>
                             <p>Pages</p>
                         </a>
@@ -131,7 +131,7 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        <form style='margin: 0;' action='/gamestation/admin' method='post'>
+                                        <form style='margin: 0;' action='/admin' method='post'>
                                         <input class="batchRemove" type='checkbox' name="batchRemove" value="removeALL" onclick="removeAllPages(this.checked)">
                                         View Page
                                         </form>
@@ -143,7 +143,7 @@
                             </thead>
                             <tbody>
                                     <?php
-                                        require_once $_SERVER["DOCUMENT_ROOT"]."/gamestation/classes/db/db_basic.php";
+                                        require_once $_SERVER["DOCUMENT_ROOT"]."/classes/db/db_basic.php";
                                         use classes\db\db_basic;
                                         class pagesList extends db_basic
                                         {
@@ -182,7 +182,7 @@
                                             {
                                                 foreach ($this->pageAdded as $page => $value) {
                                                     echo "<tr><td>
-                                                        <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                                        <form style='margin: 0;' action='/admin/view/component/pageEditor.php' method='post'>
                                                             <input type='checkbox' class='removePage' name='removePage' value='$value[pageName]'>
                                                             <input type='hidden' name='pageName' value='$value[pageName]'>
                                                             <input type='hidden' name='pagePath' value='$value[pagePath]'>
@@ -200,7 +200,7 @@
 
                                         // foreach ($pageHandler->pageAdded as $page => $value) {
                                         //     echo "<tr><td>
-                                        //         <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                        //         <form style='margin: 0;' action='/admin/view/component/pageEditor.php' method='post'>
                                         //             <input type='hidden' name='pageName' value='$value[pageName]'>
                                         //             <input type='hidden' name='pagePath' value='$value[pagePath]'>
                                         //             <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$value[pageName]</button>
@@ -227,7 +227,7 @@
                                         // }
                                         // foreach ($_SESSION["pageAdded"] as $page => $value) {
                                         //     echo "<tr><td>
-                                        //         <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                        //         <form style='margin: 0;' action='/admin/view/component/pageEditor.php' method='post'>
                                         //             <input type='hidden' name='pageName' value='$value[0]'>
                                         //             <input type='hidden' name='pagePath' value='$value[1]'>
                                         //             <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$value[0]</button>
@@ -246,7 +246,7 @@
                                         //     $pageName = $_SESSION["pageAdded"][0];
                                         //     $pagePath = $_SESSION["pageAdded"][1];
                                         //     echo "<tr><td>
-                                        //         <form style='margin: 0;' action='/gamestation/admin/view/component/pageEditor.php' method='post'>
+                                        //         <form style='margin: 0;' action='/admin/view/component/pageEditor.php' method='post'>
                                         //             <input type='hidden' name='pageName' value='$pageName'>
                                         //             <button type='submit' style='border: none; padding: 0; color: #2196f3; cursor: pointer; font-weight: 300;'>$pageName</button>
                                         //         </form>
@@ -294,8 +294,8 @@
             </footer>
         </div>
     </div>
-    <script src="/gamestation/admin/assets/js/sidebar.js"></script>
-    <script src="/gamestation/admin/assets/js/dist/webeditorBundle.js"></script>
-    <script src="/gamestation/admin/assets/js/pages.js"></script>
+    <script src="/admin/assets/js/sidebar.js"></script>
+    <script src="/admin/assets/js/dist/webeditorBundle.js"></script>
+    <script src="/admin/assets/js/pages.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ namespace classes\dataStorage\tableData;
 
 use classes\data\datacenter;
 use classes\db;
-require_once $_SERVER['DOCUMENT_ROOT'] . '/gamestation/classes/db/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/db/db.php';
 
 class tableData  
 {

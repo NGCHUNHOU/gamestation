@@ -9,7 +9,7 @@
                 echo
                     "<div class='card'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title'])."></a> 
+                        <a class='card-link' href="."/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['monday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$this->ListTable['monday'][$i]['imgNews_thumbnail']. " rel='preload' style='max-width:200px; min-height: 130px;' alt='image loading'>
                     </div>
@@ -26,7 +26,7 @@
                 echo
                     "<div class='card'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title'])."></a> 
+                        <a class='card-link' href="."/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$this->ListTable['tuesday'][$i]['imgNews_thumbnail']." rel='preload' style='max-width:200px;' alt='image loading'>
                     </div>
@@ -44,7 +44,7 @@
                 echo
                     "<div class='card'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title'])."></a> 
+                        <a class='card-link' href="."/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['wednesday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$this->ListTable['wednesday'][$i]['imgNews_thumbnail']." rel='preload' style='max-width:200px;' alt='image loading'>
                     </div>
@@ -62,7 +62,7 @@
                 echo
                     "<div class='card'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title'])."></a> 
+                        <a class='card-link' href="."/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['thursday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$this->ListTable['thursday'][$i]['imgNews_thumbnail']." rel='preload' style='max-width:200px;' alt='image loading'>
                     </div>
@@ -80,7 +80,7 @@
                 echo
                     "<div class='card'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title'])."></a> 
+                        <a class='card-link' href="."/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['friday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$this->ListTable['friday'][$i]['imgNews_thumbnail']." rel='preload' style='max-width:200px;' alt='image loading'>
                     </div>
@@ -98,7 +98,7 @@
                 echo
                     "<div class='card'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title'])."></a> 
+                        <a class='card-link' href="."/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['saturday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$this->ListTable['saturday'][$i]['imgNews_thumbnail']." rel='preload' style='max-width:200px;' alt='image loading'>
                     </div>
@@ -116,7 +116,7 @@
                 echo
                     "<div class='card'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href="."/gamestation/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title'])."></a> 
+                        <a class='card-link' href="."/news/article/".$this->rewriteNewsTitleUrl($this->ListTable['sunday'][$i]['news_title'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$this->ListTable['sunday'][$i]['imgNews_thumbnail']." rel='preload' style='max-width:200px;' alt='image loading'>
                     </div>

@@ -8,9 +8,9 @@ use classes\dataStorage\tableData\tableData;
 use classes\guidecardframe;
 use Exception;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/view.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/guidecardframe.php';
-require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/classes/pages/view.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/classes/guidecardframe.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
     class index extends view {
         public $priority;
         public $urlPath;
@@ -46,8 +46,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
           {
             array_push($dc->articleDaySet[1][0], $this->ListTable[$dc->articleDaySet[0][0]][$i]["news_id"]);
           }
-          $dc->defaulthead1 = $_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default1.php';
-          $dc->defaulthead2 = $_SERVER['DOCUMENT_ROOT'].'/gamestation/view/header/default2.php';
+          $dc->defaulthead1 = $_SERVER['DOCUMENT_ROOT'].'/view/header/default1.php';
+          $dc->defaulthead2 = $_SERVER['DOCUMENT_ROOT'].'/view/header/default2.php';
           $this->generateCardContent($dc);
           $dc->guideCardTitle = $this->cardtitle;
           $dc->guideCardDesciption = $this->carddescription;
@@ -89,7 +89,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
 
           //   default:
           //   $this->createheader("error");
-          //   require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/errorview/notfound.php";
+          //   require_once $_SERVER['DOCUMENT_ROOT']."/view/errorview/notfound.php";
           //   $this->createfooter();
           //   break;
           // }
@@ -157,9 +157,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         // public function get($pathName, $headPage = 'home', $callback) {
         //       if ($this->urlPath == $pathName) {
         //       $this->createheader($headPage, $this->metaList);
-        //       require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$callback().".php";
+        //       require_once $_SERVER['DOCUMENT_ROOT']."/view/".$callback().".php";
               // echo "<script type='text/javascript' src='./view/assets/js/$includeJsName.js'></script>";
-              // echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+              // echo "<script type='text/javascript' src=/view/assets/js/dist/bundle.js></script>";
               // $this->createfooter();
             // }
             // else
@@ -171,8 +171,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
               for ($i=0; $i < count($pathList); $i++) { 
                 if ($this->urlPath == $pathList[$i]) {
                   $this->createheader($headPage[$i], $this->metaList);
-                  require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$pagename[$i].".php";
-                  echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+                  require_once $_SERVER['DOCUMENT_ROOT']."/view/".$pagename[$i].".php";
+                  echo "<script type='text/javascript' src=/view/assets/js/dist/bundle.js></script>";
                   $this->createfooter();
                 } else {
                   $this->errorcount += 1;
@@ -205,8 +205,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
                 {
                   $this->errorcount -= 1;
                   $PageContent = $this->findPageDataset($this->urlPath, "monday", $pageDataSet);
-                  require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/news/article.php";
-                  echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+                  require_once $_SERVER['DOCUMENT_ROOT']."/view/news/article.php";
+                  echo "<script type='text/javascript' src=/view/assets/js/dist/bundle.js></script>";
                 }
               }
               $guideDataSet = array();
@@ -221,8 +221,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
                   $GuideDescription = $dc->guideCardDesciption[$i];
                   $GuideContent = $dc->guideCardContent[$i];
                   $GuideImage = $dc->guideImage[$i];
-                  require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/guides/guidecontent.php";
-                  echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+                  require_once $_SERVER['DOCUMENT_ROOT']."/view/guides/guidecontent.php";
+                  echo "<script type='text/javascript' src=/view/assets/js/dist/bundle.js></script>";
                 }
               }
               // print_r($pageDataSet);
@@ -230,14 +230,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
               if ($this->errorcount == count($pathList))
               {
                   $this->createheader("error");
-                  require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/"."errorview/notfound".".php";
+                  require_once $_SERVER['DOCUMENT_ROOT']."/view/"."errorview/notfound".".php";
                   $this->createfooter();
               }
             //   if ($this->urlPath == $pathName) {
             //   $this->createheader($headPage, $this->metaList);
-            //   require_once $_SERVER['DOCUMENT_ROOT']."/gamestation/view/".$pagename.".php";
+            //   require_once $_SERVER['DOCUMENT_ROOT']."/view/".$pagename.".php";
             //   // echo "<script type='text/javascript' src='./view/assets/js/$includeJsName.js'></script>";
-            //   echo "<script type='text/javascript' src=/gamestation/view/assets/js/dist/bundle.js></script>";
+            //   echo "<script type='text/javascript' src=/view/assets/js/dist/bundle.js></script>";
             //   $this->createfooter();
             // }
             // else
@@ -316,19 +316,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         //          "
         //          <head>
         //           <title>" . ucfirst($this->ListTable[$day][$i]['news_title']) . "</title>
-        //           <link rel='icon' type='image/png' href='/gamestation/view/assets/images/meteor-light-resized.svg' size='16x16'>
-        //           <script type='text/javascript' src='/gamestation/view/assets/js/jquery-3.4.1.min.js'></script>
-        //           <link rel='stylesheet' href='/gamestation/view/assets/css/bootstrap.min.css'>
-        //           <link rel='stylesheet' href='/gamestation/view/assets/css/main.css'>
-        //           <script type='text/javascript' src='/gamestation/view/assets/js/bootstrap.min.js'></script>
-        //           <script type='text/javascript' src='/gamestation/node_modules/animejs/lib/anime.min.js'></script>
+        //           <link rel='icon' type='image/png' href='/view/assets/images/meteor-light-resized.svg' size='16x16'>
+        //           <script type='text/javascript' src='/view/assets/js/jquery-3.4.1.min.js'></script>
+        //           <link rel='stylesheet' href='/view/assets/css/bootstrap.min.css'>
+        //           <link rel='stylesheet' href='/view/assets/css/main.css'>
+        //           <script type='text/javascript' src='/view/assets/js/bootstrap.min.js'></script>
+        //           <script type='text/javascript' src='/node_modules/animejs/lib/anime.min.js'></script>
         //         </head>
         //         <header>
         //             <div class='container-fluid'>
         //             <div class='row'>
         //                 <div class='col-md-12 rem-pad'>
         //                     <div class='navbar navbar-expand-md navbar-dark bg-logo'>
-        //                         <div class='logo navbar-brand'><img rel='preload' src='/gamestation/view/assets/images/meteor-light-resized.svg' alt='logo' width='32'></div>
+        //                         <div class='logo navbar-brand'><img rel='preload' src='/view/assets/images/meteor-light-resized.svg' alt='logo' width='32'></div>
         //                         <button class='navbar-toggler' data-toggle='collapse' data-target='#headerlist'>
         //                             <span class='navbar-toggler-icon'></span>
         //                         </button>
@@ -338,10 +338,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         //                                 <a class='nav-link' href='/gamestation' target='_self'>HOME</a>
         //                             </li>
         //                             <li class='nav-item'>
-        //                                 <a class='nav-link' href='/gamestation/about' target='_self'>ABOUT US</a>
+        //                                 <a class='nav-link' href='/about' target='_self'>ABOUT US</a>
         //                             </li>
         //                             <li class='nav-item'>
-        //                                 <a class='nav-link' href='/gamestation/news' target='_self'>NEWS</a>
+        //                                 <a class='nav-link' href='/news' target='_self'>NEWS</a>
         //                             </li>
         //                         </ul>
         //                         </div>
@@ -378,7 +378,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
         //           </div>
         //           ");
                 // Moving news articles into newsArticle directory
-        //         rename($this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']), $_SERVER['DOCUMENT_ROOT']."/gamestation/view/newsArticle/".$this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']).".php");
+        //         rename($this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']), $_SERVER['DOCUMENT_ROOT']."/view/newsArticle/".$this->rewriteNewsTitleUrl($this->ListTable[$day][$i]['news_title']).".php");
         //       }
         // }
 
@@ -412,7 +412,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
               //     </div>
               //     </div>
               //    ");
-              //   rename($this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']), $_SERVER['DOCUMENT_ROOT']."/gamestation/view/newsArticle/".$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']).".php");
+              //   rename($this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']), $_SERVER['DOCUMENT_ROOT']."/view/newsArticle/".$this->rewriteNewsTitleUrl($this->ListTable['tuesday'][$i]['news_title']).".php");
               // }
         //     }
         // }

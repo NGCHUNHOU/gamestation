@@ -1,6 +1,6 @@
 <?php
 namespace classes\pages;
-require_once $_SERVER['DOCUMENT_ROOT'] . '/gamestation/classes/dataStorage/tableData.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/classes/dataStorage/tableData.php';
 
 use classes\data\datacenter;
 use classes\dataStorage\tableData\tableData;
@@ -69,7 +69,7 @@ use classes\db;
             }
         }
         function createfooter() {
-            require_once($_SERVER['DOCUMENT_ROOT'].'/gamestation/view/footer.php');
+            require_once($_SERVER['DOCUMENT_ROOT'].'/view/footer.php');
         }
 
         public function __construct(datacenter $dblogin) {
@@ -104,7 +104,7 @@ use classes\db;
 
         public function includecdn($filename)
         {
-            $filepath = $_SERVER['DOCUMENT_ROOT'].'/gamestation/view/cdn/'.$filename.'.php';
+            $filepath = $_SERVER['DOCUMENT_ROOT'].'/view/cdn/'.$filename.'.php';
             if (file_exists($filepath)) {
                 require_once $filepath;
             } else {

@@ -21,7 +21,7 @@
             </footer>
         </div>
     </div>
-    <script src="/gamestation/admin/assets/js/sidebar.js"></script>
+    <script src="/admin/assets/js/sidebar.js"></script>
 </body>
 
 </html>

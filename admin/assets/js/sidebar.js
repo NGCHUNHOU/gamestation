@@ -69,7 +69,7 @@ let ajaxRequest = (action) =>
        {
            contentType: "application/x-www-form-urlencoded",
            method: "POST",
-           url: "/gamestation/admin/state.php",
+           url: "/admin/state.php",
            data: `state=${action}`
        }
    ) 

@@ -1,7 +1,7 @@
 <?php
 // load environment file
-require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/env.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
 
 // load main core file
-require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/core/loader.php';
-
+envCenter::loadFile("core/loader.php");
+// require_once $_SERVER['DOCUMENT_ROOT'] .'/core/loader.php';

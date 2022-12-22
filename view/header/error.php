@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-12 rem-pad">
                 <div class="navbar navbar-expand-md navbar-dark bg-logo">
-                    <div class="logo navbar-brand"><img src="<?php echo ['DOCUMENT_ROOT']. '/gamestation/' ?>/view/assets/images/meteor-light-resized.svg" alt="logo" width="32"></div>
+                    <div class="logo navbar-brand"><img src="<?php echo ['DOCUMENT_ROOT']. '/' ?>/view/assets/images/meteor-light-resized.svg" alt="logo" width="32"></div>
                     <button class="navbar-toggler" data-toggle="collapse" data-target="#headerlist">
                         <span class="navbar-toggler-icon"></span>
                     </button>

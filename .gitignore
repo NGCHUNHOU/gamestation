@@ -1,5 +1,7 @@
 node_modules
 com.sql
 .htaccess
+.vscode
 websetup
 sassTrain
+xdebugInstallSetup.md

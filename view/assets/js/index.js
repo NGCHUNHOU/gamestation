@@ -2,7 +2,7 @@ let setDailyNews =  (target, day) =>
 {
     $.ajax(
         {
-            url: `/gamestation/classes/pages/newsDataSheet.php?day=${day}`,
+            url: `/classes/pages/newsDataSheet.php?day=${day}`,
             success: (result) =>
             {
                 let JSON_NewsData = JSON.parse(result)

@@ -16,7 +16,7 @@
 function loadViewText()
 {
       $.ajax({
-          url: `/gamestation/admin/view/component/pages.json`,
+          url: `/admin/view/component/pages.json`,
           type: "POST",
           contentType: "text/json",
           success: (data) => {
@@ -28,7 +28,7 @@ function loadViewText()
   // function ajaxData(viewGen)
   // {
   //     $.ajax({
-  //         url: `/gamestation/admin/${viewGen}.php`,
+  //         url: `/admin/${viewGen}.php`,
   //         type: "POST",
   //         contentType: "text/json",
   //         data: myCodeMirror.getValue()
@@ -38,7 +38,7 @@ function loadViewText()
   function ajaxData(userPageName, userPagePath)
   {
       $.ajax({
-          url: `/gamestation/admin/viewGen.php`,
+          url: `/admin/viewGen.php`,
           type: "POST",
           contentType: "application/x-www-form-urlencoded",
           data: `pageName=${userPageName}&` + "pageContent=" + myCodeMirror.getValue() + `&pagePath=${userPagePath}`  

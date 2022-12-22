@@ -19,7 +19,7 @@ function capitalizelist() {
 }
 
 function jsasset() {
-    this.jslocation = $('script[src="http://localhost/gamestation/view/assets/js/custom.js"]')
+    this.jslocation = $('script[src="http://localhost/view/assets/js/custom.js"]')
     this.jslist = $('body script')
     this.duplist = []
 }

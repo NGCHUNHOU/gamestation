@@ -29,7 +29,7 @@ function addPage()
 }
 function requestCreatePage(pageToAdd, description, path, keyword)
 {
-    let actionPages = [`/gamestation/admin/viewGen.php`, `/gamestation/admin/view/component/pages.php`];
+    let actionPages = [`/admin/viewGen.php`, `/admin/view/component/pages.php`];
     actionPages.forEach(actionPage => {
         $.ajax({
             url: actionPage,
@@ -124,7 +124,7 @@ function requestRemovePage(nodeList)
         }
     }
     $.ajax({
-        url: `/gamestation/admin/viewGen.php`,
+        url: `/admin/viewGen.php`,
         type: "DELETE",
         // reload page after delete
         success: (data, textStatus, xhr) =>

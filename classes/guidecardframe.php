@@ -2,7 +2,7 @@
 namespace classes;
 use classes\data\datacenter;
 use classes\pages\home;
-require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages/home.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/classes/pages/home.php';
 class guidecardframe extends home
 {
     public $cardtitle = array();

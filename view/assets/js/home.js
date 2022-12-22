@@ -1,6 +1,6 @@
 let home = function() 
 {
-    if (window.location.pathname === "/gamestation/")
+    if (window.location.pathname === "/")
     {
         let body = document.querySelector('body')
         body.style.background = "#173F5A"

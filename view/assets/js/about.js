@@ -1,6 +1,6 @@
 let about = function()
 {
-if (window.location.pathname === "/gamestation/about")
+if (window.location.pathname === "/about")
     {
         let body = document.querySelector('body')
         // body.style.background = "#fff"

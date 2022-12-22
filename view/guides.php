@@ -17,7 +17,7 @@
 
 for($i=0;$i<count($dc->guideCardTitle);$i++)
             {
-                echo "<div class='card guide-card' style='margin: 10px; padding: 10px;'> <div class='img-guide' > <img src='".$dc->guideImage[$i]."' style='max-width:300px; min-height: 130px;' alt='' srcset=''> </div> <br> <h2><a style='text-decoration: none; color: #fff; max-width: 300px; display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;' href='/gamestation/guides/".$this->rewriteNewsTitleUrl($dc->guideCardTitle[$i])."'>".$dc->guideCardTitle[$i]."</a></h1> </div>"; 
+                echo "<div class='card guide-card' style='margin: 10px; padding: 10px;'> <div class='img-guide' > <img src='".$dc->guideImage[$i]."' style='max-width:300px; min-height: 130px;' alt='' srcset=''> </div> <br> <h2><a style='text-decoration: none; color: #fff; max-width: 300px; display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;' href='/guides/".$this->rewriteNewsTitleUrl($dc->guideCardTitle[$i])."'>".$dc->guideCardTitle[$i]."</a></h1> </div>"; 
             }
             ?>
             </div>

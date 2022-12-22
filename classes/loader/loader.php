@@ -26,13 +26,13 @@ class loader
     public function LibsLoader()
     {
         // load admin controller
-        $dbconfig_filepath = $_SERVER['DOCUMENT_ROOT']. '/gamestation/admin/libs/config.php';
+        $dbconfig_filepath = $_SERVER['DOCUMENT_ROOT']. '/admin/libs/config.php';
         if (file_exists($dbconfig_filepath)) {
             require_once($dbconfig_filepath);
         }
 
         // load admin signup page
-        $admin_registerfile = $_SERVER['DOCUMENT_ROOT']. '/gamestation/admin/controller/register.php';
+        $admin_registerfile = $_SERVER['DOCUMENT_ROOT']. '/admin/controller/register.php';
         if (file_exists($admin_registerfile)) {
             require_once($admin_registerfile);
         }
@@ -52,8 +52,8 @@ class loader
 
 
     protected function generateErrorPage() {
-           $this->errorPageSrc = $_SERVER['DOCUMENT_ROOT'] . '/gamestation/view/errorview/notfound.php';
-           $viewLocation = $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/pages';
+           $this->errorPageSrc = $_SERVER['DOCUMENT_ROOT'] . '/view/errorview/notfound.php';
+           $viewLocation = $_SERVER['DOCUMENT_ROOT'].'/classes/pages';
            // extract file name from files
             if (is_dir($viewLocation)) {
                 $arrList = array_map(function ($arrVal)
@@ -82,7 +82,7 @@ class loader
                     return true;
                 }
                 else {
-                    require_once $_SERVER['DOCUMENT_ROOT'] . '/gamestation/view/errorview/notfound.php';
+                    require_once $_SERVER['DOCUMENT_ROOT'] . '/view/errorview/notfound.php';
                 }
             }
     }

@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <title><?=$this->undoRewriteNewsTitleUrl($PageContent['news_title'])?></title>
-    <link rel='icon' type='image/png' href='/gamestation/view/assets/images/meteor-light-resized.svg' size='16x16'>
-    <script type='text/javascript' src='/gamestation/view/assets/js/jquery-3.4.1.min.js'></script>
-    <link rel='stylesheet' href='/gamestation/view/assets/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='/gamestation/view/assets/css/main.css'>
-    <script type='text/javascript' src='/gamestation/view/assets/js/bootstrap.min.js'></script>
-    <script type='text/javascript' src='/gamestation/node_modules/animejs/lib/anime.min.js'></script>
+    <link rel='icon' type='image/png' href='/view/assets/images/meteor-light-resized.svg' size='16x16'>
+    <script type='text/javascript' src='/view/assets/js/jquery-3.4.1.min.js'></script>
+    <link rel='stylesheet' href='/view/assets/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/view/assets/css/main.css'>
+    <script type='text/javascript' src='/view/assets/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='/node_modules/animejs/lib/anime.min.js'></script>
     <style>
         @media all and (min-width: 992px) {
 	.navbar .nav-item .dropdown-menu{ display: none; }
@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-md-12 rem-pad">
                 <div class="navbar navbar-expand-md navbar-dark bg-logo">
-                    <div class="logo navbar-brand"><img rel="preload" src="/gamestation/view/assets/images/meteor-light-resized.svg" alt="logo" width="32"></div>
+                    <div class="logo navbar-brand"><img rel="preload" src="/view/assets/images/meteor-light-resized.svg" alt="logo" width="32"></div>
                     <button class="navbar-toggler" data-toggle="collapse" data-target="#headerlist">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -36,13 +36,13 @@
                             <a class="nav-link" href="/gamestation" target="_self">HOME</a>
                         </li>
                         <li class="nav-item" style="z-index: 2;">
-                            <a class="nav-link" href="/gamestation/about" target="_self">ABOUT US</a>
+                            <a class="nav-link" href="/about" target="_self">ABOUT US</a>
                         </li>
                         <li class="nav-item" style="z-index: 2;">
-                            <a class="nav-link" href="/gamestation/news" target="_self">NEWS</a>
+                            <a class="nav-link" href="/news" target="_self">NEWS</a>
                         </li>
                         <!-- <li class="nav-item dropdown" style="z-index: 2;">
-                            <a class="nav-link dropdown-toggle" href="/gamestation/dropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="/dropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                DROPDOWN 
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -53,11 +53,11 @@
                             </div>
                         </li> -->
                         <li class="nav-item dropdown" style="z-index: 2;">
-                            <a class="nav-link dropdown-toggle" href="/gamestation/guides">
+                            <a class="nav-link dropdown-toggle" href="/guides">
                                 GUIDES 
                             </a>
                             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/gamestation/guides/guide1">PS4</a>
+                                <a class="dropdown-item" href="/guides/guide1">PS4</a>
                                 <a class="dropdown-item" href="#">PC</a>
                                 <a class="dropdown-item" href="#">Xbox One</a>
                                 <a class="dropdown-item" href="#">Xbox 360</a>
@@ -103,7 +103,7 @@
         let hover = document.querySelector(".hoverBlock")
         let header = document.getElementsByTagName("header")[0]
         let activeItems = currentItems
-        let currentPageName = window.location.pathname.replace("/gamestation/", "")
+        let currentPageName = window.location.pathname.replace("/", "")
         currentPageName  = currentPageName == "" ? "home" : currentPageName
         let purePageName
         purePageName = currentPageName.split("/")

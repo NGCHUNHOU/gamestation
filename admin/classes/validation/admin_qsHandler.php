@@ -11,7 +11,7 @@ class admin_qsHandler
     protected function __construct()
     {
         // return query string
-        $this->completeUrl = isset($_POST['url']) ? $_POST['url'] : $_SERVER['DOCUMENT_ROOT'] . '/gamestation/admin';
+        $this->completeUrl = isset($_POST['url']) ? $_POST['url'] : $_SERVER['DOCUMENT_ROOT'] . '/admin';
         $this->isAuthPassed = false;
         if (!isset($_GET['url'])) {
             $userData = $_SERVER['QUERY_STRING'];

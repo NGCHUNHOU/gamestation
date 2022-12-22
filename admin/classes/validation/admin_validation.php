@@ -3,8 +3,8 @@ namespace classes\admin_validation;
 use classes\admin_qsHandler;
 use classes\db;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/admin/classes/validation/admin_qsHandler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/classes/db/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/admin/classes/validation/admin_qsHandler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/classes/db/db.php';
 
 class admin_validation extends admin_qsHandler\admin_qsHandler
 {

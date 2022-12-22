@@ -1,10 +1,10 @@
 <?php
 
 // load admin main core file
-require_once $_SERVER['DOCUMENT_ROOT'].'/gamestation/admin/classes/validation/admin_validation.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/admin/classes/validation/admin_validation.php';
 use classes\admin_validation;
 
-require_once $_SERVER['DOCUMENT_ROOT'] .'/gamestation/admin/loader.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/admin/loader.php';
 $test = new admin_validation\admin_validation("test");
 
 // output login credentials for testing 

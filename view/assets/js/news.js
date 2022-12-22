@@ -1,7 +1,7 @@
 // change news page to white theme 
 // let news = function()
 // {
-// if (window.location.pathname === "/gamestation/news")
+// if (window.location.pathname === "/news")
 // {
 //     let body = document.querySelector('body')
 //     body.style.background = "#fff"
@@ -11,7 +11,7 @@
 
 let hoverCard = function() 
 {
-    if (window.location.pathname === "/gamestation/news")
+    if (window.location.pathname === "/news")
     {
         let cardMain = document.querySelectorAll('.card') 
         for (let i = 0; i < cardMain.length; i++)

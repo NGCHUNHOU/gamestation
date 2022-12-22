@@ -1,7 +1,7 @@
 <?php
     if (!isset($_SESSION)) session_start();
-    $file = fopen($_SERVER['DOCUMENT_ROOT']."/gamestation/admin/pages.json", "r") or die("unable to open page.json file");
-    $pageState = fread($file, filesize($_SERVER['DOCUMENT_ROOT']."/gamestation/admin/"));
+    $file = fopen($_SERVER['DOCUMENT_ROOT']."/admin/pages.json", "r") or die("unable to open page.json file");
+    $pageState = fread($file, filesize($_SERVER['DOCUMENT_ROOT']."/admin/"));
     $decodedPageState = json_decode($pageState, true);
     // print_r($decodedPageState);
     if (isset($_SESSION["isUserDataSet"]) AND $_SESSION["isUserDataSet"])
@@ -10,7 +10,7 @@
     }
     else
     {
-        require_once $_SERVER["DOCUMENT_ROOT"]."/gamestation/admin/view/component/loading.php";
+        require_once $_SERVER["DOCUMENT_ROOT"]."/admin/view/component/loading.php";
         // header("Location: ../../view/register.php");
         exit();
     }
@@ -29,7 +29,7 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item active" onclick="highlightNavItem(this)">
-                        <a class="nav-link" href="/gamestation/admin/view/fullLinkAdminIndex.php">
+                        <a class="nav-link" href="/admin/view/fullLinkAdminIndex.php">
                             <i class="material-icons sidebar-icon">dashboard</i>
                             <p>Dashboard</p>
                         </a>
@@ -48,8 +48,8 @@
                     </li>
                     
                     <li class="nav-item" onclick="highlightNavItem(this)">
-                        <!-- <a class="nav-link" href="/gamestation/admin/view/component/pageEditor.php"> -->
-                        <a class="nav-link" href="/gamestation/admin/view/component/pages.php">
+                        <!-- <a class="nav-link" href="/admin/view/component/pageEditor.php"> -->
+                        <a class="nav-link" href="/admin/view/component/pages.php">
                             <i class="material-icons sidebar-icon">web</i>
                             <p>Pages</p>
                         </a>

@@ -12,8 +12,8 @@ use classes\db\db;
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 rem-pad">
                 <picture class="land_pic" style="width: inherit;">
-                    <source srcset="/gamestation/view/assets/images/lightTower-600.jpg" media="(max-width: 550px)">
-                    <img srcset="/gamestation/view/assets/images/lightTower-1920.jpg" class="showcase_img wt-in" alt="main_showcase">
+                    <source srcset="/view/assets/images/lightTower-600.jpg" media="(max-width: 550px)">
+                    <img srcset="/view/assets/images/lightTower-1920.jpg" class="showcase_img wt-in" alt="main_showcase">
                 </picture>
             </div>
         </div>
@@ -57,7 +57,7 @@ use classes\db\db;
         ";
     }
 ?>
-<script src="/gamestation/view/assets/js/dist/bundle.js"></script>
+<script src="/view/assets/js/dist/bundle.js"></script>
 <script>
 makeWave(document.querySelector("path#animated-wave"));
 (function checkViewport()

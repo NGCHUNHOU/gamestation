@@ -23,15 +23,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 rem-pad">
-            <!-- <img srcset="/gamestation/view/assets/images/display-wide-550w.jpg 550w,
-                         /gamestation/view/assets/images/display-wide-1920w.png 1920w"
+            <!-- <img srcset="/view/assets/images/display-wide-550w.jpg 550w,
+                         /view/assets/images/display-wide-1920w.png 1920w"
                  sizes="(max-width: 550px) 550px, 
                         (max-width: 768px) 768px" 
-                 src="/gamestation/view/assets/images/display-wide-550w.jpg"
+                 src="/view/assets/images/display-wide-550w.jpg"
                          class="showcase_img wt-in" alt="main_showcase"> -->
             <picture class="land_pic" style="width: inherit;">
-               <source srcset="/gamestation/view/assets/images/display-700.png" media="(max-width: 550px)">
-               <img srcset="/gamestation/view/assets/images/display-wide-1920w.png" class="showcase_img wt-in" alt="main_showcase"> 
+               <source srcset="/view/assets/images/display-700.png" media="(max-width: 550px)">
+               <img srcset="/view/assets/images/display-wide-1920w.png" class="showcase_img wt-in" alt="main_showcase"> 
             </picture> 
         </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="row">
         <div class="btn-showcase-mt-neg position-absolute col-12 col-sm-5 col-md-5 col-lg-5 d-flex mt-neg-110">
             <div class="showcase_content text-center">
-            <button class="btn btn-news btn-lg btn-home mainNews_btn"><a style="color: #212529; text-decoration: none;" href="/gamestation/news">More news</a></button>
+            <button class="btn btn-news btn-lg btn-home mainNews_btn"><a style="color: #212529; text-decoration: none;" href="/news">More news</a></button>
             </div>
         </div>
     </div>
