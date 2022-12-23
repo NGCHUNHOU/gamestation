@@ -61,60 +61,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
               $dc->pageList,
               $dc
             );
-          // switch ($this->urlPath) {
-          //   case '/':
-          //     $this->get('/', 'home', function() {
-          //       return "home";
-          //     });
-          //     break;
-            
-          //   case '/about':
-          //     $this->get('/about', 'about', function() {
-          //       return "about";
-          //     });
-          //     break;
-
-          //   case '/news':
-          //     $this->get('/news', 'news', function() {
-          //       return "news";
-          //     });
-          //     break;
-
-          //   case '/news/article/2020-top-100-cpu-latest-ranking-chart':
-          //     $this->get('/news', 'news', function() {
-          //       echo $this->rewriteNewsTitleUrl($this->ListTable['monday'][0]['news_title']) == '2020-top-100-cpu-latest-ranking-chart' ? "true" : "wrong";
-          //       return "newsArticle/2020-top-cpu-latest-ranking-chart";
-          //     });
-          //     break;
-
-          //   default:
-          //   $this->createheader("error");
-          //   require_once $_SERVER['DOCUMENT_ROOT']."/view/errorview/notfound.php";
-          //   $this->createfooter();
-          //   break;
-          // }
-          // for ($i=0; $i < count($this->pathList); $i++) { 
-          //     $this->get(
-          //         '/'.$this->pathList[$i],
-          //         $this->pageList[$i],
-          //         function()
-          //         {
-          //           for ($i=0; $i < count($this->pathList); $i++) { 
-          //             if ('/'.$this->pathList[$i] == $this->urlPath)
-          //             {
-          //               return $this->pageList[$i];
-          //             }
-          //           }
-                    // return error page if page not found
-          //           $this->createheader("error");
-          //           return "errorview/notfound";
-          //           $this->createfooter();
-          //         }
-          //       );
-          // }
-
-            // loading article content
-            // $this->createArticleContent();
         }
         public function findPageDataset($search, $day, $matchlist = array())
         {
@@ -416,6 +362,38 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
               // }
         //     }
         // }
+    }
+
+    class requestUrlHandler {
+      private $queryString = "";
+      private $requestUrlPath = "";
+      private $isRequestUrlOk = false;
+      public function setRequestUrlPath() {
+        $this->requestUrlPath = $_SERVER["REQUEST_URI"];
+      }
+
+      // client must request pathName that is absolutely same to fileName
+      public function isRequestUrlPathEqualFile() {
+        $url = \envCenter::getRequestURI();
+        if (!file_exists(\envCenter::getRequestURI())) {
+          return false;
+        }
+        $this->isRequestUrlOk = true;
+        $this->setRequestUrlPath(\envCenter::getRequestURI());
+        return true;
+      }
+      public function addQueryString() {}
+    }
+
+    class viewController {
+      public function setPage() {}
+      public function getPage() {}
+      public function handleRequest() {
+        $ruH = new requestUrlHandler();
+        if ($ruH->isRequestUrlPathEqualFile())
+          $ruH->setRequestUrlPath();
+      }
+      private function getRequestUrlPath() {}
     }
 
 ?>

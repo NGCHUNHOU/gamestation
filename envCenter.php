@@ -41,4 +41,11 @@ class envCenter {
 
         return;
     }
+    static public function getRequestURI() {
+        $properFullURI = $_SERVER["REQUEST_URI"];
+        // remove first character if uri have forward slash because getDocumentRoot() already has forward slash
+        // if (substr($properFullURI, 0, 1) == '/') 
+        //     $properFullURI = substr($properFullURI, 1);
+        return envCenter::getDocumentRoot() . "view". $_SERVER["REQUEST_URI"] . ".php";
+    }
 }
