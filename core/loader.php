@@ -13,8 +13,10 @@ use classes\dataStorage;
 use classes\db_admin;
 
 // testing
-$controller = new pages\viewController();
-$controller->handleRequest();
+// $controller = new pages\viewController();
+// $controller->addSubPath("guides");
+// $controller->addSubPath("errorview");
+// $controller->handleRequest();
 
 $db = new db\db();
 $page_loader = new pages\index(new datacenter);
