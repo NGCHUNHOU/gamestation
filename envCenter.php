@@ -11,8 +11,10 @@ class envCenter {
     static public function getDocumentRoot() {
         // check if last character is slash
         $documentRootStr = $_SERVER["DOCUMENT_ROOT"];
-        if (substr($documentRootStr, -1) != '/' || substr($documentRootStr, -1) != '\\')
+        if (substr($documentRootStr, -1) != '/')
             return $documentRootStr.'/';
+        if (substr($documentRootStr, -1) != '\\')
+            return $documentRootStr.'\\';
         return $documentRootStr;
     }
     static public function loadFile(string $filePath) : bool {
@@ -22,16 +24,17 @@ class envCenter {
             // require_once envCenter::getDocumentRoot().$filePath;
         } else 
             $fullpath = envCenter::getDocumentRoot().substr($filePath, 1);
-        if (!file_exists($fullpath))
-            return false;
+        if (!file_exists($fullpath)) {
+            envCenter::$errorFilesMsg .= $filePath . " file cannot be loaded" . " , ";
+            throw new Exception(envCenter::$errorFilesMsg);
+        }
 
         require_once $fullpath;
         return true;
     }
     static public function loadFiles(array $filePaths) {
         for ($i=0;$i<count($filePaths);$i++) {
-            if (envCenter::loadFile($filePaths[$i]) == false)
-                envCenter::$errorFilesMsg .= $filePaths[$i] . " file cannot be loaded" . ' , ';
+            envCenter::loadFile($filePaths[$i]);
         }
         if (envCenter::$errorFilesMsg != "")
             throw new Exception(envCenter::$errorFilesMsg);
