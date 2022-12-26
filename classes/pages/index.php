@@ -412,8 +412,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
         $addExtraPageId($pageIdList);
 
         // testing fetch db data
-        $data = db::query("SELECT * FROM guides");
-        echo $data;
+        $data = db::query("SELECT * FROM pages");
+        print_r($data);
       }
     }
 
@@ -428,7 +428,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       }
       public function loadPage(requestUrlHandler &$ru) {
         $this->getPageData($ru);
-        \envCenter::loadFile($ru->getRequestUrlFilePath());
+        // \envCenter::loadFile($ru->getRequestUrlFilePath());
       }
     }
     class viewController {
