@@ -367,7 +367,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
     class requestUrlHandler {
       private $queryString = "";
       private $requestUrlPath = "";
-      private $subpath;
+      private $defaultViewDirectory = "view";
       private $isRequestUrlOk = false;
       public function setRequestUrlPath() {
         $this->requestUrlPath = $_SERVER["REQUEST_URI"];
@@ -375,58 +375,71 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       public function getRequestUrlPath() {
         return $this->requestUrlPath;
       }
-
+      public function getDefaultViewDirectory() {
+        return $this->defaultViewDirectory;
+      }
+      public function setDefaultViewDirectory($defaultViewDirectory) {
+        $this->defaultViewDirectory = $defaultViewDirectory;
+      }
+      public function getRequestUrlFilePath() {
+        return $this->defaultViewDirectory . '/' . $this->getRequestUrlPath() . ".php";
+      }
+      public function isHomePage() {
+        if ($_SERVER["REQUEST_URI"] === '/')
+          return true;
+        return false;
+      }
       // client must request pathName that is absolutely same to fileName
       public function isRequestUrlPathEqualFile() {
         $url = \envCenter::getRequestURI();
         if (!file_exists($url)) {
           return false;
         }
-        $this->isRequestUrlOk = true;
         $this->setRequestUrlPath($url);
+        $this->isRequestUrlOk = true;
         return true;
       }
       public function addQueryString() {}
-      public function setSubPath($key) {
-        $temp = $key;
-          // $low = 0;
-          // $high = count($paths) - 1;
-          // while ($low <= $high) {
-          //     $mid = floor(($low + $high) / 2);
-          //     $guess = $paths[$mid];
-
-          //     if (preg_match("/$guess/", $key)) {
-          //         return $paths[$mid];
-          //     } elseif ($guess > $key) {
-          //         $high = $mid - 1;
-          //     } else {
-          //         $low = $mid + 1;
-          //     }
-          // }
-          // return -1;
-      }
     }
 
+    class pageData {
+      public $pageTitle;
+      public $pageDescription;
+      public $pageKeywords;
+      public $pageAuthor;
+      public $pageViewport;
+      public $pageMainContentFilePath;
+      public function setPageData() {}
+    }
+
+    class pageLoader {
+      private function loadPageData(requestUrlHandler &$ruH) {
+        $pagedata = new pageData;
+        return $pagedata;
+      }
+      public function loadPage(requestUrlHandler &$ru) {
+        $this->loadPageData($ru);
+        \envCenter::loadFile($ru->getRequestUrlFilePath());
+      }
+    }
     class viewController {
-      // private $subpaths = [];
       public function setPage() {}
       public function getPage() {}
-      // public function addSubPath($path) {
-      //   array_push($this->subpaths, $path);
-      //   return;
-      // }
-      // private function getSubPaths() {
-      //   return $this->subpaths;
-      // }
       public function handleRequest() {
         $ruH = new requestUrlHandler();
-        $ruH->setSubPath($this->subpaths, $_SERVER["REQUEST_URI"]);
-        if ($ruH->isRequestUrlPathEqualFile()) {
-          $ruH->setRequestUrlPath();
-          $ruH->setSubPath($ruH->getRequestUrlPath());
+        if ($ruH->isHomePage()) {
+          \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/home.php");
+          exit(0);
         }
+        if (!$ruH->isRequestUrlPathEqualFile()) {
+          \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
+          exit("");
+        }
+        $pageloader = new pageLoader();
+        $pageloader->loadPage($ruH);
+        // \envCenter::loadFile($ruH->getRequestUrlFilePath());
+        return;
       }
-      private function getRequestUrlPath() {}
     }
 
 ?>

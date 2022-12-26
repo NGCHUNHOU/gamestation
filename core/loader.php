@@ -12,12 +12,11 @@ use classes\pages;
 use classes\dataStorage;
 use classes\db_admin;
 
-// testing
+// uncomment the below lines to test new page loader
 // $controller = new pages\viewController();
-// $controller->addSubPath("guides");
-// $controller->addSubPath("errorview");
 // $controller->handleRequest();
 
+// comment out the below lines to turn off bulky and bad page loader
 $db = new db\db();
 $page_loader = new pages\index(new datacenter);
 $dataStorage = new dataStorage\dataStorage(new datacenter);
