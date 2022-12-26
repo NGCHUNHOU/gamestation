@@ -1,7 +1,7 @@
 <?php
 namespace classes\pages;
 require_once $_SERVER['DOCUMENT_ROOT'].'/classes/pages/index.php';
-require_once $_SERVER['DOCUMENT_ROOT'] .'/env.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/classes/data/datacenter.php';
 use classes\data\datacenter;

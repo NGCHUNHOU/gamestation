@@ -372,6 +372,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       public function setRequestUrlPath() {
         $this->requestUrlPath = $_SERVER["REQUEST_URI"];
       }
+      public function getRequestUrlPath() {
+        return $this->requestUrlPath;
+      }
 
       // client must request pathName that is absolutely same to fileName
       public function isRequestUrlPathEqualFile() {
@@ -384,42 +387,44 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
         return true;
       }
       public function addQueryString() {}
-      public function setSubPath(&$paths, $key) {
-          sort($paths);
-          $low = 0;
-          $high = count($paths) - 1;
-          while ($low <= $high) {
-              $mid = floor(($low + $high) / 2);
-              $guess = $paths[$mid];
+      public function setSubPath($key) {
+        $temp = $key;
+          // $low = 0;
+          // $high = count($paths) - 1;
+          // while ($low <= $high) {
+          //     $mid = floor(($low + $high) / 2);
+          //     $guess = $paths[$mid];
 
-              if (preg_match("/$guess/", $key)) {
-                  return $paths[$mid];
-              } elseif ($guess > $key) {
-                  $high = $mid - 1;
-              } else {
-                  $low = $mid + 1;
-              }
-          }
-          return -1;
+          //     if (preg_match("/$guess/", $key)) {
+          //         return $paths[$mid];
+          //     } elseif ($guess > $key) {
+          //         $high = $mid - 1;
+          //     } else {
+          //         $low = $mid + 1;
+          //     }
+          // }
+          // return -1;
       }
     }
 
     class viewController {
-      private $subpaths = [];
+      // private $subpaths = [];
       public function setPage() {}
       public function getPage() {}
-      public function addSubPath($path) {
-        array_push($this->subpaths, $path);
-        return;
-      }
-      private function getSubPaths() {
-        return $this->subpaths;
-      }
+      // public function addSubPath($path) {
+      //   array_push($this->subpaths, $path);
+      //   return;
+      // }
+      // private function getSubPaths() {
+      //   return $this->subpaths;
+      // }
       public function handleRequest() {
         $ruH = new requestUrlHandler();
         $ruH->setSubPath($this->subpaths, $_SERVER["REQUEST_URI"]);
-        if ($ruH->isRequestUrlPathEqualFile())
+        if ($ruH->isRequestUrlPathEqualFile()) {
           $ruH->setRequestUrlPath();
+          $ruH->setSubPath($ruH->getRequestUrlPath());
+        }
       }
       private function getRequestUrlPath() {}
     }
