@@ -5,6 +5,7 @@ use classes;
 use classes\data\datacenter;
 use classes\dataStorage\dataStorage;
 use classes\dataStorage\tableData\tableData;
+use classes\db\db;
 use classes\guidecardframe;
 use Exception;
 
@@ -372,12 +373,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       public function setRequestUrlPath() {
         $this->requestUrlPath = $_SERVER["REQUEST_URI"];
       }
-      public function getRequestUrlPath() {
-        return $this->requestUrlPath;
-      }
-      public function getDefaultViewDirectory() {
-        return $this->defaultViewDirectory;
-      }
+      public function getRequestUrlPath() { return $this->requestUrlPath; }
+      public function getDefaultViewDirectory() { return $this->defaultViewDirectory; }
       public function setDefaultViewDirectory($defaultViewDirectory) {
         $this->defaultViewDirectory = $defaultViewDirectory;
       }
@@ -403,22 +400,34 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
     }
 
     class pageData {
-      public $pageTitle;
-      public $pageDescription;
-      public $pageKeywords;
-      public $pageAuthor;
-      public $pageViewport;
-      public $pageMainContentFilePath;
-      public function setPageData() {}
+      private $pageTitle;
+      private $pageDescription;
+      private $pageKeywords;
+      private $pageAuthor;
+      private $pageViewport;
+      private $sharedState;
+      private $pageMainContentFilePath;
+      public function setPageData($urlpath, $addExtraPageId) {
+        $pageIdList = ["HME-0", "ABT-0", "NWS-0", "GDS-0"];
+        $addExtraPageId($pageIdList);
+
+        // testing fetch db data
+        $data = db::query("SELECT * FROM guides");
+        echo $data;
+      }
     }
 
     class pageLoader {
-      private function loadPageData(requestUrlHandler &$ruH) {
-        $pagedata = new pageData;
+      private function getPageData(requestUrlHandler &$ruH) {
+        $pagedata = new pageData();
+        $pagedata->setPageData($ruH->getRequestUrlFilePath(), function(&$pageList) {
+          // add additional page id here
+          // ex. array_push($pageList, "about");
+        });
         return $pagedata;
       }
       public function loadPage(requestUrlHandler &$ru) {
-        $this->loadPageData($ru);
+        $this->getPageData($ru);
         \envCenter::loadFile($ru->getRequestUrlFilePath());
       }
     }
