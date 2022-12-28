@@ -1,8 +1,8 @@
 <?php
-use classes\data\datacenter;
-use classes\db\db;
-    $db = new db(new datacenter);
-    $aboutContent = $db->query("SELECT * FROM `about`");
+// use classes\data\datacenter;
+// use classes\db\db;
+//     $db = new db(new datacenter);
+//     $aboutContent = $db->query("SELECT * FROM `about`");
     // echo "<pre>".
     // print_r($aboutContent) .
     // "</pre>";
@@ -27,7 +27,7 @@ use classes\db\db;
 </div>
 <br>
 <br>
-<?php
+<!-- <?php
     foreach ($aboutContent as $contentBlock) {
         echo "
               <h1 class='showcase_heading text-center pt-4'>$contentBlock[title]</h1>
@@ -56,7 +56,7 @@ use classes\db\db;
 </div>
         ";
     }
-?>
+?> -->
 <script src="/view/assets/js/dist/bundle.js"></script>
 <script>
 makeWave(document.querySelector("path#animated-wave"));

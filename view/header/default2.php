@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title><?php echo $pageData->pageTitle; ?></title>
+<meta name='description' content="<?php echo $pageData->pageDescription; ?>"/>
+<meta name='keywords' content="<?php echo $pageData->pageKeywords; ?>"/>
+<meta name='author' content="<?php echo $pageData->pageAuthor; ?>"/>
+<meta name='viewport' content="<?php echo $pageData->pageViewport; ?>"/>
 <link rel="icon" type="image/png" href="/view/assets/images/meteor-light-resized.svg" size="16x16">
     <script type="text/javascript" src="/view/assets/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="/view/assets/css/bootstrap.min.css">
@@ -17,7 +25,6 @@
 }	 
     </style>
 </head>
-
 <body>
     <header style="position: relative">
         <div class="container-fluid">

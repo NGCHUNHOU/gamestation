@@ -17,7 +17,7 @@ class envCenter {
             return $documentRootStr.'\\';
         return $documentRootStr;
     }
-    static public function loadFile(string $filePath) : bool {
+    static public function loadFile(string $filePath, &$pageData = null) : bool {
         $fullpath = "";
         if (substr($filePath, 0, 1) != '/' || substr($filePath, 0, 1) != '\\' ) {
             $fullpath = envCenter::getDocumentRoot().$filePath;

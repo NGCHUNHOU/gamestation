@@ -13,11 +13,11 @@ use classes\dataStorage;
 use classes\db_admin;
 
 // uncomment the below lines to test new page loader
-// $controller = new pages\viewController();
-// $controller->handleRequest();
+$controller = new pages\viewController();
+$controller->handleRequest();
 
 // comment out the below lines to turn off bulky and bad page loader
-$db = new db\db();
-$page_loader = new pages\index(new datacenter);
-$dataStorage = new dataStorage\dataStorage(new datacenter);
-$admin_loader = new db_admin\db_admin();
+// $db = new db\db();
+// $page_loader = new pages\index(new datacenter);
+// $dataStorage = new dataStorage\dataStorage(new datacenter);
+// $admin_loader = new db_admin\db_admin();

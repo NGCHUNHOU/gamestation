@@ -378,8 +378,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       public function setDefaultViewDirectory($defaultViewDirectory) {
         $this->defaultViewDirectory = $defaultViewDirectory;
       }
+      public function getLastRequestUrlStrOnly() {
+        return basename($this->getRequestUrlPath());
+      }
       public function getRequestUrlFilePath() {
-        return $this->defaultViewDirectory . '/' . $this->getRequestUrlPath() . ".php";
+        return $this->defaultViewDirectory . $this->getRequestUrlPath() . ".php";
       }
       public function isHomePage() {
         if ($_SERVER["REQUEST_URI"] === '/')
@@ -400,35 +403,78 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
     }
 
     class pageData {
-      private $pageTitle;
-      private $pageDescription;
-      private $pageKeywords;
-      private $pageAuthor;
-      private $pageViewport;
-      private $sharedState;
-      private $pageMainContentFilePath;
+      public $pageId;
+      public $pageTitle;
+      public $pageDescription;
+      public $pageKeywords;
+      public $pageAuthor;
+      public $pageViewport = "width=device-width, height=device-height, initial-scale=1.0";
+      public $sharedState;
+      public $pageMainContentFilePath;
+      private function findPageData(&$pageid, &$dbDataList) {
+        for ($i=0;$i<count($dbDataList);$i++) {
+            if ($pageid == $dbDataList[$i][1]) {
+              return $dbDataList[$i];
+          }
+        }
+        return -1;
+      }
+      private function findPageId($key, &$pageIDList) {
+        for ($i=0;$i<count($pageIDList);$i++) {
+          if ($key == $pageIDList[$i][1])
+            return $pageIDList[$i][0];
+        }
+        return -1;
+      }
       public function setPageData($urlpath, $addExtraPageId) {
-        $pageIdList = ["HME-0", "ABT-0", "NWS-0", "GDS-0"];
+        $pageIdList = [["HME-0", "home"], ["ABT-0", "about"], ["NWS-0", "news"], ["GDS-0", "guides"]];
         $addExtraPageId($pageIdList);
+        $targetPageId = $this->findPageId($urlpath, $pageIdList);
 
-        // testing fetch db data
         $data = db::query("SELECT * FROM pages");
-        print_r($data);
+        $targetData = $this->findPageData($targetPageId, $data);
+        if ($targetData != -1) {
+          $this->pageId = $targetData["pageId"];
+          $this->pageTitle = $targetData["pageTitle"];
+          $this->pageDescription = $targetData["pageDescription"];
+          $this->pageKeywords = $targetData["pageKeywords"];
+          $this->pageAuthor = $targetData["pageAuthor"];
+          $this->pageViewport = $targetData["pageViewport"] == null ? $this->pageViewport : $targetData["pageViewport"];
+          $this->pageMainContentFilePath = $targetData["pageMainContentFilePath"];
+        }
+        return;
       }
     }
 
     class pageLoader {
-      private function getPageData(requestUrlHandler &$ruH) {
-        $pagedata = new pageData();
-        $pagedata->setPageData($ruH->getRequestUrlFilePath(), function(&$pageList) {
-          // add additional page id here
-          // ex. array_push($pageList, "about");
-        });
-        return $pagedata;
+      private function handleMainContent(requestUrlHandler &$ruH, pageData &$pd) {
+        $pageId = $pd->pageId;
+        $mainData = [];
+        switch ($pageId) {
+          case "ABT-0":
+            $mainData = db::query("SELECT * FROM about");
+            break;
+          
+          default:
+            break;
+        }
+
+        // load body file
+        \envCenter::loadFile($ruH->getRequestUrlFilePath(), $mainData);
       }
       public function loadPage(requestUrlHandler &$ru) {
-        $this->getPageData($ru);
-        // \envCenter::loadFile($ru->getRequestUrlFilePath());
+        $pagedata = new pageData();
+        $pagedata->setPageData($ru->getLastRequestUrlStrOnly(), function(&$pageList) {
+          // add additional internal page id here
+          // ex. array_push($pageList, ["HME-1", "home"]);
+        });
+        // load header file
+        \envCenter::loadFile("view/header/default2.php", $pagedata);
+
+        $this->handleMainContent($ru, $pagedata);
+
+        // load footer file
+        \envCenter::loadFile("view/footer.php");
       }
     }
     class viewController {
