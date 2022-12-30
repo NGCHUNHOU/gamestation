@@ -366,13 +366,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
     }
 
     class requestUrlHandler {
+      private $homePath = null;
+      private $errorPath = null;
       private $queryString = "";
       private $requestUrlPath = "";
       private $defaultViewDirectory = "view";
       private $isRequestUrlOk = false;
-      public function setRequestUrlPath() {
-        $this->requestUrlPath = $_SERVER["REQUEST_URI"];
-      }
+      public function setHomePath($path) { $this->homePath = $path; }
+      public function setErrorPath($path) { $this->errorPath = $path; }
+      public function getHomePath() { return $this->homePath; }
+      public function getErrorPath() { return $this->errorPath; }
+      public function setRequestUrlPath() { $this->requestUrlPath = $_SERVER["REQUEST_URI"]; }
       public function getRequestUrlPath() { return $this->requestUrlPath; }
       public function getDefaultViewDirectory() { return $this->defaultViewDirectory; }
       public function setDefaultViewDirectory($defaultViewDirectory) {
@@ -450,6 +454,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       private function handleMainContent(requestUrlHandler &$ruH, pageData &$pd) {
         $pageId = $pd->pageId;
         $mainData = [];
+        if ($ruH->getHomePath() != null) {
+          \envCenter::loadFile($ruH->getHomePath(), $mainData);
+          return;
+        }
+        if ($ruH->getErrorPath() != null) {
+          \envCenter::loadFile($ruH->getErrorPath(), $mainData);
+          return;
+        }
+
         switch ($pageId) {
           case "ABT-0":
             $mainData = db::query("SELECT * FROM about");
@@ -483,12 +496,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       public function handleRequest() {
         $ruH = new requestUrlHandler();
         if ($ruH->isHomePage()) {
-          \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/home.php");
-          exit(0);
+          $ruH->setHomePath($ruH->getDefaultViewDirectory() . "/home.php");
+          // \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/home.php");
+          // exit(0);
         }
         if (!$ruH->isRequestUrlPathEqualFile()) {
-          \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
-          exit("");
+          $ruH->setErrorPath($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
+          // \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
+          // exit("");
         }
         $pageloader = new pageLoader();
         $pageloader->loadPage($ruH);
