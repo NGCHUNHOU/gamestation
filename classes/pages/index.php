@@ -454,10 +454,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
 
     class pageLoader {
       // only add news_title columns into mainData
-      // private function handleHomeContent(requestUrlHandler &$ruH, &$mainData = []) {
-      //     $mainData = db::query("SELECT news_title FROM updatenews");
-      //     return;
-      // }
       private function setNewsTitleAllDays(&$mainData) {
           array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'monday'"));
           array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'tuesday'"));

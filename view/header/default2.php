@@ -38,7 +38,7 @@
                     <div class="collapse navbar-collapse" id="headerlist">
                     <ul class="navbar-nav header-list" data-iscapitailse='true'>
                         <li class="nav-item" style="z-index: 2;">
-                            <a class="nav-link" href="/gamestation" target="_self">HOME</a>
+                            <a class="nav-link" href="/" target="_self">HOME</a>
                         </li>
                         <li class="nav-item" style="z-index: 2;">
                             <a class="nav-link" href="/about" target="_self">ABOUT US</a>

@@ -1,34 +1,6 @@
-<!-- <div class="container-fluid">
-    <div class="row position-absolute wt-in">
-        <div class="col-sm-12 rem-pad wt-in">
-            <img class="ht wt-in" src="./view/assets/images/display-wide.png" alt="main_showcase">
-        </div>
-    </div>
-
-    <div class="row">
-            <div class="empty">
-                
-            </div>
-    </div>
-
-    <div class="row">
-            <div class="btn-style col-md-5 d-flex">
-                <div class="showcase_content text-center">
-                <button class="btn btn-news">More news</button>
-                </div>
-            </div>
-    </div>
-</div> -->
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 rem-pad">
-            <!-- <img srcset="/view/assets/images/display-wide-550w.jpg 550w,
-                         /view/assets/images/display-wide-1920w.png 1920w"
-                 sizes="(max-width: 550px) 550px, 
-                        (max-width: 768px) 768px" 
-                 src="/view/assets/images/display-wide-550w.jpg"
-                         class="showcase_img wt-in" alt="main_showcase"> -->
             <picture class="land_pic" style="width: inherit;">
                <source srcset="/view/assets/images/display-700.png" media="(max-width: 550px)">
                <img srcset="/view/assets/images/display-wide-1920w.png" class="showcase_img wt-in" alt="main_showcase"> 
