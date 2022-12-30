@@ -98,9 +98,8 @@
         {
             let activeItemArray = [activeItems[i].href.split("/"), activeItems[i].href.split("/").length - 1]
             let activeItem = activeItemArray[0][activeItemArray[1]]
-            if (activeItem === "gamestation")
+            if (activeItem === "")
             {
-                // activeItem = "home"
                 currentItem = activeItems[0]
             }
             if (activeItem == currentPageName)
