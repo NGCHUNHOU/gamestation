@@ -1,5 +1,4 @@
 <?php
-
 namespace classes\pages;
 use classes\db\db;
 class requestUrlHandler
@@ -184,28 +183,17 @@ class pageLoader
 }
 class viewController
 {
-  public function setPage()
-  {
-  }
-  public function getPage()
-  {
-  }
   public function handleRequest()
   {
     $ruH = new requestUrlHandler();
     if ($ruH->isHomePage()) {
       $ruH->setHomePath($ruH->getDefaultViewDirectory() . "/home.php");
-      // \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/home.php");
-      // exit(0);
     }
     if (!$ruH->isRequestUrlPathEqualFile()) {
       $ruH->setErrorPath($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
-      // \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
-      // exit("");
     }
     $pageloader = new pageLoader();
     $pageloader->loadPage($ruH);
-    // \envCenter::loadFile($ruH->getRequestUrlFilePath());
     return;
   }
 }
