@@ -433,6 +433,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       public function setPageData($urlpath, $addExtraPageId) {
         $pageIdList = [["HME-0", "home"], ["ABT-0", "about"], ["NWS-0", "news"], ["GDS-0", "guides"]];
         $addExtraPageId($pageIdList);
+        // set urlpath to home if no path is found
+        if ($urlpath == "") $urlpath = "home";
         $targetPageId = $this->findPageId($urlpath, $pageIdList);
 
         $data = db::query("SELECT * FROM pages");
@@ -455,11 +457,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
         $pageId = $pd->pageId;
         $mainData = [];
         if ($ruH->getHomePath() != null) {
-          \envCenter::loadFile($ruH->getHomePath(), $mainData);
+          \envCenter::loadFile($ruH->getHomePath());
           return;
         }
         if ($ruH->getErrorPath() != null) {
-          \envCenter::loadFile($ruH->getErrorPath(), $mainData);
+          \envCenter::loadFile($ruH->getErrorPath());
           return;
         }
 
