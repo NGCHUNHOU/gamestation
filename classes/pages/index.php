@@ -483,7 +483,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
           case "ABT-0":
             $mainData = db::query("SELECT * FROM about");
             break;
-          
+          case "NWS-0":
+            $mainData = db::query("SELECT * FROM updatenews");
+            break;
           default:
             break;
         }
