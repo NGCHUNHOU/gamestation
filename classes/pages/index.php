@@ -366,13 +366,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
     }
 
     class requestUrlHandler {
+      private $homePath = null;
+      private $errorPath = null;
       private $queryString = "";
       private $requestUrlPath = "";
       private $defaultViewDirectory = "view";
       private $isRequestUrlOk = false;
-      public function setRequestUrlPath() {
-        $this->requestUrlPath = $_SERVER["REQUEST_URI"];
-      }
+      public function setHomePath($path) { $this->homePath = $path; }
+      public function setErrorPath($path) { $this->errorPath = $path; }
+      public function getHomePath() { return $this->homePath; }
+      public function getErrorPath() { return $this->errorPath; }
+      public function setRequestUrlPath() { $this->requestUrlPath = $_SERVER["REQUEST_URI"]; }
       public function getRequestUrlPath() { return $this->requestUrlPath; }
       public function getDefaultViewDirectory() { return $this->defaultViewDirectory; }
       public function setDefaultViewDirectory($defaultViewDirectory) {
@@ -429,6 +433,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       public function setPageData($urlpath, $addExtraPageId) {
         $pageIdList = [["HME-0", "home"], ["ABT-0", "about"], ["NWS-0", "news"], ["GDS-0", "guides"]];
         $addExtraPageId($pageIdList);
+        // set urlpath to home if no path is found
+        if ($urlpath == "") $urlpath = "home";
         $targetPageId = $this->findPageId($urlpath, $pageIdList);
 
         $data = db::query("SELECT * FROM pages");
@@ -447,14 +453,39 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
     }
 
     class pageLoader {
+      // only add news_title columns into mainData
+      private function setNewsTitleAllDays(&$mainData) {
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'monday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'tuesday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'wednesday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'thursday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'friday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'saturday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'sunday'"));
+          return;
+      }
       private function handleMainContent(requestUrlHandler &$ruH, pageData &$pd) {
         $pageId = $pd->pageId;
         $mainData = [];
+
+        // handle home page here 
+        if ($ruH->getHomePath() != null) {
+          $this->setNewsTitleAllDays($mainData);
+          \envCenter::loadFile($ruH->getHomePath(), $mainData);
+          return;
+        }
+        if ($ruH->getErrorPath() != null) {
+          \envCenter::loadFile($ruH->getErrorPath());
+          return;
+        }
+
         switch ($pageId) {
           case "ABT-0":
             $mainData = db::query("SELECT * FROM about");
             break;
-          
+          case "NWS-0":
+            $mainData = db::query("SELECT * FROM updatenews");
+            break;
           default:
             break;
         }
@@ -483,12 +514,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
       public function handleRequest() {
         $ruH = new requestUrlHandler();
         if ($ruH->isHomePage()) {
-          \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/home.php");
-          exit(0);
+          $ruH->setHomePath($ruH->getDefaultViewDirectory() . "/home.php");
+          // \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/home.php");
+          // exit(0);
         }
         if (!$ruH->isRequestUrlPathEqualFile()) {
-          \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
-          exit("");
+          $ruH->setErrorPath($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
+          // \envCenter::loadFile($ruH->getDefaultViewDirectory() . "/errorview/notfound.php");
+          // exit("");
         }
         $pageloader = new pageLoader();
         $pageloader->loadPage($ruH);

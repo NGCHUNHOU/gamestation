@@ -1,12 +1,3 @@
-<?php
-// use classes\data\datacenter;
-// use classes\db\db;
-//     $db = new db(new datacenter);
-//     $aboutContent = $db->query("SELECT * FROM `about`");
-    // echo "<pre>".
-    // print_r($aboutContent) .
-    // "</pre>";
-?>
 <div style="position: relative">
     <div class="container-fluid">
         <div class="row">
@@ -27,17 +18,17 @@
 </div>
 <br>
 <br>
-<!-- <?php
-    foreach ($aboutContent as $contentBlock) {
+<?php
+    foreach ($pageData as $pageItem) {
         echo "
-              <h1 class='showcase_heading text-center pt-4'>$contentBlock[title]</h1>
+              <h1 class='showcase_heading text-center pt-4'>$pageItem[title]</h1>
 <div class='container'>
-    <div class='row' style='$contentBlock[divInversed]'>
+    <div class='row' style='$pageItem[divInversed]'>
         <div class='col-12 col-md-5 text-center'>
             <br>
             <picture class='' style='width: inherit;'>
-               <source srcset='$contentBlock[imgPath]' media='(max-width: 550px)'>
-               <img srcset='$contentBlock[imgPath]' width='$contentBlock[imgSize]' class='pic-newsPaper' alt='gameNews' data-direction='right'> 
+               <source srcset='$pageItem[imgPath]' media='(max-width: 550px)'>
+               <img srcset='$pageItem[imgPath]' width='$pageItem[imgSize]' class='pic-newsPaper' alt='gameNews' data-direction='right'> 
             </picture> 
             <br>
             <br>
@@ -46,8 +37,8 @@
             <div class='card' data-direction='left'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
                   <div class='card-body'>
-                    <h2>$contentBlock[subtitle]</h2>
-                    <p>$contentBlock[paragraph]</p>
+                    <h2>$pageItem[subtitle]</h2>
+                    <p>$pageItem[paragraph]</p>
                    </div>
                 </div>
             </div>
@@ -56,7 +47,7 @@
 </div>
         ";
     }
-?> -->
+?>
 <script src="/view/assets/js/dist/bundle.js"></script>
 <script>
 makeWave(document.querySelector("path#animated-wave"));
