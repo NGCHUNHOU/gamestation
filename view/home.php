@@ -111,7 +111,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-body newsContainer">
-                        <?php 
+                        <!-- <?php 
                             $limited_mondayList = array_slice($this->monday_list, 0, 5);
                             for ($i = 0; $i < count($limited_mondayList); $i++)
                             {
@@ -119,7 +119,7 @@
                                     <td colspan='7'>".$this->monday_list[$i]['news_title']."</td>                         
                                 </tr>";
                             }
-                        ?>
+                        ?> -->
                         <!-- <tr>
                         <td colspan="7">Mark</td>
                         </tr>
