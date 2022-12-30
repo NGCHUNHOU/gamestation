@@ -453,11 +453,29 @@ require_once $_SERVER['DOCUMENT_ROOT'] .'/envCenter.php';
     }
 
     class pageLoader {
+      // only add news_title columns into mainData
+      // private function handleHomeContent(requestUrlHandler &$ruH, &$mainData = []) {
+      //     $mainData = db::query("SELECT news_title FROM updatenews");
+      //     return;
+      // }
+      private function setNewsTitleAllDays(&$mainData) {
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'monday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'tuesday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'wednesday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'thursday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'friday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'saturday'"));
+          array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'sunday'"));
+          return;
+      }
       private function handleMainContent(requestUrlHandler &$ruH, pageData &$pd) {
         $pageId = $pd->pageId;
         $mainData = [];
+
+        // handle home page here 
         if ($ruH->getHomePath() != null) {
-          \envCenter::loadFile($ruH->getHomePath());
+          $this->setNewsTitleAllDays($mainData);
+          \envCenter::loadFile($ruH->getHomePath(), $mainData);
           return;
         }
         if ($ruH->getErrorPath() != null) {
