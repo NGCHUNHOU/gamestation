@@ -93,14 +93,15 @@
         let activeItems = currentItems
         let currentPageName = window.location.pathname.replace("/", "")
         currentPageName  = currentPageName == "" ? "home" : currentPageName
-        let currentItem
+        let currentItem = null
         for (let i = 0; i < currentItems.length; i++)
         {
             let activeItemArray = [activeItems[i].href.split("/"), activeItems[i].href.split("/").length - 1]
             let activeItem = activeItemArray[0][activeItemArray[1]]
             if (activeItem === "gamestation")
             {
-                activeItem = "home"
+                // activeItem = "home"
+                currentItem = activeItems[0]
             }
             if (activeItem == currentPageName)
             {
