@@ -8,7 +8,8 @@
 <meta name='viewport' content="<?php echo $pageData->pageViewport; ?>"/>
 <link rel="icon" type="image/png" href="/view/assets/images/meteor-light-resized.svg" size="16x16">
     <script type="text/javascript" src="/view/assets/js/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="/view/assets/css/bootstrap.min.css">
+    <!-- bootstrap is already included into main.css -->
+    <!-- <link rel="stylesheet" href="/view/assets/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="/view/assets/css/main.css">
     <script type="text/javascript" src="/view/assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/node_modules/animejs/lib/anime.min.js"></script>
@@ -17,8 +18,8 @@
 	.navbar .nav-item .dropdown-menu{ display: none; }
 	.navbar .nav-item:hover .dropdown-menu{ display: block; }
 	.navbar .nav-item .dropdown-menu{ margin-top:0; }
-	.navbar .nav-item .dropdown-menu-dark{ background: #121C25 }
-	.navbar .nav-item .dropdown-menu-dark .dropdown-item{ color: rgba(255,255,255,.5)}
+	.navbar .nav-item .dropdown-menu-dark{ background: #161b22 }
+	.navbar .nav-item .dropdown-menu-dark .dropdown-item{ color: rgba(255,255,255,.7); font-weight: 600; }
 	.navbar .nav-item .dropdown-menu-dark .dropdown-item:hover, .navbar .nav-item .dropdown-menu-dark .dropdown-item:focus, 
     .navbar .nav-item .dropdown-menu-dark .dropdown-item:active
     { background: #292A44}
@@ -38,13 +39,13 @@
                     <div class="collapse navbar-collapse" id="headerlist">
                     <ul class="navbar-nav header-list" data-iscapitailse='true'>
                         <li class="nav-item" style="z-index: 2;">
-                            <a class="nav-link" href="/" target="_self">HOME</a>
+                            <a class="nav-link" href="/" target="_self">Home</a>
                         </li>
                         <li class="nav-item" style="z-index: 2;">
-                            <a class="nav-link" href="/about" target="_self">ABOUT US</a>
+                            <a class="nav-link" href="/about" target="_self">About Us</a>
                         </li>
                         <li class="nav-item" style="z-index: 2;">
-                            <a class="nav-link" href="/news" target="_self">NEWS</a>
+                            <a class="nav-link" href="/news" target="_self">News</a>
                         </li>
                         <!-- <li class="nav-item dropdown" style="z-index: 2;">
                             <a class="nav-link dropdown-toggle" href="/dropdown" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,7 +60,7 @@
                         </li> -->
                         <li class="nav-item dropdown" style="z-index: 2;">
                             <a class="nav-link dropdown-toggle" href="/guides">
-                                GUIDES 
+                                Guides 
                             </a>
                             <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/guides/guide1">PS4</a>
@@ -81,8 +82,8 @@
             </div>
         </div>
       </div>
-      <div class="navigator" style="position: absolute; bottom: 0; height: 4px; background: #3d3e59;"></div>
-      <div class="hoverBlock" style="position: absolute; bottom: 0; background: #323354; z-index: 1"></div>
+      <div class="navigator" style="position: absolute; bottom: 0; height: 4px; background: #3d3e59; opacity: 0.3;"></div>
+      <div class="hoverBlock" style="position: absolute; bottom: 0; z-index: 1"></div>
     </header>
 <script>
     function setCurrentItemPosition(currentItems, hoverItem)
