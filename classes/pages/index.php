@@ -66,8 +66,12 @@ class requestUrlHandler
     $this->isRequestUrlOk = true;
     return true;
   }
-  public function addQueryString()
-  {
+  public function setDynamicArticlesHeadData(&$pLoader) {
+    if (!preg_match("/newsArticle/", $this->requestUrlPath))
+      return;
+
+    $pLoader->pageTitle = str_replace('-', ' ', basename($this->requestUrlPath), );
+    return;
   }
 }
 
@@ -172,6 +176,10 @@ class pageLoader
       // add additional internal page id here
       // ex. array_push($pageList, ["HME-1", "home"]);
     });
+
+    // initialize page head data if the page is dynamic article
+    $ru->setDynamicArticlesHeadData($pagedata);
+
     // load header file
     \envCenter::loadFile("view/header/default2.php", $pagedata);
 

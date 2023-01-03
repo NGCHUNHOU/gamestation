@@ -6,7 +6,7 @@
         <div class="col-12">
             <?php
             function getArticlePathByNewsTitle($newsTitle) {
-                return "/view/newsArticle/".str_replace(' ', '-', $newsTitle).".php";
+                return "newsArticle/".str_replace(' ', '-', $newsTitle);
             }
             for ($i = 0; $i < count($pageData); $i++) {
                 echo
