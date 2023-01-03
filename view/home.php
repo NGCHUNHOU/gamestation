@@ -11,7 +11,7 @@
     <div class="row">
         <div class="btn-showcase-mt-neg position-absolute col-12 col-sm-5 col-md-5 col-lg-5 d-flex mt-neg-110">
             <div class="showcase_content text-center">
-            <button class="btn btn-news btn-lg btn-home mainNews_btn"><a style="color: #212529; text-decoration: none;" href="/news">More news</a></button>
+            <button class="btn btn-news btn-lg btn-home mainNews_btn"><a style="color: #c9d1d9; text-decoration: none; font-size: 1rem;" href="/news">More news</a></button>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
   <div class="container">
       <div class="row">
           <div class="col-12 col-sm-12 col-md-7 col-lg-8">
-              <h1 class="showcase_heading text-center pt-4">Featured News</h1>
+              <h4 style="font-weight:600;" class="showcase_heading mt-4">Featured News</h1>
               <div id="carousel-news" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-news" data-slide-to="0" class="active circle-dot"></li>
@@ -63,7 +63,7 @@
           </div>
           <!-- <div class="col-1 col-md-1 col-lg-1"></div> -->
           <div class="col-12 col-sm-12 col-md-5 col-lg-4">
-              <h2 style="margin-bottom: 1rem;" class="text-center pt-4">Update Table</h2>
+              <h4 style="font-weight:600;" class="mt-4">Update Table</h2>
               <div class="updateList text-center">
               <table class="table table-striped table-dark">
                     <thead class="table-mainHeader">

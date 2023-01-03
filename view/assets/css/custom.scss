@@ -3,10 +3,13 @@
     background: #173F5A;
 } */
 
-@mixin yellowTitle()
+@mixin defaultDarkButton($display, $justifyContent)
 {
-  background-color: #E0A800 !important; 
-  color: #212529;
+  display: $display;
+  justify-content: $justifyContent;
+  background-color: #21262d;
+  color: #c9d1d9;
+  border: 1px solid rgba(240,246,252,0.1);
 }
 
 .mainHeading
@@ -19,16 +22,15 @@
   border: none;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-weight: 600;
-  margin: 4px 2px;
+//   margin: 4px 2px;
   cursor: pointer;
-  @include yellowTitle();
+  @include defaultDarkButton(flex, center);
 }
 
 .table-mainHeader
 {
-  @include yellowTitle();
+  @include defaultDarkButton(table-header-group, unset);
 }
 
 /* h1, h2, h3, h4, h5, p, div, 
@@ -87,7 +89,7 @@
 /* footer setting */
 
 .footer {
-    background: #f9f9f9;
+    border-top: 1px solid #21262d;
 }
 
 

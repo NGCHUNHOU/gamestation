@@ -12,7 +12,7 @@
     <!-- <div style="width: 100%; height: 50px; background: #173F5A; position: absolute; bottom: 0"></div> -->
     <svg style="position: absolute; bottom: -70px; transform: rotate(180deg)" width="100%" height="100" viewBox="0 0 600 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
         <g>
-        <path id="animated-wave" d="m-2,-52.30547c213.92539,-164.88947 427.85073,164.88946 641.77607,0l0,296.80101c-145.92534,122.88948 -463.85068,-190.88945 -641.77607,0l0,-296.80101z" fill="#173F5A"/>
+        <path id="animated-wave" d="m-2,-52.30547c213.92539,-164.88947 427.85073,164.88946 641.77607,0l0,296.80101c-145.92534,122.88948 -463.85068,-190.88945 -641.77607,0l0,-296.80101z" fill="#0d1117"/>
         </g>
     </svg>
 </div>
@@ -21,8 +21,8 @@
 <?php
     foreach ($pageData as $pageItem) {
         echo "
-              <h1 class='showcase_heading text-center pt-4'>$pageItem[title]</h1>
 <div class='container'>
+    <h4 style='font-weight:600;' class='showcase_heading text-center mt-4'>$pageItem[title]</h1>
     <div class='row' style='$pageItem[divInversed]'>
         <div class='col-12 col-md-5 text-center'>
             <br>
@@ -37,7 +37,7 @@
             <div class='card' data-direction='left'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
                   <div class='card-body'>
-                    <h2>$pageItem[subtitle]</h2>
+                    <h4>$pageItem[subtitle]</h2>
                     <p>$pageItem[paragraph]</p>
                    </div>
                 </div>
