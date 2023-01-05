@@ -4,7 +4,6 @@ envCenter::loadFiles([
 "/classes/data/datacenter.php",
 "/classes/pages/index.php",
 "/classes/dataStorage/storage.php",
-"/admin/classes/db/admin.php"
 ]);
 
 use classes\pages;
