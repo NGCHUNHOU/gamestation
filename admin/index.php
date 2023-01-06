@@ -9,8 +9,9 @@
     <meta name='keywords' content=""/>
     <meta name='author' content=""/>
     <meta name='viewport' content=""/>
+    <script type="text/javascript" src="/view/assets/js/jquery-3.4.1.min.js"></script>
     <link rel="icon" type="image/png" href="/view/assets/images/meteor-light-resized.svg" size="16x16">
-    <link rel="stylesheet" href="/view/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/view/assets/css/main.css">
     <script type="text/javascript" src="/view/assets/js/bootstrap.min.js"></script>
 </head>
 <body>
