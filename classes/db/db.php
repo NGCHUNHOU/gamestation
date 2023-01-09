@@ -38,6 +38,16 @@ class db
         } 
     }
 
+    static public function queryColumnNames($query, $params = array()) {
+        $stmt = db::connect()->prepare($query);
+        $stmt->execute($params);
+        for ($i=0;$i<$stmt->columnCount();$i++) {
+            $col = $stmt->getColumnMeta($i);
+            $columns[] = $col["name"];
+        }
+        return $columns;
+    }
+
     static public function queryALL($query) {
         $stmt = db::connect()->prepare($query);
         $stmt->execute();
