@@ -2,41 +2,36 @@
 class databaseEditor {
     public static function renderTableExplorerNodes($arr, $nodeType, $arrayIndexKey) {
         for ($i=0;$i<count($arr);$i++) {
-            echo '<'.$nodeType.'>'.$arr[$i][$arrayIndexKey].'</'.$nodeType.'>';
+            echo '<'.$nodeType.' id="'.$arr[$i][$arrayIndexKey].'" >'.$arr[$i][$arrayIndexKey].'</'.$nodeType.'>';
         }
     }
     public static function renderTableDisplayerNodes($tableColumns, $arr) {
         echo "<table class='table table-dark' style='margin:0;'>";
-            echo "<thead>";
+            echo "<thead id='tableColumnsContainer'>";
                 echo  "<tr>";
+                    // printing table column names using number indexs
                     for ($i=0;$i<count($tableColumns);$i++) {
                         echo "<th scope='col'>$tableColumns[$i]</th>";
                     }
                 echo "</tr>";
             echo "</thead>";
-            echo "<tbody>";
+            echo "<tbody id='tableItemsContainer'>";
                 for ($i=0;$i<count($arr);$i++) {
-                    echo "<tr> <th scope='row'>1</th>";
-                    echo "<td>". $arr[$i]["news_id"] . "</td>";
-                    echo "<td>". $arr[$i]["news_title"] . "</td>";
-                    echo "<td>". $arr[$i]["description"] . "</td>";
-                    echo "<td>". $arr[$i]["imgNews_thumbnail"] . "</td>";
-                    echo "<td>". $arr[$i]["imgNews_content"] . "</td>";
-                    echo "<td>". $arr[$i]["keywords"] . "</td>";
-                    echo "<td>". $arr[$i]["createdDate"] . "</td>";
-                    echo "<td>". $arr[$i]["categoryTitle"] . "</td>";
-                    echo "<td>". $arr[$i]["categoryDescription"] . "</td>";
-                    echo "<td>". $arr[$i]["categoryInitialDate"] . "</td>";
-                    echo "<td>". $arr[$i]["dayStr"] . "</td>";
+                    // printing 2d table using number indexs
+                    echo "<tr>";
+                        for ($j=0;$j<count($tableColumns);$j++) {
+                            echo "<td>". $arr[$i][$j] . "</td>";
+                        }
                     echo "</tr>";
                 }
             echo "</tbody>";
         echo "</table>";
     }
     public static function initComponents() {
-        // initializing table explorer
-        \envCenter::loadFile("admin/component/tableExplorer.php");
-        \envCenter::loadFile("admin/component/tableDisplayer.php");
+        // loading components view
+        \envCenter::loadFile("admin/view/vtableExplorer.php");
+        \envCenter::loadFile("admin/view/vtableDisplayer.php");
+        \envCenter::loadFile("admin/component/tableSelector.php");
     }
 }
 ?>

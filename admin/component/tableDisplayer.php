@@ -12,26 +12,18 @@ class tableDisplayer {
         $this->targetTable = $table;
     }
     public function setTableColumnNames() {
-        $this->tableColumnNames = db::queryColumnNames("SELECT * FROM updatenews LIMIT 0");
+        $this->tableColumnNames = db::queryColumnNames("SELECT * FROM " . $this->getTargetTable(). " LIMIT 0");
     }
     public function getTableColumnNames() {
         if (count($this->tableColumnNames) == 0)
             throw new Exception("failed to get column names", 1);
         return $this->tableColumnNames;
     }
-    public function __construct() {
-        db::setSqliteDBFileName("../gamestation");
-        $this->setTargetTable("updatenews");
+    public function __construct($table = "") {
+        db::setSqliteDBFileName(\envCenter::getDocumentRoot()."gamestation");
+        $this->setTargetTable($table);
         $this->setTableColumnNames();
         $this->tableData = db::query("SELECT * FROM ".$this->getTargetTable());
     }
 }
-$te = new tableDisplayer();
 ?>
-<div id="tableDisplayer" style="position: absolute; left: 170px; width: calc(100% - 170px); height: 100%; overflow: auto;">
-        <div class="row" style="margin:0;">
-            <div class="col-12" style="padding:0;">
-                <?php databaseEditor::renderTableDisplayerNodes($te->getTableColumnNames(), $te->getTableData()); ?>
-            </div>
-        </div>
-</div>

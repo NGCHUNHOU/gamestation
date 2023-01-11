@@ -16,17 +16,4 @@ class tableExplorer {
         $this->tableData = db::query("SELECT name FROM ". $this->getTargetTable(). " WHERE name !=  'sqlite_sequence'");
     }
 }
-$te = new tableExplorer();
 ?>
-
-<style>
-    .sidebar-frame a {
-        display: block;
-    }
-</style>
-<div id="tableExplorer" style="padding: 15px; height: 100%; position: fixed; border-right: 1px solid #21262d; width: 170px;">
-    <div class="sidebar-frame">
-        <h4>Gamestation</h4>
-        <?php databaseEditor::renderTableExplorerNodes($te->getTableData(), "a", "name", 0) ?>
-    </div>
-</div>
