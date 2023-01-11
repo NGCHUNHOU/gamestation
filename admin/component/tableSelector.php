@@ -29,11 +29,14 @@
                 let data = JSON.parse(xhr.responseText)
                 $("#tableColumnsContainer tr").empty()
                 $("#tableItemsContainer").empty()
+
+                for (const [key, value] of Object.entries(data[0])) {
+                    $("#tableColumnsContainer tr").append(`<th scope='col'>${key}</th>`)
+                }
                 for (let i=0;i<data.length;i++) {
-                    $("#tableItemsContainer").append(`<tr></tr>`)
-                    for (const [key, value] of Object.entries(data[i])) {
-                        $("#tableColumnsContainer tr").append(`<th scope='col'>${key}</th>`)
-                        $("#tableItemsContainer tr").append(`<td>${value}</td>`)
+                    $("#tableItemsContainer").append(`<tr id='${i}'></tr>`)
+                    for (const [index, [key, value]] of Object.entries(Object.entries(data[i]))) {
+                        $(`#tableItemsContainer tr#${i}`).append(`<td>${value}</td>`)
                     }
                 }
             }
