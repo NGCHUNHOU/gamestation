@@ -7,6 +7,7 @@ class tableDisplayer {
     private $tableColumnNames = [];
     private $tableData = [];
     public function getTableData() {return $this->tableData;}
+    public function deleteTableData() {unset($this->tableData);}
     public function getTargetTable() {return $this->targetTable;}
     public function setTargetTable($table) {
         $this->targetTable = $table;

@@ -6,6 +6,7 @@
         \envCenter::loadFile("admin/component/tableDisplayer.php");
         $obj = new tableDisplayer($_POST["tableName"]);
         $tableData = $obj->getTableData();
+        $obj->deleteTableData();
 
         // clean up number string index so clientSide thread wont get number column index
         for ($i=0;$i<count($tableData);$i++) {
@@ -45,8 +46,15 @@
     }
 
     [].slice.call(document.querySelector(".sidebar-frame").children).forEach((table) => {
-        table.addEventListener("click", (e) => {
+        $(table).on("click", (e) => {
+            // to prevent duplicate post requests
+            if (e.target.getAttribute("data-isclicked") == "true")
+                return
+
             passPostRequest(e.target.id)
-        })
+
+            $(".sidebar-frame a").attr("data-isclicked", "false")
+            e.target.setAttribute("data-isclicked", "true")
+        }) 
     })
 </script>
