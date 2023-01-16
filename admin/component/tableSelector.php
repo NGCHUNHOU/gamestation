@@ -20,14 +20,41 @@
 ?>
 
 <script>
+    function objectPool() {
+        this.data = {}
+        this.limitPoolSize = (size) => {
+            if (Object.keys(this.data).length > size) {
+                console.log("pool size is overflowing, reset back to zero")
+                this.data = {}
+            }
+        }
+        this.getData = (tableName) => {
+            if (this.data[tableName] != undefined)
+                return this.data[tableName]
+            return null
+        }
+        this.returnResource = (obj, tableName) => {
+            this.data[tableName] = obj
+        }
+    }
+
+    let pool = new objectPool()
+    let poolSize = 5
+
     function passPostRequest(tableName) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/admin/component/tableSelector.php", true)
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
         xhr.onreadystatechange = () => {
+            pool.limitPoolSize(poolSize)
             if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log("successfully post, toggling table")
-                let data = JSON.parse(xhr.responseText)
+                let data = pool.getData(tableName)
+                if (data == null) {
+                    console.log("successfully post, toggling table")
+                    data = JSON.parse(xhr.responseText)
+                }
+                pool.returnResource(data, tableName)
+
                 $("#tableColumnsContainer tr").empty()
                 $("#tableItemsContainer").empty()
 
