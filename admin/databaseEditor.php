@@ -30,6 +30,7 @@ class databaseEditor {
     public static function initComponents() {
         // loading components view
         \envCenter::loadFile("admin/view/vtableExplorer.php");
+        \envCenter::loadFile("admin/component/tableQueryAction.php");
         \envCenter::loadFile("admin/view/vtableDisplayer.php");
         \envCenter::loadFile("admin/component/tableSelector.php");
     }
