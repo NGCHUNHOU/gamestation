@@ -8,8 +8,8 @@
             function getArticlePathByNewsTitle($newsTitle) {
                 // replace ' ' with '-', because url should not have space character
                 // replace '-' with '_' to avoid string mismatch for sql search
-                $temp = str_replace(['-', ' '], ['_', '-'], $newsTitle);
-                return "newsArticle/".str_replace(' ', '-', $temp);
+                $newsTitlePathName = str_replace(['-', ' '], ['_', '-'], $newsTitle);
+                return "newsArticle/".$newsTitlePathName;
             }
             for ($i = 0; $i < count($pageData); $i++) {
                 echo

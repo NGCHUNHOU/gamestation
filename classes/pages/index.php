@@ -46,10 +46,15 @@ class requestUrlHandler {
       return true;
     return false;
   }
+  private function checkIsArticleLayoutFileExist() {
+    if (!file_exists(\envCenter::getDocumentRoot()."/view/newsArticle/article-layout.php"))
+      throw new \Exception("article-layout.php cannot be found at ./view/newsArticle/");
+  }
   // client must request pathName that is absolutely same to fileName
   public function isRequestUrlPathEqualFile() {
     $url = \envCenter::getRequestURI();
     if (preg_match("/newsArticle/", $url)) {
+      $this->checkIsArticleLayoutFileExist();
       $this->setRequestUrlPath($url);
       $this->isRequestUrlOk = true;
       return true;
@@ -130,7 +135,6 @@ class pageData {
       $this->pageViewport = $targetData["pageViewport"] == null ? $this->pageViewport : $targetData["pageViewport"];
       $this->pageMainContentFilePath = $targetData["pageMainContentFilePath"];
     }
-    return;
   }
 }
 
@@ -144,7 +148,15 @@ class pageLoader {
     array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'friday'"));
     array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'saturday'"));
     array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'sunday'"));
-    return;
+  }
+  private function handleArticles(pageData &$pd) {
+      // replace "'" with "''" to escape single quote for sql search
+      // replace "_" with "-" to restore title original character
+      $escapedNewsTitle = str_replace(["'", "_"], ["''", "-"], $pd->pageTitle);
+      $articleData = db::query("SELECT * FROM updatenews WHERE news_title = '$escapedNewsTitle'");
+      if (count($articleData) == 1)
+        $articleData = $articleData[0];
+      \envCenter::loadFile("/view/newsArticle/article-layout.php", $articleData);
   }
   private function handleMainContent(requestUrlHandler &$ruH, pageData &$pd) {
     $pageId = $pd->pageId;
@@ -161,13 +173,7 @@ class pageLoader {
       return;
     }
     if ($pd->getIsDynamicArticle() == true) {
-      // replace "'" with "''" to escape single quote for sql search
-      // replace "_" with "-" to restore title original character
-      $escapedNewsTitle = str_replace(["'", "_"], ["''", "-"], $pd->pageTitle);
-      $articleData = db::query("SELECT * FROM updatenews WHERE news_title = '$escapedNewsTitle'");
-      if (count($articleData) == 1)
-        $articleData = $articleData[0];
-      \envCenter::loadFile("/view/newsArticle/article-layout.php", $articleData);
+      $this->handleArticles($pd);
       return;
     }
 
@@ -215,6 +221,5 @@ class viewController {
     }
     $pageloader = new pageLoader();
     $pageloader->loadPage($ruH);
-    return;
   }
 }
