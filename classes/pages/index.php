@@ -1,64 +1,59 @@
 <?php
+
 namespace classes\pages;
+
 use classes\db\db;
-class requestUrlHandler
-{
-  private $homePath = null;
-  private $errorPath = null;
+
+class requestUrlHandler {
+  private $homePath = "";
+  private $errorPath = "";
   private $queryString = "";
   private $requestUrlPath = "";
   private $defaultViewDirectory = "view";
   private $isRequestUrlOk = false;
-  public function setHomePath($path)
-  {
+  public function setHomePath($path) {
     $this->homePath = $path;
   }
-  public function setErrorPath($path)
-  {
+  public function setErrorPath($path) {
     $this->errorPath = $path;
   }
-  public function getHomePath()
-  {
+  public function getHomePath() {
     return $this->homePath;
   }
-  public function getErrorPath()
-  {
+  public function getErrorPath() {
     return $this->errorPath;
   }
-  public function setRequestUrlPath()
-  {
+  public function setRequestUrlPath() {
     $this->requestUrlPath = $_SERVER["REQUEST_URI"];
   }
-  public function getRequestUrlPath()
-  {
+  public function getRequestUrlPath() {
     return $this->requestUrlPath;
   }
-  public function getDefaultViewDirectory()
-  {
+  public function getDefaultViewDirectory() {
     return $this->defaultViewDirectory;
   }
-  public function setDefaultViewDirectory($defaultViewDirectory)
-  {
+  public function setDefaultViewDirectory($defaultViewDirectory) {
     $this->defaultViewDirectory = $defaultViewDirectory;
   }
-  public function getLastRequestUrlStrOnly()
-  {
+  public function getLastRequestUrlStrOnly() {
     return basename($this->getRequestUrlPath());
   }
-  public function getRequestUrlFilePath()
-  {
+  public function getRequestUrlFilePath() {
     return $this->defaultViewDirectory . $this->getRequestUrlPath() . ".php";
   }
-  public function isHomePage()
-  {
+  public function isHomePage() {
     if ($_SERVER["REQUEST_URI"] === '/')
       return true;
     return false;
   }
   // client must request pathName that is absolutely same to fileName
-  public function isRequestUrlPathEqualFile()
-  {
+  public function isRequestUrlPathEqualFile() {
     $url = \envCenter::getRequestURI();
+    if (preg_match("/newsArticle/", $url)) {
+      $this->setRequestUrlPath($url);
+      $this->isRequestUrlOk = true;
+      return true;
+    }
     if (!file_exists($url)) {
       return false;
     }
@@ -70,23 +65,39 @@ class requestUrlHandler
     if (!preg_match("/newsArticle/", $this->requestUrlPath))
       return;
 
-    $pLoader->pageTitle = str_replace('-', ' ', basename($this->requestUrlPath), );
+    $pLoader->setIsDynamicArticle(true);
+    $pLoader->pageTitle = str_replace('-', ' ', basename($this->requestUrlPath),);
     return;
   }
 }
 
-class pageData
-{
+class pageData {
   public $pageId;
   public $pageTitle;
   public $pageDescription;
   public $pageKeywords;
   public $pageAuthor;
-  public $pageViewport = "width=device-width, height=device-height, initial-scale=1.0";
+  public $pageViewport;
   public $sharedState;
   public $pageMainContentFilePath;
-  private function findPageData(&$pageid, &$dbDataList)
-  {
+  private $isDynamicArticle;
+  public function __construct() {
+    $this->pageId = "";
+    $this->pageTitle = "";
+    $this->pageDescription = "";
+    $this->pageKeywords = "";
+    $this->pageAuthor = "";
+    $this->pageViewport = "width=device-width, height=device-height, initial-scale=1.0";
+    $this->sharedState = "";
+    $this->isDynamicArticle = false;
+  }
+  public function setIsDynamicArticle(bool $isDynamicArticle) {
+    $this->isDynamicArticle = $isDynamicArticle;
+  }
+  public function getIsDynamicArticle() {
+    return $this->isDynamicArticle;
+  }
+  private function findPageData(&$pageid, &$dbDataList) {
     for ($i = 0; $i < count($dbDataList); $i++) {
       if ($pageid == $dbDataList[$i][1]) {
         return $dbDataList[$i];
@@ -94,16 +105,14 @@ class pageData
     }
     return -1;
   }
-  private function findPageId($key, &$pageIDList)
-  {
+  private function findPageId($key, &$pageIDList) {
     for ($i = 0; $i < count($pageIDList); $i++) {
       if ($key == $pageIDList[$i][1])
         return $pageIDList[$i][0];
     }
     return -1;
   }
-  public function setPageData($urlpath, $addExtraPageId)
-  {
+  public function setPageData($urlpath, $addExtraPageId) {
     $pageIdList = [["HME-0", "home"], ["ABT-0", "about"], ["NWS-0", "news"], ["GDS-0", "guides"]];
     $addExtraPageId($pageIdList);
     // set urlpath to home if no path is found
@@ -125,11 +134,9 @@ class pageData
   }
 }
 
-class pageLoader
-{
+class pageLoader {
   // only add news_title columns into mainData
-  private function setNewsTitleAllDays(&$mainData)
-  {
+  private function setNewsTitleAllDays(&$mainData) {
     array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'monday'"));
     array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'tuesday'"));
     array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'wednesday'"));
@@ -139,19 +146,27 @@ class pageLoader
     array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'sunday'"));
     return;
   }
-  private function handleMainContent(requestUrlHandler &$ruH, pageData &$pd)
-  {
+  private function handleMainContent(requestUrlHandler &$ruH, pageData &$pd) {
     $pageId = $pd->pageId;
     $mainData = [];
 
     // handle home page here 
-    if ($ruH->getHomePath() != null) {
+    if ($ruH->getHomePath() != "") {
       $this->setNewsTitleAllDays($mainData);
       \envCenter::loadFile($ruH->getHomePath(), $mainData);
       return;
     }
-    if ($ruH->getErrorPath() != null) {
+    if ($ruH->getErrorPath() != "") {
       \envCenter::loadFile($ruH->getErrorPath());
+      return;
+    }
+    if ($pd->getIsDynamicArticle() == true) {
+      $escapedNewsTitle = str_replace("'", "''", $pd->pageTitle);
+      $escapedNewsTitle = str_replace("_", "-", $escapedNewsTitle);
+      $articleData = db::query("SELECT * FROM updatenews WHERE news_title = '$escapedNewsTitle'");
+      if (count($articleData) == 1)
+        $articleData = $articleData[0];
+      \envCenter::loadFile("/view/newsArticle/article-layout.php", $articleData);
       return;
     }
 
@@ -169,8 +184,7 @@ class pageLoader
     // load body file
     \envCenter::loadFile($ruH->getRequestUrlFilePath(), $mainData);
   }
-  public function loadPage(requestUrlHandler &$ru)
-  {
+  public function loadPage(requestUrlHandler &$ru) {
     $pagedata = new pageData();
     $pagedata->setPageData($ru->getLastRequestUrlStrOnly(), function (&$pageList) {
       // add additional internal page id here
@@ -189,10 +203,8 @@ class pageLoader
     \envCenter::loadFile("view/footer.php");
   }
 }
-class viewController
-{
-  public function handleRequest()
-  {
+class viewController {
+  public function handleRequest() {
     $ruH = new requestUrlHandler();
     if ($ruH->isHomePage()) {
       $ruH->setHomePath($ruH->getDefaultViewDirectory() . "/home.php");
