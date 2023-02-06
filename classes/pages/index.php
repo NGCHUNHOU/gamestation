@@ -161,8 +161,9 @@ class pageLoader {
       return;
     }
     if ($pd->getIsDynamicArticle() == true) {
-      $escapedNewsTitle = str_replace("'", "''", $pd->pageTitle);
-      $escapedNewsTitle = str_replace("_", "-", $escapedNewsTitle);
+      // replace "'" with "''" to escape single quote for sql search
+      // replace "_" with "-" to restore title original character
+      $escapedNewsTitle = str_replace(["'", "_"], ["''", "-"], $pd->pageTitle);
       $articleData = db::query("SELECT * FROM updatenews WHERE news_title = '$escapedNewsTitle'");
       if (count($articleData) == 1)
         $articleData = $articleData[0];
