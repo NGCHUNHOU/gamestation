@@ -9,10 +9,10 @@
         static updateRow = (e) => {
             let tableRow = e.target.parentNode.parentNode
 
-            // some code here to update table row by sqlite driver
-
-            e.target.parentNode.innerText = e.target.value
-            $(tableRow).find("input").remove()
+            $(tableRow).find("input").each((index, cell) => {
+                cell.parentNode.innerText = cell.value
+                cell.remove()
+            })
         }
         static getinputCopyNode = () => {
             let rowCellInputNode = document.createElement("input")
