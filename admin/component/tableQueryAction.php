@@ -28,7 +28,8 @@
                     console.log("successfully post request for /admin/component/updatenewsApi.php")
             }
 
-            let tableData = {tableName: "updatenews", postData: postData}
+            let currentTableName = $(".sidebar-frame a[data-isclicked=true]").text()
+            let tableData = {tableName: currentTableName, postData: postData}
             xhr.send(JSON.stringify(tableData))
         }
         static getinputCopyNode = (postData) => {

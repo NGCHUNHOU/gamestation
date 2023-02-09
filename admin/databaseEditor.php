@@ -1,8 +1,11 @@
 <?php
 class databaseEditor {
-    public static function renderTableExplorerNodes($arr, $nodeType, $arrayIndexKey) {
+    public static function renderTableExplorerNodes($arr, $nodeType, $arrayIndexKey, $selectedTableIndex) {
         for ($i=0;$i<count($arr);$i++) {
-            echo '<'.$nodeType.' id="'.$arr[$i][$arrayIndexKey].'" >'.$arr[$i][$arrayIndexKey].'</'.$nodeType.'>';
+            $isclicked = "false";
+            if ($i == $selectedTableIndex)
+                $isclicked = "true";
+            echo '<'.$nodeType.' id="'.$arr[$i][$arrayIndexKey].'" data-isclicked="' . $isclicked . '" >'.$arr[$i][$arrayIndexKey].'</'.$nodeType.'>';
         }
     }
     public static function renderTableDisplayerNodes($tableColumns, $arr) {
