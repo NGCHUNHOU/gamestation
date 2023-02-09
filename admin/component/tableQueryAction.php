@@ -15,13 +15,13 @@
                 cell.remove()
             })
             if (postData.length < 1) {
-                console.log("failed to get user input row data, unable to update row into database table 'updatenews'")
+                console.log("failed to get user input row data, unable to update row into database table")
                 tableRow.remove()
                 return
             }
 
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", "/admin/component/updatenewsApi.php", true)
+            xhr.open("POST", "/admin/component/updateapi.php", true)
             xhr.setRequestHeader("Content-Type", "application/json")
             xhr.onreadystatechange = () => {
                 if (xhr.readyState == 4 && xhr.status == 200)
