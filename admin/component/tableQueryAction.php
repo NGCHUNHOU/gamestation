@@ -6,25 +6,40 @@
 </div>
 <script>
     class rowEditor {
-        static updateRow = (e) => {
+        static updateRow = (e, postData) => {
             let tableRow = e.target.parentNode.parentNode
 
             $(tableRow).find("input").each((index, cell) => {
+                postData.push(cell.value)
                 cell.parentNode.innerText = cell.value
                 cell.remove()
             })
+            if (postData.length < 1) {
+                console.log("failed to get user input row data, unable to update row into database table 'updatenews'")
+                tableRow.remove()
+                return
+            }
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/admin/component/updatenewsApi.php", true)
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4 && xhr.status == 200)
+                    console.log("successfully post request for /admin/component/updatenewsApi.php")
+            }
+
+            let tableData = {tableName: "updatenews", postData: postData}
+            xhr.send(JSON.stringify(tableData))
         }
-        static getinputCopyNode = () => {
+        static getinputCopyNode = (postData) => {
             let rowCellInputNode = document.createElement("input")
             let rowCellNode = document.createElement("td")
 
             rowCellNode.appendChild(rowCellInputNode)
 
-            // some code for focus or click event for input fields to allow multiple values update
-
             rowCellInputNode.addEventListener("keyup", (e) => {
                 if (e.keyCode === 13)
-                    rowEditor.updateRow(e)
+                    rowEditor.updateRow(e, postData)
             })
 
             return rowCellNode
@@ -35,8 +50,9 @@
             let rowCellRowNode = document.createElement("tr")
             let rowCellNode = document.createElement("td")
 
+            let postData = []
             for (let i=0;i<tableCellSum;i++) {
-                let inputCopyNode = rowEditor.getinputCopyNode()
+                let inputCopyNode = rowEditor.getinputCopyNode(postData)
                 rowCellRowNode.appendChild(inputCopyNode)
             }
             
