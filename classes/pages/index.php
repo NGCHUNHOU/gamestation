@@ -150,12 +150,16 @@ class pageLoader {
     array_push($mainData, db::query("SELECT news_title FROM updatenews WHERE daystr = 'sunday'"));
   }
   private function handleArticles(pageData &$pd) {
-      // replace "'" with "''" to escape single quote for sql search
-      // replace "_" with "-" to restore title original character
-      $escapedNewsTitle = str_replace(["'", "_"], ["''", "-"], $pd->pageTitle);
-      $articleData = db::query("SELECT * FROM updatenews WHERE news_title = '$escapedNewsTitle'");
+      $articleData = db::query("SELECT * FROM updatenews WHERE news_id = '$pd->pageTitle'");
       if (count($articleData) == 1)
         $articleData = $articleData[0];
+
+      // passing articleData for because shared page "default2.php" use pageData structure
+      $pd->pageId = $articleData["news_id"];
+      $pd->pageTitle = $articleData["news_title"];
+      $pd->pageDescription = $articleData["description"];
+      $pd->pageKeywords = $articleData["keywords"];
+      \envCenter::loadFile("view/header/default2.php", $pd);
       \envCenter::loadFile("/view/newsArticle/article-layout.php", $articleData);
   }
   private function handleMainContent(requestUrlHandler &$ruH, pageData &$pd) {
@@ -201,8 +205,9 @@ class pageLoader {
     // initialize page head data if the page is dynamic article
     $ru->setDynamicArticlesHeadData($pagedata);
 
-    // load header file
-    \envCenter::loadFile("view/header/default2.php", $pagedata);
+    // load header file if page is not article
+    if ($pagedata->getIsDynamicArticle() == false)
+      \envCenter::loadFile("view/header/default2.php", $pagedata);
 
     $this->handleMainContent($ru, $pagedata);
 

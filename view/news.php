@@ -5,17 +5,14 @@
         </div>
         <div class="col-12">
             <?php
-            function getArticlePathByNewsTitle($newsTitle) {
-                // replace ' ' with '-', because url should not have space character
-                // replace '-' with '_' to avoid string mismatch for sql search
-                $newsTitlePathName = str_replace(['-', ' '], ['_', '-'], $newsTitle);
-                return "newsArticle/".$newsTitlePathName;
+            function getArticlePathByNewsTitle($newsId) {
+                return "newsArticle/".$newsId;
             }
             for ($i = 0; $i < count($pageData); $i++) {
                 echo
                     "<div class='card'>
                 <div class='card-main' style='display:flex; flex-direction: row-reverse;'>
-                        <a class='card-link' href=".getArticlePathByNewsTitle($pageData[$i]['news_title'])."></a> 
+                        <a class='card-link' href=".getArticlePathByNewsTitle($pageData[$i]['news_id'])."></a> 
                     <div class='img-wrapper' style='padding: 1.25rem'>
                         <img src=".$pageData[$i]['imgNews_thumbnail']. " rel='preload' style='max-width:200px; min-height: 130px;' alt='image loading'>
                     </div>
