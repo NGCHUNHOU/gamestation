@@ -60,9 +60,19 @@
             $("#tableItemsContainer").append(rowCellRowNode)
         }
         static removeRow = () => {}
+        static selectAllRow = (eventNode) => {
+            if (!eventNode.target.checked) {
+                $(".item-checkbox").prop("checked", false)
+                $(".item-checkbox").attr("style", "display: none")
+                return
+            }
+            $(".item-checkbox").prop("checked", true)
+            $(".item-checkbox").attr("style", "display: inline-block")
+        }
     }
     $('#tableDisplayer').ready(() => {
         $("#addTableRowButton").on("click", rowEditor.addNewRow)
         $("#removeTableRowButton").on("click", rowEditor.removeRow)
+        $("#selectall-checkbox").on("click", rowEditor.selectAllRow)
     })
 </script>

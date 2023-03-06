@@ -5,6 +5,7 @@ use classes\db\db;
 class tableDisplayer {
     private $targetTable = "";
     private $tableColumnNames = [];
+    private $tableColumnNamesCount = 0;
     private $tableData = [];
     public function getTableData() {return $this->tableData;}
     public function deleteTableData() {unset($this->tableData);}
@@ -14,6 +15,7 @@ class tableDisplayer {
     }
     public function setTableColumnNames() {
         $this->tableColumnNames = db::queryColumnNames("SELECT * FROM " . $this->getTargetTable(). " LIMIT 0");
+        $this->tableColumnNamesCount = count($this->tableColumnNames);
     }
     public function getTableColumnNames() {
         if (count($this->tableColumnNames) == 0)
