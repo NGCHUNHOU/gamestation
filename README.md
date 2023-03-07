@@ -1,8 +1,12 @@
 # Gamestation
 A plain game news site designed from sratch. Get thing done without framework 
 <br><br>
-![Gamestation Site Demo](demo.gif)
 
+| news | database admin |
+| --- | --- |
+| <img src="game-news.PNG" width="50%"> | <img src="game-admin.PNG" width="50%"> |
+
+<br><br>
 ## Software Packages required 
 1. php
 2. php extension - pdo sqlite
