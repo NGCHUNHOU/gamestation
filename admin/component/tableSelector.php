@@ -38,6 +38,24 @@
         }
     }
 
+
+    function getCheckbox(node) {
+        let checkbox = $(node.target).siblings("td:first").children().first()
+        if (checkbox.length == 0)
+            checkbox = $(node.target).children().first()
+
+        return checkbox
+    }
+    function addRowCheckboxEdit(e) {
+        let checkbox = rowEditor.getCheckbox(e)
+        checkbox.css("display", "inline-block")
+    }
+    function removeRowCheckboxEdit(e) {
+        let checkbox = rowEditor.getCheckbox(e)
+        if (!checkbox.prop("checked"))
+            checkbox.css("display", "none")
+    }
+
     let pool = new objectPool()
     let poolSize = 5
 
@@ -58,11 +76,20 @@
                 $("#tableColumnsContainer tr").empty()
                 $("#tableItemsContainer").empty()
 
+                // checkbox
+                $("#tableColumnsContainer tr").append(`<th scope='col'><input type='checkbox' id='selectall-checkbox' /></th>`)
+
                 for (const [key, value] of Object.entries(data[0])) {
                     $("#tableColumnsContainer tr").append(`<th scope='col'>${key}</th>`)
                 }
+
                 for (let i=0;i<data.length;i++) {
                     $("#tableItemsContainer").append(`<tr id='${i}'></tr>`)
+
+                    $("#tableItemsContainer tr").on("mouseenter", addRowCheckboxEdit)
+                    $("#tableItemsContainer tr").on("mouseleave", removeRowCheckboxEdit)
+                    $("#tableItemsContainer tr").append(`<td><input type='checkbox' style='display: none;' class='item-checkbox' /></td>`)
+
                     for (const [index, [key, value]] of Object.entries(Object.entries(data[i]))) {
                         $(`#tableItemsContainer tr#${i}`).append(`<td>${value}</td>`)
                     }
@@ -77,7 +104,6 @@
             // to prevent duplicate post requests
             if (e.target.getAttribute("data-isclicked") == "true")
                 return
-
             passPostRequest(e.target.id)
 
             $(".sidebar-frame a").attr("data-isclicked", "false")

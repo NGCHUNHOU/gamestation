@@ -10,8 +10,9 @@
         this.postData = []
         this.tableName = ""
         this.postType = ""
-        this.tableName = $(".sidebar-frame a[data-isclicked=true]").text()
+        this.tablename = ""
         this.init = (PostData = [], hasCheckbox = true) => {
+            this.tableName = $(".sidebar-frame a[data-isclicked=true]").text()
             this.postData = PostData
             this.postType = "insert"
 
@@ -21,6 +22,7 @@
             }
         }
         this.initRows = (indexes = []) => {
+            this.tableName = $(".sidebar-frame a[data-isclicked=true]").text()
             this.selectedRows = indexes
             this.postType = "delete"
         }
