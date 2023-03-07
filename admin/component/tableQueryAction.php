@@ -9,14 +9,20 @@
         this.selectedRows = []
         this.postData = []
         this.tableName = ""
-        this.init = (TableName, PostData, hasCheckbox = true) => {
-            this.tableName = TableName
+        this.postType = ""
+        this.tableName = $(".sidebar-frame a[data-isclicked=true]").text()
+        this.init = (PostData = [], hasCheckbox = true) => {
             this.postData = PostData
+            this.postType = "insert"
 
             if (hasCheckbox) {
                 // post data without checkbox
                 this.postData.shift()
             }
+        }
+        this.initRows = (indexes = []) => {
+            this.selectedRows = indexes
+            this.postType = "delete"
         }
     }
 
@@ -64,9 +70,7 @@
                 return
             }
 
-            let currentTableName = $(".sidebar-frame a[data-isclicked=true]").text()
-            postPayload.init(currentTableName, postData)
-
+            postPayload.init(postData)
             rowEditor.postRequest(postPayload)
         }
         static getinputCopyNode = (postData) => {
@@ -96,7 +100,16 @@
             
             $("#tableItemsContainer").append(rowCellRowNode)
         }
-        static removeRow = () => {}
+        static removeRow = (e) => {
+            let checkboxes = $("#tableItemsContainer tr td:first-child input:checked")
+            let rowIndexes = []
+            checkboxes.parent().next().each((index, checkedRowindex) => {
+                rowIndexes.push($(checkedRowindex).text())
+            })
+            
+            postPayload.initRows(rowIndexes)
+            rowEditor.postRequest(postPayload)
+        }
         static selectAllRow = (eventNode) => {
             if (!eventNode.target.checked) {
                 $(".item-checkbox").prop("checked", false)

@@ -32,10 +32,11 @@ class db
 
     static public function query($query, $params = array()) {
         $stmt = db::connect()->prepare($query);
-        $stmt->execute($params);
+        $isQueryOk = $stmt->execute($params);
         if (explode(' ', $query)[0] == 'SELECT') {
             return $stmt->fetchAll();
         } 
+        return $isQueryOk;
     }
 
     static public function queryColumnNames($query, $params = array()) {
