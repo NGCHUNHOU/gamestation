@@ -5,7 +5,51 @@
     </div>
 </div>
 <script>
+    function tablePostStructure() {
+        this.selectedRows = []
+        this.postData = []
+        this.tableName = ""
+        this.init = (TableName, PostData, hasCheckbox = true) => {
+            this.tableName = TableName
+            this.postData = PostData
+
+            if (hasCheckbox) {
+                // post data without checkbox
+                this.postData.shift()
+            }
+        }
+    }
+
+    let postPayload = new tablePostStructure("", [])
+    
     class rowEditor {
+        static getCheckbox = (node) => {
+            let checkbox = $(node.target).siblings("td:first").children().first()
+            if (checkbox.length == 0)
+                checkbox = $(node.target).children().first()
+
+            return checkbox
+        }
+        static addRowCheckboxEdit = (e) => {
+            let checkbox = rowEditor.getCheckbox(e)
+            checkbox.css("display", "inline-block")
+        }
+        static removeRowCheckboxEdit = (e) => {
+            let checkbox = rowEditor.getCheckbox(e)
+            if (!checkbox.prop("checked"))
+                checkbox.css("display", "none")
+        }
+        static postRequest = (tableData, hasCheckbox = true) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/admin/component/updateapi.php", true)
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4 && xhr.status == 200)
+                    console.log("successfully post request for /admin/component/updatenewsApi.php")
+            }
+
+            xhr.send(JSON.stringify(tableData))
+        }
         static updateRow = (e, postData) => {
             let tableRow = e.target.parentNode.parentNode
 
@@ -20,17 +64,10 @@
                 return
             }
 
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "/admin/component/updateapi.php", true)
-            xhr.setRequestHeader("Content-Type", "application/json")
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState == 4 && xhr.status == 200)
-                    console.log("successfully post request for /admin/component/updatenewsApi.php")
-            }
-
             let currentTableName = $(".sidebar-frame a[data-isclicked=true]").text()
-            let tableData = {tableName: currentTableName, postData: postData}
-            xhr.send(JSON.stringify(tableData))
+            postPayload.init(currentTableName, postData)
+
+            rowEditor.postRequest(postPayload)
         }
         static getinputCopyNode = (postData) => {
             let rowCellInputNode = document.createElement("input")
@@ -74,5 +111,7 @@
         $("#addTableRowButton").on("click", rowEditor.addNewRow)
         $("#removeTableRowButton").on("click", rowEditor.removeRow)
         $("#selectall-checkbox").on("click", rowEditor.selectAllRow)
+        $("#tableItemsContainer tr").on("mouseenter", rowEditor.addRowCheckboxEdit)
+        $("#tableItemsContainer tr").on("mouseleave", rowEditor.removeRowCheckboxEdit)
     })
 </script>
