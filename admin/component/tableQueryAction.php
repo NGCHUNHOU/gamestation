@@ -111,6 +111,10 @@
             
             postPayload.initRows(rowIndexes)
             rowEditor.postRequest(postPayload)
+
+            let selectedRows = checkboxes.parent().parent()
+            // to do: check if post request is ok
+            selectedRows.remove()
         }
         static selectAllRow = (eventNode) => {
             if (!eventNode.target.checked) {
